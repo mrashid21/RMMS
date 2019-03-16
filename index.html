@@ -18,7 +18,7 @@
 </head>
 <body class="bg-gradient-lighter">
     <!-- Side Navigation Bar -->
-    <nav class="navbar bg-gradient-default navbar-vertical fixed-left navbar-expand-md navbar-dark">
+    <nav class="navbar bg-white shadow navbar-vertical fixed-left navbar-expand-md navbar-light">
         <div class="container-fluid">
             <!-- ORMMS Logo -->
             <a class="navbar-brand pt-0" href="index.html">
@@ -28,22 +28,22 @@
                 <!-- Navigation -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-teal" href="index.html"><i class="ni ni-tv-2 text-teal"></i>Overview</a>
+                        <a class="nav-link" href="index.html"><i class="ni ni-tv-2 text-teal"></i>Overview</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-purple" href="schedule.html"><i class="ni ni-calendar-grid-58 text-purple"></i>Schedule</a>
+                        <a class="nav-link" href="schedule.html"><i class="ni ni-calendar-grid-58 text-purple"></i>Schedule</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-green" href=""><i class="ni ni-bullet-list-67 text text-green"></i>Checklist</a>
+                        <a class="nav-link" href=""><i class="ni ni-bullet-list-67 text text-green"></i>Checklist</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-yellow" href=""><i class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
+                        <a class="nav-link" href=""><i class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-orange" href=""><i class="ni ni-cloud-upload-96 text-orange"></i>Research Progress</a>
+                        <a class="nav-link" href=""><i class="ni ni-cloud-upload-96 text-orange"></i>Research Progress</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-pink" href=""><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
+                        <a class="nav-link" href=""><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
                     </li>
                 </ul>
             </div>
@@ -51,21 +51,86 @@
     </nav>
     <!-- Main -->
     <div class="main-content">
+            <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+                <div class="container-fluid">
+                    <!-- Brand -->
+                    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Overview</a>
+                    <!-- Form -->
+                    <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                        <div class="form-group mb-0">
+                            <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                </div>
+                                <input class="form-control" placeholder="Search" type="text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </nav>
         <!-- Header -->
-        <div class="header pb-8 pt-5 pt-md-8">
+        <div class="header bg-gradient-dark pb-8 pt-5 pt-md-8">
             <div class="container-fluid">
                 <div class="header-body">
                     
                 </div>
             </div>
         </div>
+        <!-- Page content -->
+        <!-- Meeting -->
+        <div class="container-fluid mt--7">
+            <div class="row">
+                <div class="col-xl-8 mb-5 mb-xl-0">
+                    <div class="card bg-white shadow">
+                        <div class="card-header bg-transparent">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
+                                    <h2 class="text-black mb-0">Next Appoinment</h2>
+                                </div>
+                                <div class="col">
+                                    <ul class="nav nav-pills justify-content-end">
+                                        <li class="nav-item mr-2 mr-md-0">
+                                            <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
+                                                <span class="d-none d-md-block">Set Reminder</span>
+                                                <span class="d-md-none">R</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                        <!-- Chart -->
+                            <div class="chart">
+                            <!-- Chart wrapper -->
+                                <canvas id="chart-sales" class="chart-canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card shadow">
+                        <div class="card-header bg-transparent">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-uppercase text-light ls-1 mb-1">Performance</h6>
+                                    <h2 class="mb-0">Checklist</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                        <!-- Chart -->
+                            <div class="chart">
+                                <canvas id="chart-orders" class="chart-canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- Footer -->
-    <footer>
-
-    </footer>
-
+    
     <script src="assets/js/argon.js"></script>
     <script src="assets/js/jquery-3.3.1.min.js"></script>
 </body>
