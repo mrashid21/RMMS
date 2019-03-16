@@ -4,10 +4,6 @@
 * Argon Dashboard - v1.0.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2018 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
-
 * Coded by Creative Tim
 
 =========================================================
@@ -15148,7 +15144,7 @@ button.bg-lighter:focus
 
 .bg-gradient-teal
 {
-    background: linear-gradient(87deg, #11cdef 0, #1171ef 100%) !important;
+    background: linear-gradient(87deg, #1171ef 0,#11cdef 100%) !important;
 }
 
 .bg-gradient-cyan
