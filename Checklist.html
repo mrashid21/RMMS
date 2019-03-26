@@ -22,7 +22,7 @@
 }
 
 /* Remove margins and padding from the list */
-#myUL {
+#myUL  {
   margin: 0;
   padding: 0;
 }
@@ -45,24 +45,24 @@
 }
 
 /* Set all odd list items to a different color (zebra-stripes) */
-#myUL li:nth-child(odd) {
+#myUL  li:nth-child(odd) {
   background: #f9f9f9;
 }
 
 /* Darker background-color on hover */
-#myUL li:hover {
+#myUL  li:hover {
   background: #ddd;
 }
 
 /* When clicked on, add a background color and strike out text */
-#myUL li.checked {
+#myUL  li.checked {
   background: #888;
   color: #fff;
   text-decoration: line-through;
 }
 
 /* Add a "checked" mark when clicked on */
-#myUL li.checked::before {
+#myUL  li.checked::before {
   content: '';
   position: absolute;
   border-color: #fff;
@@ -185,15 +185,21 @@ input {
                                             <span onclick="newElement()" class="addBtn">
                                                     <button type="button" class="btn btn-light">Add</button>
                                             </span>
-                                          </div>
+                                            </div>
                                           
-                                          <ul id="myUL">
+                                          <ul id="myUL" contenteditable="true">
                                             <li>Meet Client</li>
                                             <li class="checked">Update Document</li>
                                             <li>Prepare slides</li>
                                             <li>Prepare report</li>
                                             <li>Organize office</li>
                                           </ul>
+
+                                          <div class="container">
+                                                <h3>Notes!</h3>
+                                                <h4>1.Click task to edit</h4>
+                                                <h4>2.Double click task to tick if the task is completed</h4>
+                                            </div>
                                     
                                 </div>
                             </div>
@@ -233,7 +239,7 @@ for (i = 0; i < close.length; i++) {
 
 // Add a "checked" symbol when clicking on a list item
 var list = document.querySelector('#myUL');
-list.addEventListener('click', function(ev) {
+list.addEventListener('dblclick', function(ev) {
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
   }
