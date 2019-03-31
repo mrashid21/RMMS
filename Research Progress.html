@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="assets/css/argon.css">
     <!-- Include Nucleo CSS Icons -->
     <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
+
 </head>
 
 <body class="bg-gradient-lighter">
@@ -88,11 +89,11 @@
                 <table class="table align-items-center">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col">Research</th>
-                            <th scope="col">Budget</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Contributers</th>
-                            <th scope="col">Completion</th>
+                            <th scope="col" >Research</th>
+                            <th scope="col" >Budget</th>
+                            <th scope="col" >Status</th>
+                            <th scope="col" >Contributers</th>
+                            <th scope="col" >Completion</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -118,10 +119,9 @@
                             </td>
                             <td>
                                 <div class="avatar-group">
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                        data-original-title="Contributer 1">
+                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip" data-placement="top" data-original-title="Contributer 1">
                                     </a>
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
+                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip" data-placement="top"
                                         data-original-title="Contributer 2">
                                     </a>
                                 </div>
@@ -140,9 +140,9 @@
                             </td>
                             <td class="text-right">
                                 <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
+                                    <a class="btn btn-info tdropdown-toggle" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Info">
+                                        <i class="ni ni-bullet-list-67"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                         <a class="dropdown-item" href="#">Action</a>
@@ -193,9 +193,9 @@
                             </td>
                             <td class="text-right">
                                 <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
+                                    <a class="btn btn-info tdropdown-toggle" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Info">
+                                        <i class="ni ni-bullet-list-67"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                         <a class="dropdown-item" href="#">Action</a>
@@ -247,9 +247,9 @@
                             </td>
                             <td class="text-right">
                                 <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
+                                    <a class="btn btn-info tdropdown-toggle" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Info">
+                                        <i class="ni ni-bullet-list-67"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                         <a class="dropdown-item" href="#">Action</a>
@@ -286,7 +286,7 @@
                                         data-original-title="example 2">
                                     </a>
                                     <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                        data-original-title="example 2">
+                                        data-original-title="example 3">
                                     </a>
                                 </div>
 
@@ -304,9 +304,9 @@
                             </td>
                             <td class="text-right">
                                 <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
+                                    <a class="btn btn-info tdropdown-toggle" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Info">
+                                        <i class="ni ni-bullet-list-67"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                         <a class="dropdown-item" href="#">Action</a>
@@ -359,9 +359,9 @@
                             </td>
                             <td class="text-right">
                                 <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
+                                    <a class="btn btn-info tdropdown-toggle" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Info">
+                                        <i class="ni ni-bullet-list-67"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                         <a class="dropdown-item" href="#">Action</a>
@@ -385,11 +385,16 @@
         <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
 </footer> 
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
     <script src="assets/js/argon.js"></script>
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/flipclock/timer.js"></script>
     <script src="assets/counter-up/jquery.counterup.js"></script>
     <script src="assets/counter-up/jquery.waypoints.min.js"></script>
+
 </body>
 
 </html>
