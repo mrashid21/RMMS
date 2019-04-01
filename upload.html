@@ -72,14 +72,20 @@
         </nav>
 
         <div class="header container-fluid bg-gradient-light pb-8 pt-5 pt-md-8">
+            
         </div>
         <div class="container-fluid mt--7">
                 <div class="row">
-                    <form action="upload.php" method="post" enctype="multipart/form-data">
-                        Select file to upload:
-                        <input type="file" name="fileToUpload" id="fileToUpload">
-                        <input type="submit" value="Upload File" name="submit">
-                    </form>
+                    <div class="col-xl-8 mb-5 mb-xl-0">
+                        <div class="card bg-white shadow">
+                            <form action="upload.php" method="post" enctype="multipart/form-data">
+                                Select file to upload:
+                                <input type="file" name="fileToUpload" id="fileToUpload">
+                                <input type="submit" value="Upload File" name="submit">
+                            </form>
+                        </div>
+                    </div>
+                    
                 </div>
                 
             </div>
