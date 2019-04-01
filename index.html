@@ -44,7 +44,7 @@
                         <a class="nav-link" href="Research Progress.html"><i class="ni ni-cloud-upload-96 text-orange"></i>Research Progress</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=""><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
+                        <a class="nav-link" href="upload.html"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
                     </li>
                 </ul>
             </div>
@@ -80,7 +80,15 @@
                             <div class="event_text">
                                 <h3>Next Meeting will Start in</h3>
                             </div>
-                          <div class="col-md-6 text-right">
+                          <div class="col text-right">
+                                <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                            </div>
+                                            <input class="form-control datepicker" placeholder="Select date" type="text" value="06/20/2018">
+                                        </div>
+                                    </div>
                             <a href="#!" class="btn btn-block btn-primary">Set Reminder</a>
                           </div>
                         </div>
@@ -127,17 +135,17 @@
                                 <ul class="nav nav-pills nav-pills-circle" id="tabs_2" role="tablist">
                                     <li class="nav-item">
                                       <a class="nav-link rounded-circle active" id="home-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="home" aria-selected="true">
-                                        <span class="nav-link-icon d-block"><i class="ni ni-atom"></i></span>
+                                        <span class="nav-link-icon d-block"><i class="ni ni-align-left-2"></i></span>
                                       </a>
                                     </li>
                                     <li class="nav-item">
                                       <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="profile" aria-selected="false">
-                                        <span class="nav-link-icon d-block"><i class="ni ni-chat-round"></i></span>
+                                        <span class="nav-link-icon d-block"><i class="ni ni-align-center"></i></span>
                                       </a>
                                     </li>
                                     <li class="nav-item">
                                       <a class="nav-link" id="contact-tab" data-toggle="tab" href="#tabs-icons-text-3" role="tab" aria-controls="contact" aria-selected="false">
-                                        <span class="nav-link-icon d-block"><i class="ni ni-cloud-download-95"></i></span>
+                                        <span class="nav-link-icon d-block"><i class="ni ni-bullet-list-67"></i></span>
                                       </a>
                                     </li>
                                   </ul>
@@ -159,16 +167,110 @@
                                         <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
                                     </div>
                                     <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    123
-                                                </td>
-                                                <td>
-                                                    456
-                                                </td>
-                                            </tr>
-                                        </table>
+                                            <div class="table-responsive">
+                                                    <!-- Projects table -->
+                                                    <table class="table align-items-center table-flush">
+                                                      <thead class="thead-light">
+                                                        <tr>
+                                                          <th scope="col">Research ID</th>
+                                                          <th scope="col">Status</th>
+                                                          <th scope="col"></th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <th scope="row">
+                                                            Research 1
+                                                          </th>
+                                                          <td>
+                                                            Pending
+                                                          </td>
+                                                          <td>
+                                                            <div class="d-flex align-items-center">
+                                                              <span class="mr-2">60%</span>
+                                                              <div>
+                                                                <div class="progress">
+                                                                  <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <th scope="row">
+                                                            Research 2
+                                                          </th>
+                                                          <td>
+                                                            completed
+                                                          </td>
+                                                          <td>
+                                                            <div class="d-flex align-items-center">
+                                                              <span class="mr-2">100%</span>
+                                                              <div>
+                                                                <div class="progress">
+                                                                  <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <th scope="row">
+                                                            Research 3
+                                                          </th>
+                                                          <td>
+                                                            delayed
+                                                          </td>
+                                                          <td>
+                                                            <div class="d-flex align-items-center">
+                                                              <span class="mr-2">72%</span>
+                                                              <div>
+                                                                <div class="progress">
+                                                                  <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%;"></div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <th scope="row">
+                                                            Research 4
+                                                          </th>
+                                                          <td>
+                                                            on scheduled
+                                                          </td>
+                                                          <td>
+                                                            <div class="d-flex align-items-center">
+                                                              <span class="mr-2">90%</span>
+                                                              <div>
+                                                                <div class="progress">
+                                                                  <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <th scope="row">
+                                                            Research 5
+                                                          </th>
+                                                          <td>
+                                                            completed
+                                                          </td>
+                                                          <td>
+                                                            <div class="d-flex align-items-center">
+                                                              <span class="mr-2">100%</span>
+                                                              <div>
+                                                                <div class="progress">
+                                                                  <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
                                     </div>
                                 </div>
                             </div>
@@ -298,6 +400,8 @@
         </div>
     </div>
     
+    
+    
 </div>  
 
 <footer class="container text-center font-italic">
@@ -305,6 +409,14 @@
     Copyright &copy; ORMMS TEAM 1<br>
     <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
 </footer>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker2').datetimepicker({
+            locale: 'ru'
+        });
+    });
+</script>
 
     <script src="assets/js/argon.js"></script>
     <script src="assets/js/jquery-3.3.1.min.js"></script>
@@ -315,5 +427,6 @@
     <script src="./assets/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="./assets/vendor/chart.js/dist/Chart.extension.js"></script>
     <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 </body>
 </html>
