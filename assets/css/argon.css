@@ -18366,6 +18366,7 @@ textarea[resize='horizontal']
 {
     font-size: 3.25rem;
 }
+
 .icon-lg + .icon-text
 {
     width: calc(100% - $icon-size-lg - 1);
@@ -18381,6 +18382,7 @@ textarea[resize='horizontal']
 {
     font-size: 1.25rem;
 }
+
 .icon-sm + .icon-text
 {
     width: calc(100% - $icon-size-sm - 1);
@@ -22079,4 +22081,5 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
     color: #777777;
     text-transform: capitalize;
 }
+
   
