@@ -51,7 +51,6 @@ html
 {
     font-family: 'Poppins', sans-serif;
     line-height: 1.15;
-
     -webkit-text-size-adjust: 100%;
         -ms-text-size-adjust: 100%;
     -ms-overflow-style: scrollbar;
@@ -79,12 +78,12 @@ section
 
 body
 {
+    min-height: 100vh;
+    position: relative;
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-
-    margin: 0;
 
     text-align: left;
 
@@ -22081,5 +22080,18 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
     color: #777777;
     text-transform: capitalize;
 }
+
+
+.footer {
+    margin: auto;
+    width: 50%;
+    
+}
+.footerContent {
+    float:left;
+    width:100%;
+    padding:20px 0;
+}
+
 
   

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport">
@@ -18,273 +19,303 @@
 </head>
 <style type="text/css">
     textarea {
-     width: 450px;
-     height: 250px;
-     margin-left:41px;  
+        width: 450px;
+        height: 250px;
+        margin-left: 41px;
     }
-    html{
-	width:100%;
-	height:100%;
-     }
-     .comentBox{
-	padding:1%;
-	width:96%;
-    height:50px;
-	margin-bottom:10px;
-     }
 
-     .rightPanel{
-	width:60%;
-     height:auto;
-	float:left;
-	margin-left:1%;
-     overflow: auto;
-     }
-     .rightPanelImg{
-	width: 20%;
-    height:20px;
-	float:left;
-     }
+    html {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
 
-     .form{
-	padding:10px;
-	margin-bottom:10px;
-     text-align: center;
-     font-family: arial, sans-serif;
-     }
-    input{
+    .comentBox {
+        padding: 1%;
+        width: 96%;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+
+    .rightPanel {
+        width: 60%;
+        height: auto;
+        float: left;
+        margin-left: 1%;
+        overflow: auto;
+    }
+
+    .rightPanelImg {
+        width: 20%;
+        height: 20px;
+        float: left;
+    }
+
+    .form {
+        padding: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+        font-family: arial, sans-serif;
+    }
+
+    input {
         width: 450px;
     }
-     .form input[type="text"], .form textarea, .form input[type="date"]{
-	padding: 2px;
-    font-family: arial, sans-serif;
-     }
+
+    .form input[type="text"],
+    .form textarea,
+    .form input[type="date"] {
+        padding: 2px;
+        font-family: arial, sans-serif;
+    }
 
     .button {
-  padding: 10px 24px;
-  width: 150px;
-  border-radius: 12px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-left: 42px;
-  margin-bottom: 30px;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
+        padding: 10px 24px;
+        width: 150px;
+        border-radius: 12px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-left: 42px;
+        margin-bottom: 30px;
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
 
-.button2 {
-  background-color:#e7e7e7; 
-  color: #1F618D; 
-  border: 2px solid#e7e7e7;
-  
-}
+    .button2 {
+        background-color: #e7e7e7;
+        color: #1F618D;
+        border: 2px solid#e7e7e7;
 
-.button2:hover {
-  background-color:#FF8C00;
-  color: rgb(255, 255, 255);
-}
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  
-}
+    }
 
-td{
-  border: 1px solid #dddddd;
-  padding: 8px;
-  text-align: left;
-  
-}
-tr:hover{
-  border: 1px solid #dddddd;
-  padding: 8px;
-  text-align: left;
-  background-color: #FAD7A0;
-  
-}
-th{
-  border: 1px solid #dddddd;
-  padding: 8px;
-  text-align: left;
-  background-color: lightblue;
-  columns: #000000;
-}
-.header {
-  background-color:lightblue;
-  padding: 30px 40px;
-  text-align: center;
-  color:#dddddd;
-}
+    .button2:hover {
+        background-color: #FF8C00;
+        color: rgb(255, 255, 255);
+    }
 
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
 
-    </style>
-<body class="bg-gradient-lighter">
-<div class="wrapper">
-    <!--===== Sidebar =====-->
-    <nav class="navbar bg-white shadow navbar-vertical fixed-left navbar-expand-md navbar-light">
-        <div class="container-fluid">
-            <!-- ORMMS Logo -->
-            <a class="navbar-brand pt-0" href="index.html">
-                <img src="assets/png/ormms.png" class="navbar-brand-img" alt="">
-            </a>
-            <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-                <!-- Navigation -->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="homePage.html"><i class="ni ni-tv-2 text-teal"></i>Overview</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="schedule.html"><i class="ni ni-calendar-grid-58 text-purple"></i>Schedule</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Checklist.html"><i class="ni ni-bullet-list-67 text text-green"></i>Checklist</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Notes.html"><i class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Research Progress.html"><i class="ni ni-cloud-upload-96 text-orange"></i>Research Progress</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="upload.html"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    }
 
-    <!--===== Main =====-->
-    <div class="main-content">
-        <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+    td {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+
+    }
+
+    tr:hover {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+        background-color: #FAD7A0;
+
+    }
+
+    th {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+        background-color: lightblue;
+        columns: #000000;
+    }
+
+    .header {
+        background-color: lightblue;
+        padding: 30px 40px;
+        text-align: center;
+        color: #dddddd;
+    }
+</style>
+
+<body class="bg-gradient-lighter page-container">
+    <div class="wrapper page-wrapper" >
+        <!--===== Sidebar =====-->
+        <nav class="navbar bg-white shadow navbar-vertical fixed-left navbar-expand-md navbar-light">
             <div class="container-fluid">
-                <!-- Section -->
-                <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Overview</a>
-                <!-- Search Form -->
-                <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-                    <div class="form-group mb-0">
-                        <div class="input-group input-group-alternative">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-search"></i></span>
-                            </div>
-                            <input class="form-control" placeholder="Search" type="text">
-                        </div>
-                    </div>
-                </form>
+                <!-- ORMMS Logo -->
+                <a class="navbar-brand pt-0" href="index.html">
+                    <img src="assets/png/ormms.png" class="navbar-brand-img" alt="">
+                </a>
+                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                    <!-- Navigation -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="homePage.html"><i class="ni ni-tv-2 text-teal"></i>Overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="schedule.html"><i
+                                    class="ni ni-calendar-grid-58 text-purple"></i>Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Checklist.html"><i
+                                    class="ni ni-bullet-list-67 text text-green"></i>Checklist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Notes.html"><i
+                                    class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Research Progress.html"><i
+                                    class="ni ni-cloud-upload-96 text-orange"></i>Research Progress</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="upload.html"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload
+                                Report</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
 
-        <!--===== header =====-->
-        <div class="header container-fluid bg-gradient-light pb-3 pt-5 pt-md-8">
-            <div class="event_time_area">
+        <!--===== Main =====-->
+        <div class="main-content">
+            <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+                <div class="container-fluid">
+                    <!-- Section -->
+                    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
+                        href="./index.html">Overview</a>
+                    <!-- Search Form -->
+                    <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                        <div class="form-group mb-0">
+                            <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                </div>
+                                <input class="form-control" placeholder="Search" type="text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+
+            <!--===== header =====-->
+            <div class="header container-fluid bg-gradient-light pb-3 pt-5 pt-md-8">
+                <div class="event_time_area">
+                </div>
+            </div>
+
+            <!--===== Page content =====-->
+            <div class="container-fluid mt--8">
+                <div class="row ">
+                    <div class="col-xl-9 col-centered">
+                        <div class="card shadow">
+                            <div class="card-header bg-transparent">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div id="myDiv" class="header">
+                                            <h1 class="text-danger">Requirement Meeting</h1>
+                                        </div>
+
+
+
+                                        <div class="card-body">
+                                            <script
+                                                src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                                            <div>
+                                                <form id="myForm">
+                                                    <label class="w3-text-teal"><b>Title: </b></label>
+                                                    <input type="text" id="title"><br><br>
+                                                    <textarea rows="4" col="3" id="noteText"
+                                                        placeholder="Insert notes here..."></textarea><br><br>
+                                                    <input class="button button2" type="button" value="Save Notes"
+                                                        id="addComment" onclick="addRow()"><br><br>
+                                                </form>
+                                            </div>
+                                            <div id="container">
+                                                <table id="myTable">
+                                                    <col width="12%">
+                                                    <col width="46%">
+                                                    <col width="10%">
+                                                    <col width="3%">
+                                                    <tr>
+                                                        <th>Title</th>
+                                                        <th>Notes</th>
+                                                        <th>Date</th>
+                                                        <th>Delete</th>
+                                                    </tr>
+                                                    <tr id="row1">
+                                                        <td id="title_row1" contenteditable="true">Meeting WP</td>
+                                                        <td id="note_row1" contenteditable="true">Task are divided among
+                                                            members</td>
+                                                        <td id="date_row1">2019-3-01</td>
+                                                        <td><img src="assets/png/bin.png" height=20 width=15></img></td>
+                                                    </tr>
+                                                    <tr id="row2">
+                                                        <td id="title_row2" contenteditable="true">Meeting OS</td>
+                                                        <td id="note_row2" contenteditable="true">Choose topic for
+                                                            assignment</td>
+                                                        <td id="date_row2">2019-3-21</td>
+                                                        <td><img src="assets/png/bin.png" height=20 width=15></img></td>
+                                                    </tr>
+                                                    <tr id="row3">
+                                                        <td id="title_row3" contenteditable="true">Meeting SRE</td>
+                                                        <td id="note_row3" contenteditable="true">Activity diagram</td>
+                                                        <td id="date_row3">2019-3-24</td>
+                                                        <td><img src="assets/png/bin.png" height=20 width=15></img></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <!--===== Page content =====-->
-        <div class="container-fluid mt--8">
-            <div class="row ">
-                <div class="col-xl-9 col-centered">
-                    <div class="card shadow">
-                        <div class="card-header bg-transparent">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <div id="myDiv" class="header">
-                                            <h1 class="text-danger">Requirement Meeting</h1>
-                                    </div> 
-                                
-                            
-                        
-                        <div class="card-body">
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                        <div>
-                            <form id="myForm">
-                                    <label class="w3-text-teal"><b>Title: </b></label>
-                                    <input type ="text" id="title"><br><br>
-                                    <textarea rows ="4" col="3" id="noteText" placeholder="Insert notes here..."></textarea><br><br>
-                                    <input class="button button2" type="button" value="Save Notes"  id="addComment" onclick="addRow()"><br><br>
-                            </form>
-                        </div>
-                        <div id ="container">
-                            <table id="myTable">
-                                <col width="12%">
-                                <col width="46%">
-                                <col width="10%">
-                                <col width="3%">
-                         <tr >
-                           <th>Title</th>
-                           <th>Notes</th>
-                           <th>Date</th>
-                           <th>Delete</th>
-                         </tr>
-                         <tr id="row1">
-                           <td id="title_row1" contenteditable="true">Meeting WP</td>
-                           <td id="note_row1" contenteditable="true">Task are divided among members</td>
-                           <td id="date_row1">2019-3-01</td>
-                           <td><img src="assets/png/bin.png" height=20 width=15></img></td>
-                         </tr>
-                         <tr id="row2">
-                                <td id="title_row2" contenteditable="true">Meeting OS</td>
-                                <td id="note_row2" contenteditable="true">Choose topic for assignment</td>
-                                <td id="date_row2">2019-3-21</td>
-                                <td><img src="assets/png/bin.png" height=20 width=15></img></td>
-                              </tr>
-                              <tr id="row3">
-                                    <td id="title_row3" contenteditable="true">Meeting SRE</td>
-                                    <td id="note_row3" contenteditable="true">Activity diagram</td>
-                                    <td id="date_row3">2019-3-24</td>     
-                                    <td><img src="assets/png/bin.png" height=20 width=15></img></td>
-                             </tr>
-                       </table>
-                    </div>
-               </div>
-                                </div>
-                        </div>
-                        </div>
-          </div>
-     </div>
-</div>
-</div>
-</div>
-</div>
-<script>
-          function addRow() {
-               var d = new Date();
-               var n = d.getDate();
-               var m = d.getMonth()+1; 
-               var y = d.getFullYear();
-               var title=document.getElementById("title").value;
-               var notes=document.getElementById("noteText").value;
-               var table = document.getElementById("myTable");
-               var table_len=(table.rows.length);
-               var row = table.insertRow(table_len).outerHTML="<tr><td contenteditable=\"true\">"+title+"</td><td contenteditable=\"true\">"+notes+"</td><td>"+n+"-"+m+"-"+y+"</td><td onclick='delete_row("+table_len+")'><img id=\"im\" src=\"assets/png/bin.png\" height=20 width=15 onclick=\"del()\"></img></td></tr>";
-               
-               document.getElementById("myForm").reset();
-               }
+    </div>
 
-               var index, table=document.getElementById("myTable");
-               for (var i=0;i<table.rows.length;i++){
-                   table.rows[i].cells[3].onclick=function(){
-                       index = this.parentElement.rowIndex;
-                       table.deleteRow(index);
-                       console.log(index);
-                       };
-                       }             
-     </script>
+    <footer class="footer">
+        <div class="footerContent">
+            <hr>
+            Copyright &copy; ORMMS TEAM 1<br>
+            <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
+        </div>
+    </footer>
+
+    <script>
+        function addRow() {
+            var d = new Date();
+            var n = d.getDate();
+            var m = d.getMonth() + 1;
+            var y = d.getFullYear();
+            var title = document.getElementById("title").value;
+            var notes = document.getElementById("noteText").value;
+            var table = document.getElementById("myTable");
+            var table_len = (table.rows.length);
+            var row = table.insertRow(table_len).outerHTML = "<tr><td contenteditable=\"true\">" + title + "</td><td contenteditable=\"true\">" + notes + "</td><td>" + n + "-" + m + "-" + y + "</td><td onclick='delete_row(" + table_len + ")'><img id=\"im\" src=\"assets/png/bin.png\" height=20 width=15 onclick=\"del()\"></img></td></tr>";
+
+            document.getElementById("myForm").reset();
+        }
+
+        var index, table = document.getElementById("myTable");
+        for (var i = 0; i < table.rows.length; i++) {
+            table.rows[i].cells[3].onclick = function () {
+                index = this.parentElement.rowIndex;
+                table.deleteRow(index);
+                console.log(index);
+            };
+        }             
+    </script>
     <script src="assets/js/argon.js"></script>
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/flipclock/timer.js"></script>
     <script src="assets/counter-up/jquery.counterup.js"></script>
     <script src="assets/counter-up/jquery.waypoints.min.js"></script>
-    <footer class="container text-center font-italic">
-        <hr>
-        Copyright &copy; ORMMS TEAM 1<br>
-        <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
-      </footer>
-      
+
+
+
 </body>
+
 </html>
