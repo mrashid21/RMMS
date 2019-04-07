@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport">
@@ -18,59 +19,70 @@
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <style type="text/css">
-  .event_time_inner{
-  margin-left: 130px;
-  margin-right: 130px
-  }
-  h1 {
-  text-align: center;
-  text-transform: uppercase;
-  font-family: Georgia;
-  color: #FF7F50;
-  }
-  #saveButton{
-    border-radius: 12px;
-    background-color: white; 
-    color:black; 
-    border: 2px solid #FF7F50;
-    padding: 12px 28px;
-  }
-  #saveButton:hover {
-    background-color: #FF7F50;
-   color: white;
-   }
-  html{
-    font-size: 110%;
+    .event_time_inner {
+      margin-left: 130px;
+      margin-right: 130px
     }
-  .margin {
-    margin-top: 25px;
+
+    h1 {
+      text-align: center;
+      text-transform: uppercase;
+      font-family: Georgia;
+      color: #FF7F50;
     }
-  .grayout {
-    opacity: .45;
+
+    #saveButton {
+      border-radius: 12px;
+      background-color: white;
+      color: black;
+      border: 2px solid #FF7F50;
+      padding: 12px 28px;
     }
-  .headingcolor {
-    color: white;
-    background-color: #FF7F50;
-    border-color: #ddd;
-    padding: 10px 15px;
-    border-bottom: 1px solid transparent;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+
+    #saveButton:hover {
+      background-color: #FF7F50;
+      color: white;
     }
-  .border {
-    border-bottom: 1px solid red;
-    border-top: 1px solid #5f3fb8;
-  }
-  .panel {
-    transition: box-shadow 200ms;
-  }
-  .panel:hover {
-    box-shadow: 2px 1px 6px 4px grey;
+
+    html {
+      font-size: 110%;
     }
-  .glyphicon:after {
-    pointer-events: none;
+
+    .margin {
+      margin-top: 25px;
     }
-    </style>
+
+    .grayout {
+      opacity: .45;
+    }
+
+    .headingcolor {
+      color: white;
+      background-color: #FF7F50;
+      border-color: #ddd;
+      padding: 10px 15px;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+    }
+
+    .border {
+      border-bottom: 1px solid red;
+      border-top: 1px solid #5f3fb8;
+    }
+
+    .panel {
+      transition: box-shadow 200ms;
+    }
+
+    .panel:hover {
+      box-shadow: 2px 1px 6px 4px grey;
+    }
+
+    .glyphicon:after {
+      pointer-events: none;
+    }
+  </style>
 
 </head>
 
@@ -130,30 +142,33 @@
     </nav>
 
     <div class="header container-fluid bg-gradient-light pb-1 pt-5 pt-md-8">
-     <div class="event_time_area">
-       <div class ="event_time_inner">
-         <h1>Meeting Notes</h1>
-       </div>
-     </div>
+      <div class="event_time_area">
+        <div class="event_time_inner">
+          <h1>Meeting Notes</h1>
+        </div>
+      </div>
     </div>
     <!--===== Notes =====-->
     <div class="container-fluid" style="height: 600px">
-      <div class="col-sm-9" style="height: 100%; margin-left:120px;" >
+      <div class="col-sm-9" style="height: 100%; margin-left:120px;">
         <form role="form" name="addNote" id="addSticky">
           <div class="control-group form-group">
             <div class="controls"><br><br>
               <label for="title">Title</label>
-              <input type="text" class="form-control" id="notename" required data-validation-required-message="You must enter a title" />
+              <input type="text" class="form-control" id="notename" required
+                data-validation-required-message="You must enter a title" />
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls">
               <label for="content">Content</label>
-              <textarea id="notecontent" class="form-control" maxlength="999" rows="18" required style="resize: none;"></textarea>
+              <textarea id="notecontent" class="form-control" maxlength="999" rows="18" required
+                style="resize: none;"></textarea>
             </div>
           </div>
           <div id="success"></div>
-          <button type="submit" class="btn btn-primary pull-right" id="saveButton" style="margin-bottom:10px">Save Notes</button>
+          <button type="submit" class="btn btn-primary pull-right" id="saveButton" style="margin-bottom:10px">Save
+            Notes</button>
         </form>
       </div>
       <div class="col-sm-12" style="height: 100%;margin: auto">
@@ -183,40 +198,40 @@
     </div>
     <!---->
     <div class="modal fade" id="okModal" role="dialog">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Solved</h4>
-            </div>
-            <div class="modal-body">
-              <p>Are you sure you don't need this note anymore?</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" id="yesButton" data-dismiss="modal">Yes</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-            </div>
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Solved</h4>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you don't need this note anymore?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="yesButton" data-dismiss="modal">Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
           </div>
         </div>
       </div>
-      <!---->
-      <div class="modal fade" id="restoreModal" role="dialog">
-          <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Restore</h4>
-              </div>
-              <div class="modal-body">
-                <p>Do you want to restore this note?</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="restoreYes" data-dismiss="modal">Yes</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-              </div>
-            </div>
+    </div>
+    <!---->
+    <div class="modal fade" id="restoreModal" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Restore</h4>
+          </div>
+          <div class="modal-body">
+            <p>Do you want to restore this note?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="restoreYes" data-dismiss="modal">Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
           </div>
         </div>
-       <!--kene ada-->
+      </div>
+    </div>
+    <!--kene ada-->
     <div class="modal fade" id="editModal" role="dialog">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -235,34 +250,40 @@
               <div class="control-group form-group">
                 <div class="controls">
                   <label for="content">Content</label>
-                  <textarea id="editcontent" class="form-control" maxlength="999" rows="10" cols="100" required style="resize: none;"></textarea>
+                  <textarea id="editcontent" class="form-control" maxlength="999" rows="10" cols="100" required
+                    style="resize: none;"></textarea>
                 </div>
               </div>
               <div id="success"></div>
-              <button type="button" class="btn btn-primary pull-right" id="editButton" style="margin-bottom:10px" data-dismiss="modal">Save</button>
+              <button type="button" class="btn btn-primary pull-right" id="editButton" style="margin-bottom:10px"
+                data-dismiss="modal">Save</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </form>
           </div>
         </div>
       </div>
     </div>
-
+  </div>
+  
   <footer class="footer">
-    <div class="footerContent">Copyright &copy; ORMMS TEAM 1<br>
+    <div class="footerContent">
+      <hr>
+      Copyright &copy; ORMMS TEAM 1<br>
       <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
     </div>
   </footer>
+
   <script>
-      var id;
-      var i = 1;
-    
+    var id;
+    var i = 1;
+
     $(document).ready(function () {
       document.getElementById("saveButton").onclick = function () {
         if (CheckNote("notename", "notecontent")) {
           var element = CreateNote();
           element.setAttribute("id", i++);
           var insert = document.getElementById("container");
-    
+
           if (insert != null)
             insert.insertBefore(element, insert.firstChild);
           else
@@ -271,49 +292,49 @@
         }
         return true;
       };
-    
+
       document.getElementById("deleteButton").onclick = function () {
         var toRemove = document.getElementById(id);
         toRemove.parentElement.removeChild(toRemove);
-    
+
         var insert = document.getElementById("deteledContainer");
-    
+
         if (insert != null)
           insert.insertBefore(toRemove, insert.firstChild);
         else
           document.getElementById("deletedContainer").appendChild(toRemove);
-    
+
         document.getElementById("g0" + toRemove.id).remove();
         document.getElementById("g1" + toRemove.id).remove();
         document.getElementById("g2" + toRemove.id).remove();
         document.getElementById("glyphContainer" + toRemove.id).appendChild(RestoreGlyph(toRemove.id));
-    
+
         toRemove.className += " grayout";
       };
-    
+
       document.getElementById("yesButton").onclick = function () {
         var toMove = document.getElementById(id);
         toMove.parentElement.removeChild(toMove);
         toMove.className += " grayout";
-    
+
         document.getElementById("container").appendChild(toMove);
         var glyph = document.getElementById("g1" + toMove.id);
         glyph.removeAttribute("data-toggle");
         glyph.removeAttribute("data-target");
       };
-    
+
       document.getElementById("restoreYes").onclick = function () {
         var toMove = document.getElementById(id);
         toMove.parentElement.removeChild(toMove);
         toMove.className = "col-sm-4 margin";
-    
+
         var insert = document.getElementById("container");
-    
+
         if (insert != null)
           insert.insertBefore(toMove, insert.firstChild);
         else
           document.getElementById("container").appendChild(toMove);
-    
+
         document.getElementById("g3" + toMove.id).remove();
         var cont = document.createElement("div");
         cont.style.position = "absolute";
@@ -323,20 +344,20 @@
         cont.style.marginBottom = "5px";
         cont.appendChild(YesGlyph(toMove.id));
         cont.appendChild(NoGlyph(toMove.id));
-    
+
         document.getElementById("glyphContainer" + toMove.id).insertBefore(EditGlyph(toMove.id), document.getElementById("glyphContainer" + toMove.id).firstChild);
         document.getElementById("glyphContainer" + toMove.id).appendChild(cont);
       };
-    
+
       document.getElementById("editButton").onclick = function () {
         if (CheckNote("editname", "editcontent")) {
           var newTitle = document.getElementById("heading" + id);
           newTitle.textContent = document.getElementById("editname").value;
-    
+
           var newBody = document.getElementById("glyphContainer" + id);
           newBody.textContent = document.getElementById("editcontent").value;
           newBody.innerHTML += '<br/><br/>';
-    
+
           if (newBody.parentElement.parentElement.parentElement.id == "container")
             newBody = createGlyphs(newBody, id);
           else {
@@ -347,7 +368,7 @@
         return true;
       };
     });
-    
+
     function YesGlyph(currentId) {
       var span1 = document.createElement("span");
       span1.className = "glyphicon glyphicon-ok pull-right";
@@ -357,7 +378,7 @@
       span1.setAttribute("data-target", "#okModal");
       return span1;
     };
-    
+
     function NoGlyph(currentId) {
       var span2 = document.createElement("span");
       span2.className = "glyphicon glyphicon-remove pull-right";
@@ -367,7 +388,7 @@
       span2.setAttribute("data-target", "#deleteModal");
       return span2;
     };
-    
+
     function RestoreGlyph(currentId) {
       var glyph = document.createElement("span");
       glyph.className = "glyphicon glyphicon-refresh pull-right";
@@ -383,7 +404,7 @@
       glyph.style.marginBottom = "5px";
       return glyph;
     };
-    
+
     function EditGlyph(currentId) {
       var glyph = document.createElement("span");
       glyph.className = "glyphicon glyphicon-edit pull-right";
@@ -396,18 +417,18 @@
       glyph.style.right = "0";
       glyph.style.marginRight = "5px";
       glyph.style.marginTop = "5px";
-    
+
       return glyph;
     };
-    
+
     function okGlyph(that) {
       id = that.parentElement.parentElement.parentElement.id;
     };
-    
+
     function okGlyphInDiv(that) {
       id = that.parentElement.parentElement.parentElement.parentElement.id;
     };
-    
+
     function CreateNote() {
       var note = document.createElement("div");
       note.className = "col-sm-9 margin";
@@ -433,7 +454,7 @@
       note.appendChild(panel);
       return note;
     };
-    
+
     function createGlyphs(body, id) {
       var cont = document.createElement("div");
       cont.style.position = "absolute";
@@ -446,17 +467,19 @@
       body.appendChild(cont);
       return body;
     };
-    
+
     function CheckNote(nameId, contentId) {
       if (document.getElementById(nameId).value == "" || document.getElementById(contentId).value == "")
         return false;
       return true;
     };
-    </script>
-    <script src="assets/js/argon.js"></script>
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/flipclock/timer.js"></script>
-    <script src="assets/counter-up/jquery.counterup.js"></script>
-    <script src="assets/counter-up/jquery.waypoints.min.js"></script>
-</body>  
+  </script>
+  <script src="assets/js/argon.js"></script>
+  <script src="assets/js/jquery-3.3.1.min.js"></script>
+  <script src="assets/flipclock/timer.js"></script>
+  <script src="assets/counter-up/jquery.counterup.js"></script>
+  <script src="assets/counter-up/jquery.waypoints.min.js"></script>
+
+</body>
+
 </html>
