@@ -21,7 +21,7 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 -->
     <style type="text/css">
-        .btn {
+        .box {
             border: 2px solid gray;
             color: gray;
             background-color: white;
@@ -29,6 +29,7 @@
             border-radius: 8px;
             font-size: 20px;
             font-weight: bold;
+            text-align: center;
         }
 
 
@@ -41,7 +42,7 @@
             text-align: center;
             text-transform: uppercase;
             font-family: Georgia;
-            color: #FF7F50;
+            font-size: 40px;
         }
 
         #saveButton {
@@ -106,7 +107,7 @@
                 <!-- Navigation -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html"><i class="ni ni-tv-2 text-teal"></i>Overview</a>
+                        <a class="nav-link" href="homePage.html"><i class="ni ni-tv-2 text-teal"></i>Overview</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="schedule.html"><i class="ni ni-calendar-grid-58 text-purple"></i>Schedule</a>
@@ -145,98 +146,46 @@
                     </div>
                 </div>
             </form>
+            <form action="homePage.html" >
+                    <input type="submit" class="btn" value="Logout" style="width: 100%">
+                  </form>
         </div>
     </nav>
 
     <div class="header container-fluid bg-gradient-light pb-8 pt-5 pt-md-8">
-        <div class="event_time_area">
-            <div class="event_time_inner">
+        <div class="box">
             <h1>Upload Report</h1>
-            </div>
         </div>     
     </div>
 
     <!--===== Upload Report =====-->
     <div class="container-fluid" style="height: 600px">
         <div class="col-sm-9" style="height: 100%; margin-left:120px;">
-
-            <br>
-            <form class="btn" action="upload.php" method="post" enctype="multipart/form-data">
-                Select file to upload:
-                    <input type="file" name="fileToUpload" id="fileToUpload">
-                    <input type="submit" value="Upload File" name="submit" class="btn btn-primary pull-right" id="saveButton" style="margin-bottom:10px">
-            </form>
-
-            <form role="form" name="addNote" id="addSticky">
-                <div class="control-group form-group">
-                    <div class="controls"><br>
-                        <label for="title">Project Title</label>
-                        <input type="text" class="form-control" placeholder="Notes Title" id="notename" required
-                        data-validation-required-message="You must enter a title" />
+            <br><br>
+            <div class="box">
+                <form role="form" name="addNote" id="addSticky" action="upload.php" method="post" enctype="multipart/form-data">
+                    <div class="control-group form-group">
+                        <div class="controls"><br>
+                            <label for="title">Project Title</label>
+                            <input type="text" class="form-control" placeholder="Project title" id="notename" required
+                            data-validation-required-message="You must enter a title" />
+                        </div>
                     </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label for="content">Submission comments</label>
-                        <textarea id="notecontent" class="form-control" placeholder="Notes Content" maxlength="999" rows="18" required
-                        style="resize: none;"></textarea>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label for="content">Submission comments</label>
+                            <textarea id="notecontent" class="form-control" placeholder="Comments" maxlength="999" rows="10" requiredstyle="resize: none;"></textarea>
+                        </div>
                     </div>
-                </div>
-
+                    Select file to upload:
+                        <input type="file" name="fileToUpload" id="fileToUpload">
+                        <input type="submit" value="Submit" name="submit" class="btn btn-primary pull-right" id="saveButton" style="margin-bottom:10px"> 
+                </form>
                 <div id="success"></div>
-
-                <button type="submit" class="btn btn-primary pull-right" id="saveButton" style="margin-bottom:10px">Save
-                Notes</button>
-            </form>
-
-
-<!--
-            <form role="form" name="addNote" id="addSticky">
-                <div class="control-group form-group">
-                    <div class="controls"><br><br>
-                        <label for="title">Submission comments</label>
-                        <input type="text" class="form-control" id="notename">
-                    </div>
-                </div>
-          
-                <div id="success"></div>
-
-                Select file to upload:
-                <input type="file" name="fileToUpload" id="saveButton">
-
-                <br><br>
-                <button type="submit" class="btn btn-primary pull-right" id="submitButton" style="margin-bottom:10px">Add submission</button>
-            </form>
--->
-<!--
-            <form role="form" name="addNote" id="addSticky">
-                <div class="control-group form-group">
-                    <div class="controls"><br><br>
-                        <label for="title">Select file to upload:</label>
-                        <input type="file" class="form-control" name="fileToUpload" id="notename" required
-                        data-validation-required-message="You must upload a File!">
-                    </div>
-                </div>
-
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label for="content">Submission comments</label>
-                        <textarea id="notecontent" class="form-control" maxlength="999" rows="18" required
-                        style="resize: none;"></textarea>
-                    </div>
-                </div>
-
-                <div id="success"></div>
-
-                <button type="submit" class="btn btn-primary pull-right" id="saveButton" style="margin-bottom:10px">Add submission</button>
-            </form>
--->    
-
-
+            </div>
         </div>
-
         <div class="col-sm-12" style="height: 100%;margin: auto">
-            <h3>Add submission</h3>
+            <h3> </h3>
                 <div class="row border" style="height: 100%;overflow:auto;">
                     <div class="col-sm-12" id="container"> </div>
                 </div>
@@ -325,7 +274,7 @@
 
 -->
 
-    <br><br><hr>
+    <br><br><br><br><br><br><hr>
     <footer class="text-center font-italic">
         Copyright &copy; ORMMS TEAM 1<br>
         <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>

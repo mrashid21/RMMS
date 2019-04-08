@@ -17,6 +17,20 @@
     <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
 
     <link href="themes/peach.css" rel="stylesheet" />
+
+    <style type="text/css">
+        .event_time_inner {
+          margin-left: 130px;
+          margin-right: 130px
+        }
+    
+        h1 {
+          text-align: center;
+          text-transform: uppercase;
+          font-family: Georgia;
+          color: #8B008B;
+        }
+        </style>
 </head>
 
 <body class="bg-gradient-lighter">
@@ -75,13 +89,16 @@
                         </div>
                     </div>
                 </form>
+                <form action="homePage.html" >
+                        <input type="submit" class="btn" value="Logout" style="width: 100%">
+                      </form>
             </div>
         </nav>
 
         <div class="header container-fluid bg-gradient-light pb-8 pt-5 pt-md-8">
             <div class="event_time_area">
                 <div class="event_time_inner">
-                    <h1>Schedule</h1>
+                    <h1>Set Appointment</h1>
                 </div>
             </div>
         </div>
@@ -94,7 +111,7 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <div id="myDIV" class="header">
-                                        <div id="calendar" style="position: -ms-page; width: 100%; height: 100%">
+                                        <div id="calendar" style="position: relative; width: 100%; height: 100%">
                                         </div>
 
                                     </div>
