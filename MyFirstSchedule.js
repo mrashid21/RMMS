@@ -11,6 +11,7 @@ calendar.headerClick.addEventListener(handleHeaderClick);
 //visualize the calendar
 calendar.render();
 
+//handle events
 function handleHeaderClick(sender, args)
 {
 	if(sender.currentView === p.CalendarView.Timetable)
@@ -40,6 +41,7 @@ function handleSelection(sender, args)
 			
 		}
 		
+		//change view
 		sender.currentView = p.CalendarView.Timetable;
 	}
 }
