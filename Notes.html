@@ -221,7 +221,7 @@
             <p>Do you want to restore this note?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" id="restoreYes" data-dismiss="modal">Yes</button>
+          
             <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
           </div>
         </div>
@@ -305,41 +305,6 @@
         document.getElementById("g2" + toRemove.id).remove();
     
         toRemove.className += " grayout";
-      };
-
-      document.getElementById("yesButton").onclick = function () {
-        var toMove = document.getElementById(id);
-        toMove.parentElement.removeChild(toMove);
-        toMove.className += " grayout";
-
-        document.getElementById("container").appendChild(toMove);
-        var glyph = document.getElementById("g1" + toMove.id);
-        glyph.removeAttribute("data-toggle");
-        glyph.removeAttribute("data-target");
-      };
-
-      document.getElementById("restoreYes").onclick = function () {
-        var toMove = document.getElementById(id);
-        toMove.parentElement.removeChild(toMove);
-        toMove.className = "col-sm-4 margin";
-
-        var insert = document.getElementById("container");
-
-        if (insert != null)
-          insert.insertBefore(toMove, insert.firstChild);
-        else
-          document.getElementById("container").appendChild(toMove);
-
-        document.getElementById("g3" + toMove.id).remove();
-        var cont = document.createElement("div");
-        cont.style.position = "absolute";
-        cont.style.bottom = "0";
-        cont.style.right = "0";
-        cont.style.marginRight = "5px";
-        cont.style.marginBottom = "5px";
-        cont.appendChild(NoGlyph(toMove.id));
-       
-        document.getElementById("glyphContainer" + toMove.id).appendChild(cont);
       };
 
     });
