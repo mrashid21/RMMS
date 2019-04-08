@@ -14,7 +14,7 @@ var app = new Vue({
     },
     methods: {
         add(name, budget, contributers, status, completion) {
-            mode = 'save';
+            this.mode = 'save';
             console.log(name, budget, contributers, status, completion);
             this.researches.push({
                 name: name,
