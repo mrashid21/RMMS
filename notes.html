@@ -363,6 +363,11 @@
     };
 
     function CreateNote() {
+      var date = new Date();
+      var day = date.getDate();
+      var month = date.getMonth()+1;
+      var year = date.getFullYear();
+      var fulldate = day+"-"+month+"-"+year;
       var note = document.createElement("div");
       note.className = "col-sm-9 margin";
       note.setAttribute("id", "notehover");
@@ -372,7 +377,7 @@
       var heading = document.createElement("div");
       heading.className = "panel-body headingcolor";
       heading.setAttribute("id", "heading" + i);
-      heading.textContent = document.getElementById("notename").value;
+      heading.textContent = document.getElementById("notename").value+"   ("+fulldate+")";
       var body = document.createElement("div");
       body.className = "panel-body";
       body.setAttribute("id", "glyphContainer" + i);
