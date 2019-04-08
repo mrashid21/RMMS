@@ -212,81 +212,80 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+        
+        
+    
+</div>  
 
-  <footer class="footer">
-    <div class="footerContent">
-      <hr>
-      Copyright &copy; ORMMS TEAM 1<br>
-      <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
-    </div>
-  </footer>
+<script>
+// Create a "close" button and append it to each list item
+var x = document.getElementById("myUL");
+var myNodelist = x.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
 
-  <script>
-    // Create a "close" button and append it to each list item
-    var x = document.getElementById("myUL");
-    var myNodelist = x.getElementsByTagName("LI");
-    var i;
-    for (i = 0; i < myNodelist.length; i++) {
-      var span = document.createElement("SPAN");
-      var txt = document.createTextNode("\u00D7");
-      span.className = "close";
-      span.appendChild(txt);
-      myNodelist[i].appendChild(span);
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('#myUL');
+list.addEventListener('dblclick', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
     }
+  }
+}
+</script>
+<br><br><hr>
+<footer class="text-center font-italic">
+  Copyright &copy; ORMMS TEAM 1<br>
+  <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
+</footer>
 
-    // Click on a close button to hide the current list item
-    var close = document.getElementsByClassName("close");
-    var i;
-    for (i = 0; i < close.length; i++) {
-      close[i].onclick = function () {
-        var div = this.parentElement;
-        div.style.display = "none";
-      }
-    }
-
-    // Add a "checked" symbol when clicking on a list item
-    var list = document.querySelector('#myUL');
-    list.addEventListener('dblclick', function (ev) {
-      if (ev.target.tagName === 'LI') {
-        ev.target.classList.toggle('checked');
-      }
-    }, false);
-
-    // Create a new list item when clicking on the "Add" button
-    function newElement() {
-      var li = document.createElement("li");
-      var inputValue = document.getElementById("myInput").value;
-      var t = document.createTextNode(inputValue);
-      li.appendChild(t);
-      if (inputValue === '') {
-        alert("You must write something!");
-      } else {
-        document.getElementById("myUL").appendChild(li);
-      }
-      document.getElementById("myInput").value = "";
-
-      var span = document.createElement("SPAN");
-      var txt = document.createTextNode("\u00D7");
-      span.className = "close";
-      span.appendChild(txt);
-      li.appendChild(span);
-
-      for (i = 0; i < close.length; i++) {
-        close[i].onclick = function () {
-          var div = this.parentElement;
-          div.style.display = "none";
-        }
-      }
-    }
-  </script>
-
-  <script src="assets/js/argon.js"></script>
-  <script src="assets/js/jquery-3.3.1.min.js"></script>
-  <script src="assets/flipclock/timer.js"></script>
-  <script src="assets/counter-up/jquery.counterup.js"></script>
-  <script src="assets/counter-up/jquery.waypoints.min.js"></script>
+    <script src="assets/js/argon.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/flipclock/timer.js"></script>
+    <script src="assets/counter-up/jquery.counterup.js"></script>
+    <script src="assets/counter-up/jquery.waypoints.min.js"></script>
 </body>
 
 </html>
