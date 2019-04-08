@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Argon CSS Bootstrap -->
   <link rel="stylesheet" href="assets/css/argon.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.css">
   <!-- Include Nucleo CSS Icons -->
   <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
 
@@ -116,7 +117,7 @@
                             <td>23 April 2019</td>
                             <td>2 : 30 pm</td>
                             <td class="td-actions text-right">
-                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                              <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                                 <i class="material-icons">alarm</i>
                               </button>
                               <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
@@ -474,8 +475,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                         </div>
-                        <input class="form-control" placeholder="Date" type="text" v-model='date'
-                            required>
+                        <input class="form-control datepicker" placeholder="Select date" type="text" value="06/20/2018"
+                        required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -522,6 +523,7 @@
   <script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="assets/js/reminder-pop.js"></script>
+  <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
   <script>
     document.getElementById('button').addEventListener("click", function() {
