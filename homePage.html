@@ -7,11 +7,13 @@
   <meta name="viewport">
   <meta name="author" content="WIF2003">
   <title>Dashboard - Research Meeting Management System</title>
-  <!-- CSS -->\
-
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/reminder-pop.css">
   <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
   <!-- Google Fonts Poppins -->
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Argon CSS Bootstrap -->
   <link rel="stylesheet" href="assets/css/argon.css">
   <!-- Include Nucleo CSS Icons -->
@@ -75,255 +77,437 @@
     </nav>
 
     <!--===== Timer =====-->
+
     <div class="header container-fluid bg-gradient-light pb-3 pt-5 pt-md-8">
-      <div class="event_time_area">
-        <div class="event_time_inner">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="event_text">
-                <h3>Next Meeting will Start in</h3>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend datepicker">
-                      <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-                    </div>
-                    <input class="form-control datepicker" placeholder="Select date" type="text" value="06/20/2018">
-                  </div>
-                </div>
-                <a href="#!" class="btn btn-block btn-primary">Set Reminder</a>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="timer_inner">
-                <div id="timer" class="timer">
-                  <div class="timer__section days">
-                    <div class="timer__number"></div>
-                    <div class="timer__label">days</div>
-                  </div>
-                  <div class="timer__section hours">
-                    <div class="timer__number"></div>
-                    <div class="timer__label">hours</div>
-                  </div>
-                  <div class="timer__section minutes">
-                    <div class="timer__number"></div>
-                    <div class="timer__label">Minutes</div>
-                  </div>
-                  <div class="timer__section seconds">
-                    <div class="timer__number"></div>
-                    <div class="timer__label">seconds</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+     
     </div>
 
     <!--===== Page content =====-->
 
     <!--===== Checklist =====-->
-    <div class="container-fluid mt--7">
-      <div class="row">
-        <div class="col-xl-8 mb-5 mb-xl-0">
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-xl-8">
+              <div class="card bg-white shadow">
+                <div class="card-header bg-transparent">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h2 class="text-uppercase text-black mb-0">Meeting Schedule</h2>
+                    </div>
+                  </div>
+                </div>
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="schedule">
+                      <table class="table">
+                          <thead class="thead-light">
+                              <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col"></th>
+                              </tr>
+                            </thead>
+                        <tbody>
+                          <tr>
+                            <td>Literature Review"</td>
+                            <td>23 April 2019</td>
+                            <td>2 : 30 pm</td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">alarm</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Collaborator meeting</td>
+                            <td>1 Mei 2019</td>
+                            <td>3 : 30 pm</td>
+                            <td class="td-actions text-right">
+                              <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">alarm</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Functional Requirement</td>
+                            <td>25 Mei 2019</td>
+                            <td>5 : 00 pm</td>
+                            <td class="td-actions text-right">
+                              <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">alarm</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                              <td>Non Functional Requirement</td>
+                              <td>27 Mei 2019</td>
+                              <td>5 : 00 pm</td>
+                              <td class="td-actions text-right">
+                                <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                  <i class="material-icons">alarm</i>
+                                </button>
+                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                  <i class="material-icons">close</i>
+                                </button>
+                              </td>
+                            </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="col-xl-4">
+                <div class="card shadow">
+                  <div class="card-header border-0">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <h3 class="mb-0">Research Progress</h3>
+                      </div>
+                      <div class="col text-right">
+                        <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">Research ID</th>
+                          <th scope="col">Status</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">
+                            Research 1
+                          </th>
+                          <td>
+                            Pending
+                          </td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <span class="mr-2">60%</span>
+                              <div>
+                                <div class="progress">
+                                  <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="60"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            Research 2
+                          </th>
+                          <td>
+                            completed
+                          </td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <span class="mr-2">100%</span>
+                              <div>
+                                <div class="progress">
+                                  <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            Research 3
+                          </th>
+                          <td>
+                            delayed
+                          </td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <span class="mr-2">72%</span>
+                              <div>
+                                <div class="progress">
+                                  <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="72"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 72%;"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            Research 4
+                          </th>
+                          <td>
+                            on scheduled
+                          </td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <span class="mr-2">90%</span>
+                              <div>
+                                <div class="progress">
+                                  <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="90"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            Research 5
+                          </th>
+                          <td>
+                            completed
+                          </td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <span class="mr-2">100%</span>
+                              <div>
+                                <div class="progress">
+                                  <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+          </div>
+      <div class="row pb-8">
+        <div class="col-xl-12 mb-5 mb-xl-0 pt-3">
           <div class="card bg-white shadow">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
                   <h2 class="text-uppercase text-black mb-0">Checklist</h2>
-                </div>
+                </div><!--
                 <ul class="nav nav-pills nav-pills-circle" id="tabs_2" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link rounded-circle active" id="home-tab" data-toggle="tab" href="#tabs-icons-text-1"
+                    <a class="nav-link rounded-circle active" id="tab" data-toggle="tab" href="#profile"
                       role="tab" aria-controls="home" aria-selected="true">
                       <span class="nav-link-icon d-block"><i class="ni ni-align-left-2"></i></span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab"
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#messages" role="tab"
                       aria-controls="profile" aria-selected="false">
                       <span class="nav-link-icon d-block"><i class="ni ni-align-center"></i></span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#tabs-icons-text-3" role="tab"
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#settings" role="tab"
                       aria-controls="contact" aria-selected="false">
                       <span class="nav-link-icon d-block"><i class="ni ni-bullet-list-67"></i></span>
                     </a>
                   </li>
-                </ul>
+                </ul> -->
               </div>
             </div>
+            
             <div class="card-body">
-              <!-- Board -->
-              <div class="card shadow">
-                <div class="card-body">
-                  <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel"
-                      aria-labelledby="tabs-icons-text-1-tab">
-                      <p class="description">Study React JS</p>
-                      <p class="description">Compile Next Code</p>
-                    </div>
-                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel"
-                      aria-labelledby="tabs-icons-text-2-tab">
-                      <p class="description">Study NodeJS</p>
-                      <p class="description">Compile Next Code</p>
-                    </div>
-                    <div class="tab-pane fade" id="tabs-icons-text" role="tabpanel"
-                      aria-labelledby="tabs-icons-text-3-tab">
-                      <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt
-                        tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles
-                        vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
-                    </div>
-                    <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel"
-                      aria-labelledby="tabs-icons-text-3-tab">
-                      <p class="description">Study Less JS</p>
-                      <p class="description">Compile Next Code</p>
-                    </div>
-                  </div>
+              <div class="tab-content">
+                <div class="tab-pane active" id="profile">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>Sign contract for "What are conference organizers afraid of?"</td>
+                        <td class="td-actions text-right">
+                          <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                              <i class="material-icons">alarm</i>
+                            </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                        <td class="td-actions text-right">
+                          <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">alarm</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                        </td>
+                        <td class="td-actions text-right">
+                          <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">alarm</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                        <td class="td-actions text-right">
+                          <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">alarm</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tab-pane" id="messages">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                        </td>
+                        <td class="td-actions text-right">
+                          <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">alarm</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Sign contract for "What are conference organizers afraid of?"</td>
+                        <td class="td-actions text-right">
+                          <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">alarm</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tab-pane" id="settings">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                        <td class="td-actions text-right">
+                          <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">alarm</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                        </td>
+                        <td class="td-actions text-right">
+                          <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">alarm</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Sign contract for "What are conference organizers afraid of?"</td>
+                        <td class="td-actions text-right">
+                            <button id="button" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">alarm</i>
+                              </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xl-4">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">Research Progress</h3>
+      </div>
+      <div class="bg-modal">
+          <div class="modal-contents">
+        
+            <div class="close">+</div>
+            <img src="https://richardmiddleton.me/comic-100.png" alt="">
+        
+            <form role="form">
+                <div class="form-group mb-3">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-tablet-button"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Label" type="text" v-model='label'
+                            required>
+                    </div>
                 </div>
-                <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Date" type="text" v-model='date'
+                            required>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <!-- Projects table -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Research ID</th>
-                    <th scope="col">Status</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">
-                      Research 1
-                    </th>
-                    <td>
-                      Pending
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">60%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="60"
-                              aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                          </div>
+                <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-time-alarm"></i></span>
                         </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      Research 2
-                    </th>
-                    <td>
-                      completed
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">100%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100"
-                              aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                          </div>
+                        <input class="form-control" placeholder="Time" type="text"
+                            v-model='time' required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-align-center"></i></span>
                         </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      Research 3
-                    </th>
-                    <td>
-                      delayed
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">72%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="72"
-                              aria-valuemin="0" aria-valuemax="100" style="width: 72%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      Research 4
-                    </th>
-                    <td>
-                      on scheduled
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">90%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="90"
-                              aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      Research 5
-                    </th>
-                    <td>
-                      completed
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">100%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100"
-                              aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                        <input class="form-control" placeholder="Comment" type="comment"
+                            v-model='time' required>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="button" v-show="mode == 'save'" class="btn btn-primary my-4"
+                    >Set Reminder</button>
+                </div>
+            </form>
+        
           </div>
-        </div>
       </div>
     </div>
   </div>
 
 
-  <footer class="footer navbar-fixed-bottom">
-    <div class="footerContent">
-      <hr>
-      Copyright &copy; ORMMS TEAM 1<br>
-      <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
-    </div>
-  </footer>
+  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+  <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 
   <script src="assets/js/argon.js"></script>
   <script src="assets/js/jquery-3.3.1.min.js"></script>
@@ -334,7 +518,18 @@
   <script src="assets/vendor/chart.js/dist/Chart.min.js"></script>
   <script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+  <script src="assets/js/reminder-pop.js"></script>
+
+  <script>
+    document.getElementById('button').addEventListener("click", function() {
+	document.querySelector('.bg-modal').style.display = "flex";
+});
+
+document.querySelector('.close').addEventListener("click", function() {
+	document.querySelector('.bg-modal').style.display = "none";
+});
+  </script>
+      
 </body>
 
 </html>
