@@ -15,7 +15,11 @@
     <link rel="stylesheet" href="assets/css/argon.css">
     <!-- Include Nucleo CSS Icons -->
     <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
-
+<!--
+    <link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+-->
     <style type="text/css">
         .btn {
             border: 2px solid gray;
@@ -25,6 +29,66 @@
             border-radius: 8px;
             font-size: 20px;
             font-weight: bold;
+        }
+
+
+        .event_time_inner {
+            margin-left: 130px;
+            margin-right: 130px
+        }
+
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            font-family: Georgia;
+            color: #FF7F50;
+        }
+
+        #saveButton {
+            border-radius: 12px;
+            background-color: white;
+            color: black;
+            border: 2px solid #FF7F50;
+            padding: 12px 28px;
+        }
+
+        #saveButton:hover {
+            background-color: #FF7F50;
+            color: white;
+        }
+
+        html {
+            font-size: 110%;
+        }
+
+        .margin {
+            margin-top: 25px;
+        }
+
+        .grayout {
+            opacity: .45;
+        }
+
+        .headingcolor {
+            color: white;
+            background-color: #FF7F50;
+            border-color: #ddd;
+            padding: 10px 15px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .panel {
+            transition: box-shadow 200ms;
+        }
+
+        .panel:hover {
+            box-shadow: 2px 1px 6px 4px grey;
+        }
+
+        .glyphicon:after {
+            pointer-events: none;
         }
     </style>
 </head>
@@ -95,13 +159,36 @@
     <!--===== Upload Report =====-->
     <div class="container-fluid" style="height: 600px">
         <div class="col-sm-9" style="height: 100%; margin-left:120px;">
-<!--
+
+            <br>
             <form class="btn" action="upload.php" method="post" enctype="multipart/form-data">
                 Select file to upload:
                     <input type="file" name="fileToUpload" id="fileToUpload">
-                    <input type="submit" value="Upload File" name="submit">
+                    <input type="submit" value="Upload File" name="submit" class="btn btn-primary pull-right" id="saveButton" style="margin-bottom:10px">
             </form>
--->
+
+            <form role="form" name="addNote" id="addSticky">
+                <div class="control-group form-group">
+                    <div class="controls"><br>
+                        <label for="title">Project Title</label>
+                        <input type="text" class="form-control" placeholder="Notes Title" id="notename" required
+                        data-validation-required-message="You must enter a title" />
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="content">Submission comments</label>
+                        <textarea id="notecontent" class="form-control" placeholder="Notes Content" maxlength="999" rows="18" required
+                        style="resize: none;"></textarea>
+                    </div>
+                </div>
+
+                <div id="success"></div>
+
+                <button type="submit" class="btn btn-primary pull-right" id="saveButton" style="margin-bottom:10px">Save
+                Notes</button>
+            </form>
+
 
 <!--
             <form role="form" name="addNote" id="addSticky">
@@ -121,13 +208,13 @@
                 <button type="submit" class="btn btn-primary pull-right" id="submitButton" style="margin-bottom:10px">Add submission</button>
             </form>
 -->
-
+<!--
             <form role="form" name="addNote" id="addSticky">
                 <div class="control-group form-group">
                     <div class="controls"><br><br>
                         <label for="title">Select file to upload:</label>
                         <input type="file" class="form-control" name="fileToUpload" id="notename" required
-                        data-validation-required-message="You must upload a File">
+                        data-validation-required-message="You must upload a File!">
                     </div>
                 </div>
 
@@ -143,7 +230,9 @@
 
                 <button type="submit" class="btn btn-primary pull-right" id="saveButton" style="margin-bottom:10px">Add submission</button>
             </form>
-            
+-->    
+
+
         </div>
 
         <div class="col-sm-12" style="height: 100%;margin: auto">
