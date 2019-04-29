@@ -62,15 +62,15 @@
                 <div class="text-center text-muted mb-4">
                   <small>Or sign up with credentials</small>
                 </div>
-                <form role="form" action="../homePage.html" method="POST" name="credentialsForm">
+                <form role="form" action="../assets/php/Main.php" method="POST" name="credentialsForm">
                   <!-- Each of the inputs will have its own ID -->
                   <!-- First name field -->
-                  <div class="form-group" id="firstNameForm">
+                  <div class="form-group">
                     <div class="input-group input-group-alternative mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Frist Name" type="text" id="firstName"
+                      <input class="form-control" placeholder="Frist Name" type="text" name="firstName"
                         oninput="validateName(this)" required>
                     </div>
                   </div>
@@ -147,10 +147,10 @@
                     </div>
                   </div>
                   <div class="text-center" style="padding-bottom:10px">
-                    <input type="submit" class="btn btn-primary mt-4" value="Create an account" name="submit">
+                    <input type="submit" class="btn btn-primary mt-4" value="Create an account" name="submit-signup">
                   </div>
                   <div class="text-center">
-                    <p>Already have an accoutn? <a href="login.html"><b>Sign in</b></a></p>
+                    <p>Already have an accoutn? <a href="../index.html"><b>Sign in</b></a></p>
                   </div>
                 </form>
               </div>
@@ -177,7 +177,7 @@
 
   <!-- Argon JS -->
   <script src="../assets/js/argon.js"></script>
-  <script src="validateUser.js"></script>
+  <script src="../assets/validation/validateUserRegisterClient.js"></script>
 
 </body>
 
