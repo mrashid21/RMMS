@@ -78,11 +78,17 @@ class Perform{
 
 		$exist = $query->fetch(PDO::FETCH_ASSOC);
 
+		$query = null;
+
+		$Db = null;
+
+		$user->clearUserFields();
+
 		if($exist == true){
-			echo"User exists";
+			header("Location: http://localhost/index.html?success signin");
 		}
 		else{
-			header("Location: http://localhost/Entry/index.php?error=invalidLoginAttempt");
+			header("Location: http://localhost/index.html?NoUser");
 		}
 	}
 

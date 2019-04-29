@@ -6,6 +6,7 @@ require "../helper/Perform.php";
 $user = new User();
 
 if(isset($_POST['submit-signup'])){
+	echo"SUBMIT???";
 	if($user->getUserInfoSignup($user)){
 		if(Perform::createUser($user)){
 			header("Location: http://localhost/Registration/register.html?success");
@@ -24,13 +25,7 @@ if(isset($_POST['submit-login'])){
 	}
 }
 
-var_dump($user)
-
-
-
-
-
-//var_dump($user);
+//var_dump($user)
 
 
 
