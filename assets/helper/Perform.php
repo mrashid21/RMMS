@@ -20,7 +20,7 @@ class Perform{
 
 		$password = $user->getPassword();
 
-		$query = $Db->prepare("INSERT INTO userss (firstName, lastName, userName,email,password) VALUES (:firstName,:lastName,:userName,:email,:password)");
+		$query = $Db->prepare("INSERT INTO users (firstName, lastName, userName,email,password) VALUES (:firstName,:lastName,:userName,:email,:password)");
 
 		$query->bindParam(':firstName', $firstName);
 
@@ -68,7 +68,7 @@ class Perform{
 		$email = $user->getEmail();
 		$password = $user->getPassword();
 
-		$query = $Db->prepare("SELECT email,password FROM userss WHERE email = :email AND password = :password");
+		$query = $Db->prepare("SELECT email,password FROM users WHERE email = :email AND password = :password");
 
 		$query->bindParam(':email', $email);
 
@@ -85,10 +85,10 @@ class Perform{
 		$user->clearUserFields();
 
 		if($exist == true){
-			header("Location: http://localhost/index.html?success signin");
+			header("Location: http://localhost/overview.html");
 		}
 		else{
-			header("Location: http://localhost/index.html?NoUser");
+			header("Location: http://localhost/index.php?error=red");
 		}
 	}
 

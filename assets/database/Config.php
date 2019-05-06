@@ -4,7 +4,7 @@ return [
 
 	'database' => [
 
-		'name' => 'users',
+		'name' => 'rmms',
 
 		'userName' => 'root',
 

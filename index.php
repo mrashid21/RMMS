@@ -64,6 +64,11 @@
                 <div class="text-center text-muted mb-4">
                   <small>Or sign in with credentials</small>
                 </div>
+                <?php 
+                  if(isset($_GET['error'])){
+                    echo "Email or password is wrong";
+                  } 
+                ?>
                 <form role="form" action="../assets/php/Main.php" method="POST">
                   <div class="form-group mb-3">
                     <div class="input-group input-group-alternative">
