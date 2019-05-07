@@ -219,14 +219,14 @@
                     <div class="text-center text-muted mb-4" style="padding:0 20px">
                         <h3 style="padding-top: 20px;">Add research</h3>
                     </div>
-                    <form role="form" style="height: 400px; padding:0 20px">
+                    <form role="form" style="height: 400px; padding:0 20px" method="POST" action="../assets/php/Main.php">
                         <div class="form-group mb-3">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-map-big"></i></span>
                                 </div>
                                 <input class="form-control" placeholder="Research Name" type="text" v-model='name'
-                                    required>
+                                    name="research-name" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -243,7 +243,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                 </div>
-                                <select class="form-control" placeholder="Status" v-model='status' required>
+                                <select class="form-control" placeholder="Status" v-model='status' name="research-status" required>
                                     <option value="completed">Completed</option>
                                     <option value="pending" selected>Pending</option>
                                     <option value="delayed">delayed</option>
@@ -257,7 +257,7 @@
                                     <span class="input-group-text"><i class="ni ni-diamond"></i></span>
                                 </div>
                                 <input class="form-control" placeholder="Contributers" type="text"
-                                    v-model='contributers' required>
+                                    v-model='contributers' name="research-contributers" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -266,14 +266,14 @@
                                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                 </div>
                                 <input class="form-control" placeholder="Completion" type="number" min="0" max="100"
-                                    v-model="completion" required>
+                                    v-model="completion" name="research-completionPercentage" required>
                             </div>
                         </div>
 
                         <div class="text-center">
 
-                            <button type="button" v-show="mode == 'save'" class="btn btn-primary my-4"
-                                @click="add(name,budget,contributers,status,completion)">Add</button>
+                            <button type="input" v-show="mode == 'save'" class="btn btn-primary my-4"
+                                @click="add(name,budget,contributers,status,completion)" name="submit-add-research">Add</button>
                             <button type="button" v-show="mode == 'edit'" class="btn btn-primary my-4"
                                 @click="update(name,budget,contributers,status,completion)">Edit</button>
 

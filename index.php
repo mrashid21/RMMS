@@ -1,3 +1,9 @@
+<?php
+function alert($msg) {
+echo "<script type='text/javascript'>alert('$msg');</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -105,7 +111,7 @@
                 </a>
               </div>
               <div class="col-6 text-right">
-                <a href="Registration/register.html" class="text-light">
+                <a href="Registration/register.php" class="text-light">
                   <small>Create new account</small>
                 </a>
               </div>
@@ -114,6 +120,7 @@
         </div>
       </div>
     </section>
+    <?php if((isset($_GET['error'])) && ($_GET['error']==="red")){alert("User or password is wrong!");} ?>
   </main>
 
   <footer class="footer" style="width: 70%">

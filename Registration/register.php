@@ -1,3 +1,10 @@
+<?php
+function alert($msg) {
+echo "<script type='text/javascript'>alert('$msg');</script>";
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -71,7 +78,7 @@
                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                       </div>
                       <input class="form-control" placeholder="Frist Name" type="text" name="firstName"
-                        oninput="validateName(this)" required>
+                      oninput="validateName(this)" required>
                     </div>
                   </div>
 
@@ -82,7 +89,7 @@
                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                       </div>
                       <input class="form-control" placeholder="Last Name" type="text" name="lastName"
-                        oninput="validateName(this)" required>
+                      oninput="validateName(this)" required>
                     </div>
                   </div>
 
@@ -93,7 +100,7 @@
                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                       </div>
                       <input class="form-control" placeholder="User Name" type="text" name="userName"
-                        oninput="validateUserName(this)" required>
+                      oninput="validateUserName(this)" required>
                     </div>
                   </div>
 
@@ -114,7 +121,7 @@
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
                       <input class="form-control" placeholder="Password" type="password" name="password"
-                        id="passwordField" oninput="validatePassword(this)" required>
+                      id="passwordField" oninput="validatePassword(this)" required>
                     </div>
                   </div>
 
@@ -125,7 +132,7 @@
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
                       <input class="form-control" placeholder="Confirm Password" type="password" name="confirmPassword"
-                        oninput="validateConfirmPassword(this)" required>
+                      oninput="validateConfirmPassword(this)" required>
                     </div>
                   </div>
 
@@ -150,7 +157,7 @@
                     <input type="submit" class="btn btn-primary mt-4" value="Create an account" name="submit-signup">
                   </div>
                   <div class="text-center">
-                    <p>Already have an accoutn? <a href="../index.html"><b>Sign in</b></a></p>
+                    <p>Already have an accoutn? <a href="../index.php"><b>Sign in</b></a></p>
                   </div>
                 </form>
               </div>
@@ -159,6 +166,7 @@
         </div>
       </div>
     </section>
+    <?php if(isset($_GET['reg']) && ($_GET['reg'] === "success")){alert("User Created Successfully!!");} ?>
   </main>
 
   <footer class="footer" style="width: 70%">

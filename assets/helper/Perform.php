@@ -4,11 +4,7 @@ class Perform{
 
 	public static function createUser($user){
 
-		require "../database/Connection.php";
-
-		$config = require "../database/Config.php";
-
-		$Db = Connection::make($config['database']);
+		$Db = Perform::connect();
 
 		$firstName = $user->getFirstName();
 
@@ -51,11 +47,8 @@ class Perform{
 	}
 
 	public static function Login($user){
-		require "../database/Connection.php";
-
-		$config = require "../database/Config.php";
-
-		$Db = Connection::make($config['users']);
+		
+		$Db = Perform::connect();
 
 		$email = $user->getEmail();
 		$password = $user->getPassword();
@@ -85,16 +78,37 @@ class Perform{
 	}
 
 	// This function will add a research information to the database...
-	public static function addResearch(){
+	public static function addResearch($research){
+
+		$Db = Perform::connect();
+
+		$name = $research->getName();
+		$status = $research->getStatus();
+		$percentage = $research->getCompletionPercentage();
+		$contributers = $research->getContributers();
+
+		$query = $Db->prepare("INSERT INTO progress (researchName, status, completionPercentage,contributers) VALUES
+			(:name,:status,:percentage,:contributers)");
+
+		$query->bindParam(':name', $name);
+
+		$query->bindParam(':status', $status);
+
+		$query->bindParam(':percentage', $percentage);
+
+		$query->bindParam(':contributers', $contributers);
+
+		$stat = $query->execute();
+	}
+
+	public static function connect(){
 		require "../database/Connection.php";
 
 		$config = require "../database/Config.php";
 
-		$Db = Connection::make($config['database']);
-
-		
+		return Connection::make($config['database']);
 	}
 
 }
 
-
+?>
