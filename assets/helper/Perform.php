@@ -34,21 +34,13 @@ class Perform{
 
 		$stat = $query->execute();
 
-
-			// $query = $Db->prepare('SELECT * FROM userss'); 
-			// $query->execute();
-
-			// $users = $query->fetchAll(PDO::FETCH_OBJ);
-
-			// var_dump($users);
-
-			// Clear the $query field. 
+		// Clear the $query field. 
 		$query = null;
 
-			//Close the connection to the database.
+		//Close the connection to the database.
 		$Db = null;
 
-			//Make all user fields null
+		//Make all user fields null
 		$user->clearUserFields();
 
 		if($stat){
@@ -63,7 +55,7 @@ class Perform{
 
 		$config = require "../database/Config.php";
 
-		$Db = Connection::make($config['database']);
+		$Db = Connection::make($config['users']);
 
 		$email = $user->getEmail();
 		$password = $user->getPassword();
@@ -90,6 +82,17 @@ class Perform{
 		else{
 			header("Location: http://localhost/index.php?error=red");
 		}
+	}
+
+	// This function will add a research information to the database...
+	public static function addResearch(){
+		require "../database/Connection.php";
+
+		$config = require "../database/Config.php";
+
+		$Db = Connection::make($config['database']);
+
+		
 	}
 
 }
