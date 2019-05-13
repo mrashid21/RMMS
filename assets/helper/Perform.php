@@ -2,6 +2,14 @@
 
 class Perform{
 
+	public static function connect(){
+		require_once "../database/Connection.php";
+
+		$config = require "../database/Config.php";
+
+		return Connection::make($config['database']);
+	}
+
 	public static function createUser($user){
 
 		$Db = Perform::connect();
@@ -10,23 +18,23 @@ class Perform{
 
 		$lastName = $user->getLastName();
 
-		$userName = $user->getUserName();
-
 		$email = $user->getEmail();
 
 		$password = $user->getPassword();
 
-		$query = $Db->prepare("INSERT INTO users (firstName, lastName, userName,email,password) VALUES (:firstName,:lastName,:userName,:email,:password)");
+		$userType = $user->getUserType();
+
+		$query = $Db->prepare("INSERT INTO users (firstName, lastName, email, password, userType) VALUES (:firstName, :lastName, :email, :password, :userType)");
 
 		$query->bindParam(':firstName', $firstName);
 
 		$query->bindParam(':lastName', $lastName);
 
-		$query->bindParam(':userName', $userName);
-
 		$query->bindParam(':email', $email);
 
 		$query->bindParam(':password', $password);
+
+		$query->bindParam(':userType', $userType);
 
 		$stat = $query->execute();
 
@@ -47,13 +55,13 @@ class Perform{
 		$Db = Perform::connect();
 
 		$email = $user->getEmail();
-		$password = $user->getPassword();
+		$hashedPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
 
-		$query = $Db->prepare("SELECT email,password FROM users WHERE email = :email AND password = :password");
+		$checkPassword = password_verify($user->getPassword(), $hashedPassword);
+
+		$query = $Db->prepare("SELECT email FROM users WHERE email = :email");
 
 		$query->bindParam(':email', $email);
-
-		$query->bindParam(':password', $password);
 
 		$query->execute();
 
@@ -64,12 +72,14 @@ class Perform{
 		$Db = null;
 
 		$user->clearUserFields();
-
-		if($exist == true){
+		if($exist && $checkPassword){
+			$exist = null;
+			$checkPassword = null;
 			header("Location: /overview.html");
 		}
 		else{
-			header("Location: /index.php?error=red");
+			header("Location: /index.php?action=invalid");
+			die();
 		}
 	}
 
@@ -95,14 +105,29 @@ class Perform{
 		$query->bindParam(':contributers', $contributers);
 
 		$stat = $query->execute();
+
+		$query = null;
+
+		$Db = null;
 	}
 
-	public static function connect(){
-		require "../database/Connection.php";
+	public static function userExists($email){
+		$Db = Perform::connect();
 
-		$config = require "../database/Config.php";
+		$query = $Db->prepare("SELECT email FROM users WHERE email = :email");
 
-		return Connection::make($config['database']);
+		$query->bindParam(':email', $email);
+
+		$stat = $query->execute();
+
+		$exist = $query->fetch(PDO::FETCH_ASSOC);
+
+		$query = null;
+
+		$Db = null;
+
+		return $exist;
+
 	}
 
 }

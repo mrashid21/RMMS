@@ -1,6 +1,6 @@
 <?php
 function alert($msg) {
-echo "<script type='text/javascript'>alert('$msg');</script>";
+  echo "<script type='text/javascript'>alert('$msg');</script>";
 }
 ?>
 
@@ -46,146 +46,149 @@ echo "<script type='text/javascript'>alert('$msg');</script>";
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="card bg-secondary shadow border-0">
-              <div class="card-header bg-white pb-5">
-                <div class="text-muted text-center mb-3">
-                  <small>Sign up with</small>
-                </div>
-                <div class="text-center">
-                  <a href="#" class="btn btn-neutral btn-icon mr-4">
-                    <span class="btn-inner--icon">
-                      <img src="../assets/img/icons/common/github.svg">
-                    </span>
-                    <span class="btn-inner--text">Github</span>
-                  </a>
-                  <a href="#" class="btn btn-neutral btn-icon">
-                    <span class="btn-inner--icon">
-                      <img src="../assets/img/icons/common/google.svg">
-                    </span>
-                    <span class="btn-inner--text">Google</span>
-                  </a>
-                </div>
-              </div>
               <div class="card-body px-lg-5 py-lg-5">
                 <div class="text-center text-muted mb-4">
-                  <small>Or sign up with credentials</small>
+                  <small>Sign up with credentials</small>
                 </div>
-                <form role="form" action="../assets/php/Main.php" method="POST" name="credentialsForm">
-                  <!-- Each of the inputs will have its own ID -->
-                  <!-- First name field -->
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="Frist Name" type="text" name="firstName"
-                      oninput="validateName(this)" required>
-                    </div>
+
+                <?php if(isset($_GET['action']) && ($_GET['action'] === 'emailUsed')): ?>
+                  <div class="alert alert-danger" role="alert">
+                    Email already used by another user!
                   </div>
 
-                  <!-- Last name field -->
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="Last Name" type="text" name="lastName"
-                      oninput="validateName(this)" required>
-                    </div>
-                  </div>
+                <?php endif; ?>
 
-                  <!-- User name field -->
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="User Name" type="text" name="userName"
-                      oninput="validateUserName(this)" required>
-                    </div>
+                <?php if(isset($_GET['action']) && ($_GET['action'] === 'somethingWrong')): ?>
+                  <div class="alert alert-warning" role="alert">
+                    Something went wrong, please try again!
                   </div>
+                <?php endif; ?>
 
-                  <!-- Email field -->
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="Email" type="email" name="email" required>
-                    </div>
+                <?php if(isset($_GET['action']) && ($_GET['action'] === 'success')): ?>
+                  <div class="alert alert-success" role="alert">
+                    Registrated Successfully!
                   </div>
+                <?php endif; ?>
 
-                  <!-- Password field -->
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="Password" type="password" name="password"
-                      id="passwordField" oninput="validatePassword(this)" required>
-                    </div>
-                  </div>
 
-                  <!-- Repeat Password field -->
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="Confirm Password" type="password" name="confirmPassword"
-                      oninput="validateConfirmPassword(this)" required>
-                    </div>
-                  </div>
 
-                  <div class="text-muted font-italic">
-                    <small>password strength:
-                      <span class="text-success font-weight-700">strong</span>
-                    </small>
+              <form role="form" action="../assets/php/Main.php" method="POST" name="credentialsForm">
+                <!-- Each of the inputs will have its own ID -->
+                <!-- First name field -->
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Frist Name" type="text" name="firstName"
+                    oninput="validateName(this)" required>
                   </div>
-                  <div class="row my-4">
-                    <div class="col-12">
-                      <div class="custom-control custom-control-alternative custom-checkbox">
-                        <input class="custom-control-input " id="customCheckRegister" type="checkbox" required>
-                        <label class="custom-control-label" for="customCheckRegister">
-                          <span>I agree with the
-                            <a href="#">Privacy Policy</a>
-                          </span>
-                        </label>
-                      </div>
+                </div>
+
+                <!-- Last name field -->
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Last Name" type="text" name="lastName"
+                    oninput="validateName(this)" required>
+                  </div>
+                </div>
+
+                <!-- Email field -->
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Email" type="email" name="email" required>
+                  </div>
+                </div>
+
+                <!-- Password field -->
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Password" type="password" name="password"
+                    id="passwordField" oninput="validatePassword(this)" required>
+                  </div>
+                </div>
+
+                <!-- Repeat Password field -->
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Confirm Password" type="password" name="confirmPassword"
+                    oninput="validateConfirmPassword(this)" required>
+                  </div>
+                </div>
+
+                <!-- Type of user -->
+                <div class="form-group ">
+                  <div class="input-group input-group-alternative">
+                    <select class="custom-select" name="userType" required>
+                      <option value="">User Type</option>
+                      <option value="student">Student</option>
+                      <option value="supervisor">Supervisor</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="text-muted font-italic">
+                  <small>password strength:
+                    <span class="text-success font-weight-700">strong</span>
+                  </small>
+                </div>
+                <div class="row my-4">
+                  <div class="col-12">
+                    <div class="custom-control custom-control-alternative custom-checkbox">
+                      <input class="custom-control-input " id="customCheckRegister" type="checkbox" required>
+                      <label class="custom-control-label" for="customCheckRegister">
+                        <span>I agree with the
+                          <a href="#">Privacy Policy</a>
+                        </span>
+                      </label>
                     </div>
                   </div>
-                  <div class="text-center" style="padding-bottom:10px">
-                    <input type="submit" class="btn btn-primary mt-4" value="Create an account" name="submit-signup">
-                  </div>
-                  <div class="text-center">
-                    <p>Already have an accoutn? <a href="../index.php"><b>Sign in</b></a></p>
-                  </div>
-                </form>
-              </div>
+                </div>
+                <div class="text-center" style="padding-bottom:10px">
+                  <input type="submit" class="btn btn-primary mt-4" value="Create an account" name="submit-signup">
+                </div>
+                <div class="text-center">
+                  <p>Already have an accoutn? <a href="../index.php"><b>Sign in</b></a></p>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <?php if(isset($_GET['reg']) && ($_GET['reg'] === "success")){alert("User Created Successfully!!");} ?>
-  </main>
-
-  <footer class="footer" style="width: 70%">
-    <div class="footerContent">
-      <hr>
-      Copyright &copy; ORMMS TEAM 1<br>
-      <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
     </div>
-  </footer>
+  </section>
+  <?php if(isset($_GET['reg']) && ($_GET['reg'] === "success")){alert("User Created Successfully!!");} ?>
+</main>
 
-  <!-- Core -->
-  <script src="../assets/vendor/jquery/jquery.min.js"></script>
-  <script src="../assets/vendor/popper/popper.min.js"></script>
-  <script src="../assets/vendor/bootstrap/bootstrap.min.js"></script>
-  <script src="../assets/vendor/headroom/headroom.min.js"></script>
+<footer class="footer" style="width: 70%">
+  <div class="footerContent">
+    <hr>
+    Copyright &copy; ORMMS TEAM 1<br>
+    <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
+  </div>
+</footer>
 
-  <!-- Argon JS -->
-  <script src="../assets/js/argon.js"></script>
-  <script src="../assets/validation/validateUserRegisterClient.js"></script>
+<!-- Core -->
+<script src="../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../assets/vendor/popper/popper.min.js"></script>
+<script src="../assets/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="../assets/vendor/headroom/headroom.min.js"></script>
+
+<!-- Argon JS -->
+<script src="../assets/js/argon.js"></script>
+<script src="../assets/validation/validateUserRegisterClient.js"></script>
 
 </body>
 

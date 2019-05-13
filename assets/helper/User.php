@@ -9,21 +9,14 @@ class User
 	protected $email;
 	protected $password;
 	protected $confirmPassword;
+    protected $userType;
 
 
-    /**
-     * @return mixed
-     */
     public function getFirstName()
     {
         return $this->firstName;
     }
 
-    /**
-     * @param mixed $firstName
-     *
-     * @return self
-     */
     protected function setFirstName($firstName)
     {
         $this->firstName = $firstName;
@@ -31,19 +24,11 @@ class User
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getLastName()
     {
         return $this->lastName;
     }
 
-    /**
-     * @param mixed $lastName
-     *
-     * @return self
-     */
     protected function setLastName($lastName)
     {
         $this->lastName = $lastName;
@@ -51,39 +36,11 @@ class User
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUserName()
-    {
-        return $this->userName;
-    }
-
-    /**
-     * @param mixed $userName
-     *
-     * @return self
-     */
-    protected function setUserName($userName)
-    {
-        $this->userName = $userName;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getEmail()
     {
         return $this->email;
     }
 
-    /**
-     * @param mixed $email
-     *
-     * @return self
-     */
     protected function setEmail($email)
     {
         $this->email = $email;
@@ -91,19 +48,11 @@ class User
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPassword()
     {
         return $this->password;
     }
 
-    /**
-     * @param mixed $password
-     *
-     * @return self
-     */
     protected function setPassword($password)
     {
         $this->password = $password;
@@ -111,19 +60,11 @@ class User
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getConfirmPassword()
     {
         return $this->confirmPassword;
     }
 
-    /**
-     * @param mixed $confirmPassword
-     *
-     * @return self
-     */
     protected function setConfirmPassword($confirmPassword)
     {
         $this->confirmPassword = $confirmPassword;
@@ -131,13 +72,25 @@ class User
         return $this;
     }
 
-    public function setUserInfoSignup($firstName, $lastName, $userName, $email, $password, $confirmPassword){
+    public function getUserType()
+    {
+        return $this->userType;
+    }
+
+    public function setUserType($userType)
+    {
+        $this->userType = $userType;
+
+        return $this;
+    }
+
+    public function setUserInfoSignup($firstName, $lastName, $email, $password, $userType){
         $this->setFirstName($firstName);
         $this->setLastName($lastName);
-        $this->setUserName($userName);
         $this->setEmail($email);
         $this->setPassword($password);
-        $this->setConfirmPassword($confirmPassword);
+        $this->setUserType($userType);
+
     }
 
     public function setUserInfoLogin($email, $password){
@@ -145,17 +98,20 @@ class User
         $this->setPassword($password);
 
     }
+
+    private function hashedPassword(){
+        return password_hash($_POST['password'], PASSWORD_DEFAULT);
+    }
     
     function getUserInfoSignup($user){
         if (filter_has_var(INPUT_POST, 'submit-signup')){
             $user->setUserInfoSignup(
-                                $_POST['firstName'],
-                                $_POST['lastName'],
-                                $_POST['userName'],
-                                $_POST['email'],
-                                $_POST['password'],
-                                $_POST['confirmPassword']
-                            );
+                $_POST['firstName'],
+                $_POST['lastName'],
+                $_POST['email'],
+                $this->hashedPassword(),
+                $_POST['userType']
+            );
             return true;
         }
         return false;
@@ -164,9 +120,9 @@ class User
     function getUserInfoLogin($user){
         if(filter_has_var(INPUT_POST, 'submit-login')){
             $user->setUserInfoLogin(
-                                $_POST['login-email'],
-                                $_POST['login-password']
-                            );
+                $_POST['login-email'],
+                $_POST['login-password']
+            );
             return true;
         }
         return false;
@@ -175,13 +131,11 @@ class User
     function clearUserFields(){
         $this->setFirstName(null);
         $this->setLastName(null);
-        $this->setUserName(null);
         $this->setEmail(null);
         $this->setPassword(null);
         $this->setConfirmPassword(null);
+        $this->setUserType(null);
     }
-
-
 
 
 }

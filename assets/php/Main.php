@@ -5,18 +5,26 @@ require "../helper/Perform.php";
 
 
 $user = new User();
-$LOGGED_USER;
 
 if(isset($_POST['submit-signup'])){
-	echo"SUBMIT???";
+	echo"SUBMIT signup???";
 	if($user->getUserInfoSignup($user)){
-		$var = Perform::createUser($user); 
-		if($var){
-			header("Location: /Registration/register.php?reg=success" . $var);
-
+		$userExists = Perform::userExists($user->getEmail());
+		if($userExists){
+			header("Location: /Registration/register.php?action=emailUsed");
+			die();
 		}
 		else{
-			header("Location: /Registration/register.php?error=something&wrong" . $var);
+			$userExists = null;
+			$created = Perform::createUser($user);
+			if($created){
+				header("Location: /Registration/register.php?action=success");
+			}
+			else {
+				header("Location: /Registration/register.php?action=somethingWrong");
+				die();
+			}
+			
 		}
 	}
 }
@@ -31,7 +39,6 @@ if(isset($_POST['research-name'])){
 	$research = new Research();
 	if($research->setResearchInfo()){
 		Perform::addResearch($research);
-		//header("Location: http://localhost/index.php");
 	}
 }
 
