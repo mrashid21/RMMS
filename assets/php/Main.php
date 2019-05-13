@@ -9,25 +9,20 @@ $user = new User();
 if(isset($_POST['submit-signup'])){
 	echo"SUBMIT signup???";
 	if($user->getUserInfoSignup($user)){
-		$userExists = Perform::userExists($user->getEmail());
-		if($userExists){
-			header("Location: /Registration/register.php?action=emailUsed");
+		Perform::userExists($user->getEmail());
+
+		$created = Perform::createUser($user);
+		if($created){
+			header("Location: /Registration/register.php?action=success");
+		}
+		else {
+			header("Location: /Registration/register.php?action=somethingWrong");
 			die();
 		}
-		else{
-			$userExists = null;
-			$created = Perform::createUser($user);
-			if($created){
-				header("Location: /Registration/register.php?action=success");
-			}
-			else {
-				header("Location: /Registration/register.php?action=somethingWrong");
-				die();
-			}
-			
-		}
+
 	}
 }
+
 
 if(isset($_POST['submit-login'])){
 	if($user->getUserInfoLogin($user)){

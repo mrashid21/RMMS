@@ -126,6 +126,10 @@ class Perform{
 
 		$Db = null;
 
+		if(!$exist){
+			header("Location: /Registration/register.php?action=emailUsed");
+			die();
+		}
 		return $exist;
 
 	}
