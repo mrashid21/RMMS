@@ -39,11 +39,7 @@ class Perform{
 		//Make all user fields null
 		$user->clearUserFields();
 
-		if($stat){
-			return true;
-		}
-		return false;
-
+		return $stat;
 	}
 
 	public static function Login($user){
@@ -70,10 +66,10 @@ class Perform{
 		$user->clearUserFields();
 
 		if($exist == true){
-			header("Location: http://localhost/overview.html");
+			header("Location: /overview.html");
 		}
 		else{
-			header("Location: http://localhost/index.php?error=red");
+			header("Location: /index.php?error=red");
 		}
 	}
 

@@ -13,10 +13,9 @@
     <!-- Google Fonts Poppins -->
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <!-- Argon CSS Bootstrap -->
-    <link rel="stylesheet" href="assets/css/argon.css">
+    <link rel="stylesheet" href="/assets/css/argon.css">
     <!-- Include Nucleo CSS Icons -->
-    <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
-
+    <link rel="stylesheet" href="/assets/nucleo/css/nucleo.css">
 
 </head>
 
@@ -54,6 +53,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="upload.html"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload
                                 Report</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.html"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
                         </li>
                     </ul>
                 </div>
@@ -152,7 +154,7 @@
                                     <th scope="row">
                                         <div class="media align-items-center">
                                             <a href="#" class="avatar rounded-circle mr-3" data-toggle="tooltip"
-                                                data-placement="top" :data-original-title="i">
+                                                data-placement="top" data-original-title="i">
                                                 <img alt="Image placeholder"
                                                     :src="'https://api.adorable.io/avatars/256/' + i"
                                                     class="rounded-circle">
@@ -174,7 +176,7 @@
                                     <td>
                                         <div class="avatar-group">
                                             <a href="#" class="avatar avatar-sm" data-toggle="tooltip"
-                                                data-placement="top" :data-original-title="i"
+                                                data-placement="top" data-original-title="i"
                                                 v-for='i in parseInt(research.contributers)'>
                                                 <img alt="Image placeholder"
                                                     :src="'https://api.adorable.io/avatars/256/' + i"
@@ -219,7 +221,7 @@
                     <div class="text-center text-muted mb-4" style="padding:0 20px">
                         <h3 style="padding-top: 20px;">Add research</h3>
                     </div>
-                    <form role="form" style="height: 400px; padding:0 20px" method="POST" action="../assets/php/Main.php">
+                    <form role="form" style="height: 400px; padding:0 20px" method="POST" action="#" v-on:submit.prevent="onSubmit">
                         <div class="form-group mb-3">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
@@ -301,15 +303,17 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
                 crossorigin="anonymous"></script>
 
-            <script src="assets/js/argon.js"></script>
-            <script src="assets/js/jquery-3.3.1.min.js"></script>
-            <script src="assets/flipclock/timer.js"></script>
-            <script src="assets/counter-up/jquery.counterup.js"></script>
-            <script src="assets/counter-up/jquery.waypoints.min.js"></script>
+            <script src="/assets/js/argon.js"></script>
+            <script src="/assets/js/jquery-3.3.1.min.js"></script>
+            <script src="/assets/flipclock/timer.js"></script>
+            <script src="/assets/counter-up/jquery.counterup.js"></script>
+            <script src="/assets/counter-up/jquery.waypoints.min.js"></script>
             <script src="researchProgress.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/vue-js-modal@1.3.28/dist/index.min.js"></script>
-            <script src="assets/js/researchProgress.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vue-axios@2.1.4/dist/vue-axios.min.js"></script>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script src="/assets/js/researchProgress.js"></script>
 
         </body>
 

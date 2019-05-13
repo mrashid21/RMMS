@@ -10,14 +10,13 @@ $LOGGED_USER;
 if(isset($_POST['submit-signup'])){
 	echo"SUBMIT???";
 	if($user->getUserInfoSignup($user)){
-		if(Perform::createUser($user)){
-			header("Location: http://localhost/Registration/register.html?reg=success");
-			echo"Registration Sucessful";
+		$var = Perform::createUser($user); 
+		if($var){
+			header("Location: /Registration/register.php?reg=success" . $var);
 
 		}
 		else{
-			header("Location: http://localhost/Registration/register.html?error=something&wrong");
-			echo "Something went wrong";
+			header("Location: /Registration/register.php?error=something&wrong" . $var);
 		}
 	}
 }
@@ -28,7 +27,7 @@ if(isset($_POST['submit-login'])){
 	}
 }
 
-if(isset($_POST['submit-add-research'])){
+if(isset($_POST['research-name'])){
 	$research = new Research();
 	if($research->setResearchInfo()){
 		Perform::addResearch($research);

@@ -13,6 +13,29 @@ var app = new Vue({
         model: null
     },
     methods: {
+        onSubmit(){
+            var bodyFormData = new FormData();
+            bodyFormData.set('research-name', this.name);
+            bodyFormData.set('research-status', this.status);
+            bodyFormData.set('research-contributers', this.contributers);
+            bodyFormData.set('research-completionPercentage', this.completion);
+            axios({
+                    method: 'post',
+                    url: '../assets/php/Main.php',
+                    data: bodyFormData,
+                    config: null
+            }).then(function (response) {
+                alert('Submitted!')
+                this.name = "";
+                this.budget = "";
+                this.contributers = "";
+                this.status = "";
+                this.completion = "";
+            }).catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+        },
         add(name, budget, contributers, status, completion) {
             this.mode = 'save';
             console.log(name, budget, contributers, status, completion);
@@ -23,11 +46,7 @@ var app = new Vue({
                 status: status,
                 completion: completion
             });
-            this.name = "";
-            this.budget = "";
-            this.contributers = "";
-            this.status = "";
-            this.completion = "";
+        
             this.$modal.hide('researchForm');
         },
         update(name, budget, contributers, status, completion) {
@@ -43,6 +62,7 @@ var app = new Vue({
             this.status = x.status;
             this.completion = x.completion;
             this.$modal.show('researchForm');
+            console.log(axios);
         },
         remove(x) {
             let idx = this.researches.indexOf(x);
