@@ -72,7 +72,7 @@ function alert($msg) {
 
 
 
-              <form role="form" action="../assets/php/Main.php" method="POST" name="credentialsForm">
+              <form role="form" action="../assets/api/create_user.php" method="POST" name="credentialsForm">
                 <!-- Each of the inputs will have its own ID -->
                 <!-- First name field -->
                 <div class="form-group">

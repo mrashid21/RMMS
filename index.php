@@ -58,7 +58,7 @@ echo "<script type='text/javascript'>alert('$msg');</script>";
                   </div>
                 <?php endif; ?>
 
-                <form role="form" action="../assets/php/Main.php" method="POST">
+                <form role="form" action="../assets/api/signin_user.php" method="POST">
                   <div class="form-group mb-3">
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">

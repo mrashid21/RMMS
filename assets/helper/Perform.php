@@ -24,6 +24,11 @@ class Perform{
 
 		$userType = $user->getUserType();
 
+		if(!empty(Perform::userExists($email))){
+			header("Location: /Registration/register.php?action=emailUsed");
+			die();
+		}
+
 		$query = $Db->prepare("INSERT INTO users (firstName, lastName, email, password, userType) VALUES (:firstName, :lastName, :email, :password, :userType)");
 
 		$query->bindParam(':firstName', $firstName);
@@ -36,6 +41,7 @@ class Perform{
 
 		$query->bindParam(':userType', $userType);
 
+		
 		$stat = $query->execute();
 
 		// Clear the $query field. 
@@ -51,30 +57,24 @@ class Perform{
 	}
 
 	public static function Login($user){
-		
-		$Db = Perform::connect();
 
 		$email = $user->getEmail();
 		$hashedPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
 
 		$checkPassword = password_verify($user->getPassword(), $hashedPassword);
 
-		$query = $Db->prepare("SELECT email FROM users WHERE email = :email");
-
-		$query->bindParam(':email', $email);
-
-		$query->execute();
-
-		$exist = $query->fetch(PDO::FETCH_ASSOC);
-
-		$query = null;
-
-		$Db = null;
+		$exist = Perform::userExists($email);
 
 		$user->clearUserFields();
+
 		if($exist && $checkPassword){
+
+			Perform::startSession($exist);
+
 			$exist = null;
 			$checkPassword = null;
+			$hashedPassword = null;
+
 			header("Location: /overview.html");
 		}
 		else{
@@ -114,7 +114,7 @@ class Perform{
 	public static function userExists($email){
 		$Db = Perform::connect();
 
-		$query = $Db->prepare("SELECT email FROM users WHERE email = :email");
+		$query = $Db->prepare("SELECT id, email, firstName FROM users WHERE email = :email");
 
 		$query->bindParam(':email', $email);
 
@@ -126,13 +126,18 @@ class Perform{
 
 		$Db = null;
 
-		if(!$exist){
-			header("Location: /Registration/register.php?action=emailUsed");
-			die();
-		}
 		return $exist;
 
 	}
+
+	public static function startSession($user){
+		session_start();
+
+		$_SESSION['logged_id'] = $user['id'];
+		$_SESSION['logged_name'] = $user['firstName'];
+
+		// var_dump($_SESSION);
+	} 
 
 }
 

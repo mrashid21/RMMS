@@ -21,7 +21,7 @@ var app = new Vue({
             bodyFormData.set('research-completionPercentage', this.completion);
             axios({
                     method: 'post',
-                    url: '../assets/php/Main.php',
+                    url: '../assets/api/create_user.php',
                     data: bodyFormData,
                     config: null
             }).then(function (response) {
