@@ -1,3 +1,5 @@
+<?php require "assets/validation/validateUser.php"; ?>
+
 <!DOCTYPE html>
 
 <html>
@@ -25,33 +27,33 @@
         <nav class="navbar bg-white shadow navbar-vertical fixed-left navbar-expand-md navbar-light">
             <div class="container-fluid">
                 <!-- ORMMS Logo -->
-                <a class="navbar-brand pt-0" href="index.html">
+                <a class="navbar-brand pt-0" href="overview.php">
                     <img src="assets/png/ormms.png" class="navbar-brand-img" alt="">
                 </a>
                 <div class="collapse navbar-collapse" id="sidenav-collapse-main">
                     <!-- Navigation -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html"><i class="ni ni-tv-2 text-teal"></i>Overview</a>
+                            <a class="nav-link" href="overview.php"><i class="ni ni-tv-2 text-teal"></i>Overview</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="schedule.html"><i
+                            <a class="nav-link" href="schedule.php"><i
                                     class="ni ni-calendar-grid-58 text-purple"></i>Schedule</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Checklist.html"><i
+                            <a class="nav-link" href="Checklist.php"><i
                                     class="ni ni-bullet-list-67 text text-green"></i>Checklist</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="notes.html"><i
+                            <a class="nav-link" href="notes.php"><i
                                     class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Research Progress.html"><i
+                            <a class="nav-link" href="Research-Progress.php"><i
                                     class="ni ni-cloud-upload-96 text-orange"></i>Research Progress</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="upload.html"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload
+                            <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload
                                 Report</a>
                         </li>
                         <li class="nav-item">
@@ -68,34 +70,34 @@
                 <nav class="navbar bg-white shadow navbar-vertical fixed-left navbar-expand-md navbar-light">
                     <div class="container-fluid">
                         <!-- ORMMS Logo -->
-                        <a class="navbar-brand pt-0" href="index.html">
+                        <a class="navbar-brand pt-0" href="overview.php">
                             <img src="assets/png/ormms.png" class="navbar-brand-img" alt="">
                         </a>
                         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
                             <!-- Navigation -->
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="homePage.html"><i
+                                    <a class="nav-link" href="overview.php"><i
                                             class="ni ni-tv-2 text-teal"></i>Overview</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="schedule.html"><i
+                                    <a class="nav-link" href="schedule.php"><i
                                             class="ni ni-calendar-grid-58 text-purple"></i>Schedule</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="Checklist.html"><i
+                                    <a class="nav-link" href="Checklist.php"><i
                                             class="ni ni-bullet-list-67 text text-green"></i>Checklist</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="notes.html"><i
+                                    <a class="nav-link" href="notes.php"><i
                                             class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="Research Progress.html"><i
+                                    <a class="nav-link" href="Research-Progress.php"><i
                                             class="ni ni-cloud-upload-96 text-orange"></i>Research Progress</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="upload.html"><i
+                                    <a class="nav-link" href="upload.php"><i
                                             class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
                                 </li>
                             </ul>
@@ -109,7 +111,7 @@
                         <div class="container-fluid">
                             <!-- Section -->
                             <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
-                                href="homePage.html">Overview</a>
+                                href="overview.php">Overview</a>
                             <!-- Search Form -->
                             <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
                                 <div class="form-group mb-0">
@@ -122,7 +124,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <form action="homePage.html">
+                            <form action="assets/api/logout_user.php">
                                 <input type="submit" class="btn" onclick="" value="Logout">
                             </form>
 

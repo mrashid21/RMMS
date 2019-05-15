@@ -75,10 +75,10 @@ class Perform{
 			$checkPassword = null;
 			$hashedPassword = null;
 
-			header("Location: /overview.html");
+			header("Location: /overview.php");
 		}
 		else{
-			header("Location: /index.php?action=invalid");
+			header("Location: /?action=invalid");
 			die();
 		}
 	}

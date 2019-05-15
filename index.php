@@ -1,9 +1,3 @@
-<?php
-function alert($msg) {
-echo "<script type='text/javascript'>alert('$msg');</script>";
-}
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -58,21 +52,29 @@ echo "<script type='text/javascript'>alert('$msg');</script>";
                   </div>
                 <?php endif; ?>
 
+                <?php if(isset($_GET['action']) && $_GET['action'] === 'unauthorized'): ?>
+                  <div class="alert alert-danger" role="alert">
+                    Only authorized and logged in user can access the system!
+                  </div>
+                <?php endif; ?>
+
                 <form role="form" action="../assets/api/signin_user.php" method="POST">
                   <div class="form-group mb-3">
+                    <!-- Email Field -->
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Email" type="email" name="login-email"> 
+                      <input class="form-control" placeholder="Email" type="email" name="login-email" required=""> 
                     </div>
                   </div>
+                  <!-- Password Field -->
                   <div class="form-group">
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Password" type="password" name="login-password">
+                      <input class="form-control" placeholder="Password" type="password" name="login-password" required="">
                     </div>
                   </div>
                   <div class="custom-control custom-control-alternative custom-checkbox">
@@ -103,7 +105,6 @@ echo "<script type='text/javascript'>alert('$msg');</script>";
         </div>
       </div>
     </section>
-    <?php if((isset($_GET['error'])) && ($_GET['error']==="red")){alert("User or password is wrong!");} ?>
   </main>
 
   <footer class="footer" style="width: 70%">
