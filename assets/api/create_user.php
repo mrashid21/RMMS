@@ -20,7 +20,3 @@ if(isset($_POST['submit-signup'])){
 
 	}
 }
-
-function userExists($user){
-    Perform::userExists($user->getEmail());
-}

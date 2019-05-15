@@ -1,10 +1,3 @@
-<?php
-function alert($msg) {
-  echo "<script type='text/javascript'>alert('$msg');</script>";
-}
-?>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -55,7 +48,6 @@ function alert($msg) {
                   <div class="alert alert-danger" role="alert">
                     Email already used by another user!
                   </div>
-
                 <?php endif; ?>
 
                 <?php if(isset($_GET['action']) && ($_GET['action'] === 'somethingWrong')): ?>
