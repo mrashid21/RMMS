@@ -150,6 +150,9 @@
           <li class="nav-item">
             <a class="nav-link" href="Upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -172,7 +175,7 @@
             </div>
           </div>
         </form>
-        <form action="assets/api/logout_user.php" >
+        <form action="assets/api/logout_user.php">
           <input type="submit" class="btn" value="Logout" style="width: 100%">
         </form>
       </div>
@@ -185,10 +188,10 @@
         </div>
       </div>
     </div>
-<br>
+    <br>
     <!--===== Checklist =====-->
-   
-<br><br>
+
+    <br><br>
     <div class="container-fluid mt--10">
       <div class="row ">
         <div class="col-xl-7 col-centered">
@@ -196,12 +199,12 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                    <div id="myDIV" class="header">
-                      <input type="text" id="myInput" placeholder="New Task">
-                      <span onclick="newElement()" class="addBtn">
-                        <button type="button" class="btn btn-danger">Add</button>
-                      </span>
-                    </div>
+                  <div id="myDIV" class="header">
+                    <input type="text" id="myInput" placeholder="New Task">
+                    <span onclick="newElement()" class="addBtn">
+                      <button type="button" class="btn btn-danger">Add</button>
+                    </span>
+                  </div>
                   <ul id="myUL" contenteditable="true">
                     <li>Meet Client</li>
                     <li class="checked">Update Document</li>
@@ -222,74 +225,75 @@
           </div>
         </div>
       </div>
-        
-        
-    
-</div>  
 
-<script>
-// Create a "close" button and append it to each list item
-var x = document.getElementById("myUL");
-var myNodelist = x.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
 
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
 
-// Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('#myUL');
-list.addEventListener('dblclick', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
+    </div>
 
-// Create a new list item when clicking on the "Add" button
-function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("You must write something!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
-  document.getElementById("myInput").value = "";
+    <script>
+      // Create a "close" button and append it to each list item
+      var x = document.getElementById("myUL");
+      var myNodelist = x.getElementsByTagName("LI");
+      var i;
+      for (i = 0; i < myNodelist.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+      }
 
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
+      // Click on a close button to hide the current list item
+      var close = document.getElementsByClassName("close");
+      var i;
+      for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+          var div = this.parentElement;
+          div.style.display = "none";
+        }
+      }
 
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
-}
-</script>
-<br><br><hr>
-<footer class="text-center font-georgia">
-  Copyright &copy; ORMMS TEAM 1<br>
-  <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
-</footer>
+      // Add a "checked" symbol when clicking on a list item
+      var list = document.querySelector('#myUL');
+      list.addEventListener('dblclick', function(ev) {
+        if (ev.target.tagName === 'LI') {
+          ev.target.classList.toggle('checked');
+        }
+      }, false);
+
+      // Create a new list item when clicking on the "Add" button
+      function newElement() {
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("myInput").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+          alert("You must write something!");
+        } else {
+          document.getElementById("myUL").appendChild(li);
+        }
+        document.getElementById("myInput").value = "";
+
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        li.appendChild(span);
+
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+          }
+        }
+      }
+    </script>
+    <br><br>
+    <hr>
+    <footer class="text-center font-georgia">
+      Copyright &copy; ORMMS TEAM 1<br>
+      <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
+    </footer>
 
     <script src="assets/js/argon.js"></script>
     <script src="assets/js/jquery-3.3.1.min.js"></script>

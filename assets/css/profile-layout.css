@@ -1,0 +1,19 @@
+.img-circle {
+    border-radius: 50%;
+}
+
+.small-img{
+    height: 70px;
+    width: 70px;
+}
+
+.header-user-image{
+    height: 35px;
+    width: auto;  
+}
+
+.card-user-image{
+    height: 110px;
+    width: auto;  
+
+}

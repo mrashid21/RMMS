@@ -4,7 +4,6 @@ var app = new Vue({
     el: '#app',
     data: {
         name: null,
-        budget: null,
         contributers: null,
         status: null,
         completion: null,
@@ -14,6 +13,8 @@ var app = new Vue({
     },
     methods: {
         onSubmit(){
+            const self = this;
+
             var bodyFormData = new FormData();
             bodyFormData.set('research-name', this.name);
             bodyFormData.set('research-status', this.status);
@@ -26,8 +27,8 @@ var app = new Vue({
                     config: null
             }).then(function (response) {
                 alert('Submitted!')
+                self.researches.push(response.data);
                 this.name = "";
-                this.budget = "";
                 this.contributers = "";
                 this.status = "";
                 this.completion = "";
@@ -36,28 +37,21 @@ var app = new Vue({
                 console.log(error);
             })
         },
-        add(name, budget, contributers, status, completion) {
+        add(name, contributers, status, completion) {
             this.mode = 'save';
-            console.log(name, budget, contributers, status, completion);
-            this.researches.push({
-                name: name,
-                budget: budget,
-                contributers: contributers,
-                status: status,
-                completion: completion
-            });
+            console.log(name, contributers, status, completion);
+
         
             this.$modal.hide('researchForm');
         },
-        update(name, budget, contributers, status, completion) {
+        update(name,  contributers, status, completion) {
             this.remove(this.model);
-            this.add(name, budget, contributers, status, completion);
+            this.add(name,  contributers, status, completion);
         },
         edit(x) {
             this.mode = 'edit'
             this.model = x
             this.name = x.name;
-            this.budget = x.budget;
             this.contributers = x.contributers;
             this.status = x.status;
             this.completion = x.completion;
@@ -80,5 +74,20 @@ var app = new Vue({
             }
             return ' bg-danger'
         }
+    },
+    created(){
+        const self = this;
+
+        axios({
+            method: 'post',
+            url: '/assets/api/get_research.php',
+            data: null,
+            config: null
+            }).then(function (response) {
+                self.researches = response.data;
+            }).catch(function (error) {
+                // handle error
+                console.log(error);
+            })
     }
 });

@@ -1,3 +1,7 @@
+<?php
+    $task_id = $_GET['id'];
+
+?>
 <?php require "assets/validation/validateUser.php"; ?>
 
 <!DOCTYPE html>
@@ -8,7 +12,7 @@
     <meta charset="utf-8">
     <meta name="viewport">
     <meta name="author" content="WIF2003">
-    <title>Research Progress</title>
+    <title>Tasks</title>
 
     <!-- CSS -->
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
@@ -48,7 +52,7 @@
                             <a class="nav-link" href="notes.php"><i class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Research-Progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Research Progress</a>
+                            <a class="nav-link" href="Task-Progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Task Progress</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload
@@ -87,7 +91,7 @@
                                     <a class="nav-link" href="notes.php"><i class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="Research-Progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Research Progress</a>
+                                    <a class="nav-link" href="Task-Progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Task Progress</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
@@ -155,7 +159,7 @@
                     </div>
 
                     <div class="row pt-2 pb-4 justify-content-center">
-                        <button type="button" class="col-4 btn btn-block btn-default" @click="$modal.show('researchForm');">Add Research</button>
+                        <button type="button" class="col-4 btn btn-block btn-default" @click="$modal.show('taskForm');">Add Task</button>
                     </div>
                     <!--===== Page content =====-->
 
@@ -164,45 +168,36 @@
                         <table class="table align-items-center" id="myTable">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Research</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Contributers</th>
+                                    <th scope="col">Task</th>
+                                    <th scope="col">Due Date</th>
                                     <th scope="col">Completion</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody id="table-body">
-                                <tr v-for="research in researches">
+                                <tr v-for="task in tasks">
                                     <th scope="row">
                                         <div class="media align-items-center">
                                             <a href="#" class="avatar rounded-circle mr-3" data-toggle="tooltip" data-placement="top" data-original-title="i">
                                                 <img alt="Image placeholder" :src="'https://api.adorable.io/avatars/256/' + i" class="rounded-circle">
                                             </a>
                                             <div class="media-body">
-                                                <span class="mb-0 text-sm">{{ research.name }}</span>
+                                                <span class="mb-0 text-sm">{{ task.name }}</span>
 
                                             </div>
                                         </div>
                                     </th>
                                     <td>
                                         <span class="badge badge-dot mr-4">
-                                            <i :class="statusColor(research.status)"></i> {{ research.status }}
+                                            <i class="badge-warning"></i> {{ task.due_date }}
                                         </span>
                                     </td>
                                     <td>
-                                        <div class="avatar-group">
-                                            <a href="#" class="avatar avatar-sm" data-toggle="tooltip" data-placement="top" data-original-title="i" v-for='i in parseInt(research.contributers)'>
-                                                <img alt="Image placeholder" :src="'https://api.adorable.io/avatars/256/' + i" class="rounded-circle">
-                                            </a>
-                                        </div>
-
-                                    </td>
-                                    <td>
                                         <div class="d-flex align-items-center">
-                                            <span class="mr-2"> {{ research.completion }}%</span>
+                                            <span class="mr-2"> {{ task.completion }}%</span>
                                             <div>
                                                 <div class="progress">
-                                                    <div :class="'progress-bar ' + statusColor(research.status)" role="progressbar" :aria-valuenow="research.completion" aria-valuemin="0" aria-valuemax="100" :style="'width:'+ research.completion + '%'"></div>
+                                                    <div class="progress-bar progress-warning" role="progressbar" :aria-valuenow="task.completion" aria-valuemin="0" aria-valuemax="100" :style="'width:'+ task.completion + '%'"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -213,9 +208,8 @@
                                                 <i class="ni ni-bullet-list-67"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                <a class="dropdown-item" @click="edit(research)">Edit</a>
-                                                <a class="dropdown-item" @click="remove(research)">Remove</a>
-                                                <a class="dropdown-item" :href="'/task.php?id=' + research.id">Tasks</a>
+                                                <a class="dropdown-item" @click="edit(task)">Edit</a>
+                                                <a class="dropdown-item" @click="remove(task)">Remove</a>
                                             </div>
                                         </div>
                                     </td>
@@ -225,9 +219,9 @@
 
                     </div>
                 </div>
-                <modal name="researchForm" :height="500">
+                <modal name="taskForm" :height="500">
                     <div class="text-center text-muted mb-4" style="padding:0 20px">
-                        <h3 style="padding-top: 20px;">Add Research</h3>
+                        <h3 style="padding-top: 20px;">Add Task</h3>
                     </div>
                     <form role="form" style="height: 400px; padding:0 20px" method="POST" action="#" v-on:submit.prevent="onSubmit">
                         <div class="form-group mb-3">
@@ -235,28 +229,16 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-map-big"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Research Name" type="text" v-model='name' name="research-name" required>
+                                <input class="form-control" placeholder="Task Name" type="text" v-model='name' name="task-name" required>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="input-group input-group-alternative">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                </div>
-                                <select class="form-control" placeholder="Status" v-model='status' name="research-status" required>
-                                    <option value="completed">Completed</option>
-                                    <option value="pending" selected>Pending</option>
-                                    <option value="delayed">delayed</option>
-                                    <option value="on shcedule">on shcedule</option>
-                                </select>
-                            </div>
-                        </div>
+                    
                         <div class="form-group">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-diamond"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Contributers" type="text" v-model='contributers' name="research-contributers" required>
+                                <input class="form-control" placeholder="Due date" type="date" v-model='due_date' name="task-contributers" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -264,14 +246,21 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Completion" type="number" min="0" max="100" v-model="completion" name="research-completionPercentage" required>
+                                <input class="form-control" placeholder="Completion" type="number" min="0" max="100" v-model="completion" name="completion" required>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                </div>
+                                <input  type="checkbox" v-model="done" name="done" required> Done?
+                            </div>
+                        </div>
                         <div class="text-center">
 
-                            <button type="input" v-show="mode == 'save'" class="btn btn-primary my-4" @click="add(name,contributers,status,completion)" name="submit-add-research">Add</button>
-                            <button type="button" v-show="mode == 'edit'" class="btn btn-primary my-4" @click="update(name,contributers,status,completion)">Edit</button>
+                            <button type="input" v-show="mode == 'save'" class="btn btn-primary my-4" @click="add(name, due_date, done, completion)" name="submit-add-task">Add</button>
+                            <button type="button" v-show="mode == 'edit'" class="btn btn-primary my-4" @click="update(name, due_date, done, completion)">Edit</button>
 
                         </div>
                     </form>
@@ -296,12 +285,92 @@
             <script src="/assets/flipclock/timer.js"></script>
             <script src="/assets/counter-up/jquery.counterup.js"></script>
             <script src="/assets/counter-up/jquery.waypoints.min.js"></script>
-            <script src="/assets/js/researchProgress.js"></script>
+            <script src="/assets/js/taskProgress.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/vue-js-modal@1.3.28/dist/index.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/vue-axios@2.1.4/dist/vue-axios.min.js"></script>
             <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-            <script src="/assets/js/researchProgress.js"></script>
+            <script>
+            Vue.use(window["vue-js-modal"].default)
+
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    name: null,
+                    completion: null,
+                    tasks: [],
+                    mode: 'save',
+                    model: null
+                },
+                methods: {
+                    onSubmit(){
+                        // const self = this;
+                        // var bodyFormData = new FormData();
+                        // bodyFormData.set('task-name', this.name);
+                        // bodyFormData.set('task-due_date', this.due_date);
+                        // bodyFormData.set('task-completion', this.completion);
+                        // bodyFormData.set('task-done', this.done);
+                        // axios({
+                        //         method: 'post',
+                        //         url: '/assets/api/create_task.php',
+                        //         data: bodyFormData,
+                        //         config: null
+                        // }).then(function (response) {
+                        //     alert('Submitted!')
+                        //     self.tasks.push(response.data);
+                        //     this.name = x.name;
+                        //     this.due_date = x.due_date;
+                        //     this.completion = x.completion;
+                        //     this.done = x.done;
+                        // }).catch(function (error) {
+                        //     // handle error
+                        //     console.log(error);
+                        // })
+                    },
+                    add(name, due_date, done, completion) {
+                        this.mode = 'save';
+                        console.log(name, due_date, done, completion);
+                        this.tasks.push({name, due_date, done, completion});
+
+                    
+                        this.$modal.hide('taskForm');
+                    },
+                    update(name, due_date, done, completion) {
+                        this.remove(this.model);
+                        this.add(name, due_date, done, completion);
+                    },
+                    edit(x) {
+                        this.mode = 'edit'
+                        this.model = x
+                        this.name = x.name;
+                        this.due_date = x.due_date;
+                        this.completion = x.completion;
+                        this.done = x.done;
+                        this.$modal.show('taskForm');
+                        console.log(axios);
+                    },
+                    remove(x) {
+                        let idx = this.tasks.indexOf(x);
+                        this.tasks.splice(idx, 1);
+                    }
+                },
+                created(){
+                    // const self = this;
+
+                    // axios({
+                    //     method: 'post',
+                    //     url: '/assets/api/get_tasks.php?id=<?php echo htmlentities($task_id); ///XSS SECURITY PRACTICES ?>',
+                    //     data: null,
+                    //     config: null
+                    //     }).then(function (response) {
+                    //         self.tasks = response.data;
+                    //     }).catch(function (error) {
+                    //         // handle error
+                    //         console.log(error);
+                    //     })
+                }
+            });
+            </script>
 
         </body>
 

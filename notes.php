@@ -21,12 +21,13 @@
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <style type="text/css">
-  hr{ 
-  height: 1px;
-  color:grey;
-  background-color: grey;
-  border: none;
-}
+    hr {
+      height: 1px;
+      color: grey;
+      background-color: grey;
+      border: none;
+    }
+
     .event_time_inner {
       margin-left: 130px;
       margin-right: 130px
@@ -119,6 +120,9 @@
           <li class="nav-item">
             <a class="nav-link" href="Upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -141,9 +145,9 @@
             </div>
           </div>
         </form>
-        <form action="assets/api/logout_user.php" >
-            <input type="submit" class="btn" value="Logout" style="width: 100%">
-          </form>
+        <form action="assets/api/logout_user.php">
+          <input type="submit" class="btn" value="Logout" style="width: 100%">
+        </form>
       </div>
     </nav>
 
@@ -161,15 +165,13 @@
           <div class="control-group form-group">
             <div class="controls"><br><br>
               <label for="title">Title</label>
-              <input type="text" class="form-control" placeholder="Notes Title" id="notename" required
-                data-validation-required-message="You must enter a title" />
+              <input type="text" class="form-control" placeholder="Notes Title" id="notename" required data-validation-required-message="You must enter a title" />
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls">
               <label for="content">Content</label>
-              <textarea id="notecontent" class="form-control" placeholder="Notes Content" maxlength="999" rows="18" required
-                style="resize: none;"></textarea>
+              <textarea id="notecontent" class="form-control" placeholder="Notes Content" maxlength="999" rows="18" required style="resize: none;"></textarea>
             </div>
           </div>
           <div id="success"></div>
@@ -204,7 +206,7 @@
       </div>
     </div>
   </div>
-  
+
   <footer class="footer">
     <div class="footerContent">
       <hr>
@@ -217,8 +219,8 @@
     var id;
     var i = 1;
 
-    $(document).ready(function () {
-      document.getElementById("saveButton").onclick = function () {
+    $(document).ready(function() {
+      document.getElementById("saveButton").onclick = function() {
         if (CheckNote("notename", "notecontent")) {
           var element = CreateNote();
           element.setAttribute("id", i++);
@@ -233,7 +235,7 @@
         return true;
       };
 
-      document.getElementById("deleteButton").onclick = function () {
+      document.getElementById("deleteButton").onclick = function() {
         var toRemove = document.getElementById(id);
         toRemove.parentElement.removeChild(toRemove);
 
@@ -247,7 +249,7 @@
         document.getElementById("g0" + toRemove.id).remove();
         document.getElementById("g1" + toRemove.id).remove();
         document.getElementById("g2" + toRemove.id).remove();
-    
+
         toRemove.className += " grayout";
       };
 
@@ -274,9 +276,9 @@
     function CreateNote() {
       var date = new Date();
       var day = date.getDate();
-      var month = date.getMonth()+1;
+      var month = date.getMonth() + 1;
       var year = date.getFullYear();
-      var fulldate = day+"-"+month+"-"+year;
+      var fulldate = day + "-" + month + "-" + year;
       var note = document.createElement("div");
       note.className = "col-sm-9 margin";
       note.setAttribute("id", "notehover");
@@ -286,11 +288,11 @@
       var heading = document.createElement("div");
       heading.className = "panel-body headingcolor";
       heading.setAttribute("id", "heading" + i);
-      heading.textContent = document.getElementById("notename").value+"   ("+fulldate+")";
+      heading.textContent = document.getElementById("notename").value + "   (" + fulldate + ")";
       var body = document.createElement("div");
       body.className = "panel-body";
       body.setAttribute("id", "glyphContainer" + i);
-      body.setAttribute("contenteditable",true);
+      body.setAttribute("contenteditable", true);
       body.style.overflow = "hidden";
       body.style.position = "relative";
       body.style.height = "73%";
@@ -328,4 +330,5 @@
   <script src="assets/counter-up/jquery.waypoints.min.js"></script>
 
 </body>
+
 </html>

@@ -93,7 +93,7 @@ class Perform{
 		$percentage = $research->getCompletionPercentage();
 		$contributers = $research->getContributers();
 
-		$query = $Db->prepare("INSERT INTO progress (researchName, status, completionPercentage,contributers) VALUES
+		$query = $Db->prepare("INSERT INTO progress (name, status, completion,contributers) VALUES
 			(:name,:status,:percentage,:contributers)");
 
 		$query->bindParam(':name', $name);
@@ -109,6 +109,85 @@ class Perform{
 		$query = null;
 
 		$Db = null;
+
+		$Db = Perform::connect();
+
+		$query = $Db->prepare("SELECT * FROM progress ORDER BY id DESC LIMIT 1;");
+
+		// $query->bindParam(':email', $email);
+
+		$stat = $query->execute();
+
+		$data = $query->fetch(PDO::FETCH_ASSOC);
+
+		$query = null;
+
+		$Db = null;
+
+		return json_encode($data);
+	}
+
+	// This function will add a research information to the database...
+	public static function addTask($task){
+
+		$Db = Perform::connect();
+		///Add function for task
+		$name = $research->getName();
+		$status = $research->getStatus();
+		$percentage = $research->getCompletionPercentage();
+		$contributers = $research->getContributers();
+
+		$query = $Db->prepare("INSERT INTO progress (name, status, completion,contributers) VALUES
+			(:name,:status,:percentage,:contributers)");
+
+		$query->bindParam(':name', $name);
+
+		$query->bindParam(':status', $status);
+
+		$query->bindParam(':percentage', $percentage);
+
+		$query->bindParam(':contributers', $contributers);
+
+		$stat = $query->execute();
+
+		$query = null;
+
+		$Db = null;
+
+		$Db = Perform::connect();
+
+		$query = $Db->prepare("SELECT * FROM progress ORDER BY id DESC LIMIT 1;");
+
+		// $query->bindParam(':email', $email);
+
+		$stat = $query->execute();
+
+		$data = $query->fetch(PDO::FETCH_ASSOC);
+
+		$query = null;
+
+		$Db = null;
+
+		return json_encode($data);
+	}
+
+	public static function getResearch(){
+
+		$Db = Perform::connect();
+
+		$query = $Db->prepare("SELECT * FROM progress");
+
+		// $query->bindParam(':email', $email);
+
+		$stat = $query->execute();
+
+		$data = $query->fetchAll(PDO::FETCH_ASSOC);
+
+		$query = null;
+
+		$Db = null;
+
+		return json_encode($data);
 	}
 
 	public static function userExists($email){
