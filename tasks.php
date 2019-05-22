@@ -1,8 +1,8 @@
 <?php
-    $task_id = $_GET['id'];
-
+    require "assets/validation/validateUser.php";
+    $task_id = $_GET['id']; 
+    $userName = $_SESSION['logged_firstName'];
 ?>
-<?php require "assets/validation/validateUser.php"; ?>
 
 <!DOCTYPE html>
 
@@ -114,15 +114,15 @@
                                 <div class="dropdown user user-menu" style="width:150px;">
                                     <a href="#" class="" data-toggle="dropdown">
                                         <img src="https://api.adorable.io/avatars/160/ayoob.png" class="img-fluid img-circle header-user-image small-img" alt="User Image">
-                                        <span class="hidden-xs"><small>Alexander Pierce</small></span>
+                                        <span class="hidden-xs"><?= $userName ?></span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <!-- Menu Body -->
                                         <li class="user-body p-4 header-profile-margin">
                                             <div class="row d-flex p-2 justify-content-center">
                                                 <img src="https://api.adorable.io/avatars/160/ayoob.png" class="img-fluid img-circle small-img" alt="User Image">
-                                                <p class="text-center">
-                                                    <small>Alexander Pierce - Web Developer</small>
+                                                <p class="text-center pt-3">
+                                                    <strong><?= $userName ?></strong><br>
                                                     <small>Member since Nov. 2012</small>
                                                 </p>
                                             </div>
@@ -238,7 +238,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-diamond"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Due date" type="date" v-model='due_date' name="task-contributers" required>
+                                <input class="form-control" placeholder="Due date" type="date" v-model='due_date' name="task-due_date" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -246,7 +246,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Completion" type="number" min="0" max="100" v-model="completion" name="completion" required>
+                                <input class="form-control" placeholder="Completion" type="number" min="0" max="100" v-model="completion" name="task-completion" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -254,7 +254,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                 </div>
-                                <input  type="checkbox" v-model="done" name="done" required> Done?
+                                <input  type="checkbox" v-model="done" name="task-done" > <p>Done?</p>
                             </div>
                         </div>
                         <div class="text-center">
@@ -304,28 +304,28 @@
                 },
                 methods: {
                     onSubmit(){
-                        // const self = this;
-                        // var bodyFormData = new FormData();
-                        // bodyFormData.set('task-name', this.name);
-                        // bodyFormData.set('task-due_date', this.due_date);
-                        // bodyFormData.set('task-completion', this.completion);
-                        // bodyFormData.set('task-done', this.done);
-                        // axios({
-                        //         method: 'post',
-                        //         url: '/assets/api/create_task.php',
-                        //         data: bodyFormData,
-                        //         config: null
-                        // }).then(function (response) {
-                        //     alert('Submitted!')
-                        //     self.tasks.push(response.data);
-                        //     this.name = x.name;
-                        //     this.due_date = x.due_date;
-                        //     this.completion = x.completion;
-                        //     this.done = x.done;
-                        // }).catch(function (error) {
-                        //     // handle error
-                        //     console.log(error);
-                        // })
+                        const self = this;
+                        var bodyFormData = new FormData();
+                        bodyFormData.set('task-name', this.name);
+                        bodyFormData.set('task-due_date', this.due_date);
+                        bodyFormData.set('task-completion', this.completion);
+                        bodyFormData.set('task-done', this.done);
+                        axios({
+                                method: 'post',
+                                url: '/assets/api/create_task.php?id=<?php echo htmlentities($task_id); ///XSS SECURITY PRACTICES ?>',
+                                data: bodyFormData,
+                                config: null
+                        }).then(function (response) {
+                            alert('Submitted!')
+                            self.tasks.push(response.data);
+                            this.name = x.name;
+                            this.due_date = x.due_date;
+                            this.completion = x.completion;
+                            this.done = x.done;
+                        }).catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
                     },
                     add(name, due_date, done, completion) {
                         this.mode = 'save';
@@ -355,19 +355,19 @@
                     }
                 },
                 created(){
-                    // const self = this;
+                    const self = this;
 
-                    // axios({
-                    //     method: 'post',
-                    //     url: '/assets/api/get_tasks.php?id=<?php echo htmlentities($task_id); ///XSS SECURITY PRACTICES ?>',
-                    //     data: null,
-                    //     config: null
-                    //     }).then(function (response) {
-                    //         self.tasks = response.data;
-                    //     }).catch(function (error) {
-                    //         // handle error
-                    //         console.log(error);
-                    //     })
+                    axios({
+                        method: 'post',
+                        url: '/assets/api/get_tasks.php?id=<?php echo htmlentities($task_id); ///XSS SECURITY PRACTICES ?>',
+                        data: null,
+                        config: null
+                        }).then(function (response) {
+                            self.tasks = response.data;
+                        }).catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
                 }
             });
             </script>

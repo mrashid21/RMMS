@@ -80,7 +80,7 @@ var app = new Vue({
 
         axios({
             method: 'post',
-            url: '/assets/api/get_research.php',
+            url: '/assets/api/get_researchs.php',
             data: null,
             config: null
             }).then(function (response) {

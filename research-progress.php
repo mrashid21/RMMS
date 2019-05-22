@@ -215,7 +215,7 @@
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                 <a class="dropdown-item" @click="edit(research)">Edit</a>
                                                 <a class="dropdown-item" @click="remove(research)">Remove</a>
-                                                <a class="dropdown-item" :href="'/task.php?id=' + research.id">Tasks</a>
+                                                <a class="dropdown-item" :href="'/tasks.php?id=' + research.id">Tasks</a>
                                             </div>
                                         </div>
                                     </td>

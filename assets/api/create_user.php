@@ -1,8 +1,7 @@
 <?php
 
-include_once "../helper/helper.view.php";
-include_once "../helper/Perform.php";
-
+include_once $_SERVER['DOCUMENT_ROOT'] .  "/assets/helper/classes/helper.view.php";
+include_once $_SERVER['DOCUMENT_ROOT'] .  "/assets/helper/UserAction.php";
 
 if(isset($_POST['submit-signup'])){
     
@@ -10,7 +9,7 @@ if(isset($_POST['submit-signup'])){
 	
 	if($user->getUserInfoSignup($user)){
 
-		if(Perform::createUser($user)){
+		if(UserAction::createUser($user)){
 			header("Location: /Registration/register.php?action=success");
 		}
 		else {

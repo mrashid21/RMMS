@@ -1,4 +1,15 @@
-<?php require "./assets/validation/validateUser.php"; ?>
+<?php 
+require "./assets/validation/validateUser.php";
+require "./assets/helper/UserAction.php";
+require "./assets/helper/Activity.php";
+
+//$img = "/assets/img/users/" . $_SESSION['logged_id'] . "." .pathinfo($_SESSION['logged_img'], PATHINFO_EXTENSION);
+
+$data = UserAction::retrieveData();
+
+$activities = Activity::getActivities();
+$i = 0;
+?>
 
 
 <!DOCTYPE html>
@@ -75,19 +86,19 @@
                 </form> -->
                 <form>
                     <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
-                    <div class="dropdown user user-menu" style="width:150px;">
-                        <a href="#" class="" data-toggle="dropdown">
-                            <img src="https://api.adorable.io/avatars/160/ayoob.png" class="img-fluid img-circle header-user-image small-img" alt="User Image">
-                            <span class="hidden-xs"><small>Alexander Pierce</small></span>
+                    <div class="dropdown user user-menu" style="width:300px;">
+                        <a href="#" class="small-img" data-toggle="dropdown">
+                            <img src= <?= $_SESSION['logged_img'] ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
+                            <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Menu Body -->
                             <li class="user-body p-4 header-profile-margin">
-                                <div class="row d-flex p-2 justify-content-center">
-                                    <img src="https://api.adorable.io/avatars/160/ayoob.png" class="img-fluid img-circle small-img" alt="User Image">
-                                    <p class="text-center">
-                                        <small>Alexander Pierce - Web Developer</small>
-                                        <small>Member since Nov. 2012</small>
+                                <div class="row d-flex justify-content-center">
+                                    <img src= <?= $_SESSION['logged_img'] ?>  class="img-fluid img-circle card-user-image" alt="User Image"> 
+                                    <p class="text-center pt-2">
+                                        <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?> - Web Developer</b></small>
+                                        <small><?= $data['timeCreated'] ?></small>
                                     </p>
                                 </div>
                                 <div class="d-flex row justify-content-center">
@@ -137,10 +148,21 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex col-12 justify-content-center">
-                                    <img src="https://api.adorable.io/avatars/160/ayoob.png" class="img-fluid img-circle card-user-image" alt="User Image">
+                                    <img src=<?= $_SESSION['logged_img'] ?> class="img-fluid img-circle card-user-image" alt="User Image">
                                 </div>
                                 <div class="d-flex col-12 justify-content-center pt-3">
-                                    <input type="file" style="font-size: 12px; border-width : 0">
+                                    <form action="assets/api/upload.php" method="post" enctype="multipart/form-data">
+                                        <div class="d-flex justify-content-center pt-3">
+                                            Select image to upload:
+                                        </div>
+                                        <div class="d-flex col-12 justify-content-center">
+                                            <input type="file" name="fileToUpload" id="fileToUpload" style="font-size: 10px; border-width : 0" required>
+                                        </div>
+                                        <div class="d-flex col-12 justify-content-center">
+                                            <input type="submit" value="Upload Image" name="submit" style="font-size: 10px; border-width : 0">
+                                        </div>
+                                        
+                                    </form>
                                 </div>
                                 <hr>
 
@@ -149,10 +171,10 @@
                                 </div>
 
                                 <div>
-                                    <p>Some texr kjtghrlt rgkfrgnrghfrkgn.fkjghfkfmgjfbkjjfngf.kjghkjfgkjfdhgkjfdhgkjfdhgjkfdhgkjfhdglhfdkjghdfk</p>
+                                    <p><?= $data['bio']?></p>
                                 </div>
                                 <hr>
-                                <p class="text-center">Name</p>
+                                <p class="text-center" style="font-weight:bold;">  <?= $data['firstName'] . " " . $data['lastName']?> </p>
                                 <p class="text-center">Career</p>
                                 <div class="d-flex col-12 pt-1 justify-content-center">
                                     <ul class="list-group mt-2 list-group-unbordered">
@@ -183,30 +205,14 @@
                                                             <th>Activity</th>
                                                             <th>Date</th>
                                                         </tr>
+                                                        <?php foreach($activities as $key=> $value):?>
                                                         <tr>
-                                                            <td>1.</td>
-                                                            <td>Update software</td>
-                                                            <td></td>
+                                                            <td> <?= $i++; $i;  ?> </td>
+                                                            <td> <?= $activities[$key]['name']; ?> </td>
+                                                            <td> <?= $activities[$key]['time']; ?> </td>
                                                             
                                                         </tr>
-                                                        <tr>
-                                                            <td>2.</td>
-                                                            <td>Clean database</td>
-                                                            <td></td>
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <td>3.</td>
-                                                            <td>Cron job running</td>
-                                                            <td></td>
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <td>4.</td>
-                                                            <td>Fix and squish bugs</td>
-                                                            <td></td>
-                                                            
-                                                        </tr>
+                                                        <?php endforeach;?>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -215,38 +221,45 @@
                                         <div class="tab-pane" id="settings">
                                             <form class="form-horizontal">
                                                 <div class="form-group">
-                                                    <label for="inputName" class="col-sm control-label pt-4">Name</label>
+                                                    <label for="inputName" class="col-sm control-label pt-4">First Name</label>
 
                                                     <div class="col-sm-10">
-                                                        <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                                        <input type="text" class="form-control" id="inputName" placeholder="First Name" name="firstName" value = <?=  $data['firstName'] ?> >
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputEmail" class="col-sm control-label">Email</label>
+                                                    <label for="inputName" class="col-sm control-label">Last Name</label>
 
                                                     <div class="col-sm-10">
-                                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                                        <input type="text" class="form-control" id="inputName" placeholder="Last Name" name="lastName" value = <?=  $data['lastName'] ?> >
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputName" class="col-sm control-label">Name</label>
+                                                    <label for="inputEmail" class="col-sm control-label">Email (You can't change the email)</label>
 
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" value = <?=  $data['email'] ?> readonly>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputExperience" class="col-sm control-label">Experience</label>
+                                                    <label for="inputEmail" class="col-sm control-label">Password</label>
 
                                                     <div class="col-sm-10">
-                                                        <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                                        <input type="password" class="form-control" placeholder="Password" name="password">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputSkills" class="col-sm control-label">Skills</label>
+                                                    <label for="inputEmail" class="col-sm control-label">Confirm Password</label>
 
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                                        <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputExperience" class="col-sm control-label">Biography</label>
+
+                                                    <div class="col-sm-10">
+                                                        <textarea class="form-control" id="inputExperience" placeholder="Biography" name="bio"> Enter your biography here... </textarea>
                                                     </div>
                                                 </div>
 

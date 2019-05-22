@@ -3,17 +3,18 @@
 }
 
 .small-img{
-    height: 70px;
-    width: 70px;
+    height: 40px;
+    width: 40px;
 }
 
 .header-user-image{
-    height: 35px;
-    width: auto;  
+    
+    height: 55px;
+    width: 55px; 
 }
 
 .card-user-image{
-    height: 110px;
-    width: auto;  
+    height: 70px;
+    width: 70px; 
 
 }
