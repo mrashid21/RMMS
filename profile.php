@@ -104,7 +104,7 @@ $img = UserAction::getImageDir();
                                 </div>
                                 <div class="d-flex row justify-content-center">
                                     <div class="col-xs-12 text-center">
-                                        <a href="#" class="btn btn-default btn-sm btn-flat mr-1">Profile</a>
+                                        <a href="profile.php" class="btn btn-default btn-sm btn-flat mr-1">Profile</a>
                                         <a href="#" class="btn btn-default btn-sm btn-flat">Friends</a>
                                     </div>
                                 </div>
