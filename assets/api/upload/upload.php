@@ -1,5 +1,5 @@
 <?php
-$target_dir = "../img/users/";
+$target_dir = "../../img/users/";
 session_start();
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;

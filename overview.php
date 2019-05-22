@@ -66,7 +66,7 @@ $data = UserAction::retrieveData();
           <li class="nav-item pb-9">
               <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
           </li>
-          <form class="d-flex justify-content-center pt-9" action="assets/api/logout_user.php">
+          <form class="d-flex justify-content-center pt-9" action="assets/api/user/logout_user.php">
               <input type="submit" class="btn" value="Logout" style="width: 80%">
           </form>
           
@@ -127,8 +127,7 @@ $data = UserAction::retrieveData();
         </nav>
 
     <!--===== Timer =====-->
-
-    <div class="header container-fluid bg-gradient-light pb-3 pt-5 pt-md-8">
+    <div class="header container-fluid bg-gradient-light pt-md-6 pb-2">
 
     </div>
 

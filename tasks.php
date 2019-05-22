@@ -65,7 +65,7 @@ $data = UserAction::retrieveData();
                         <li class="nav-item pb-9">
                             <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
                         </li>
-                        <form class="d-flex justify-content-center pt-9" action="assets/api/logout_user.php">
+                        <form class="d-flex justify-content-center pt-9" action="assets/api/user/user/logout_user.php">
                             <input type="submit" class="btn" value="Logout" style="width: 80%">
                         </form>
                     </ul>
@@ -98,7 +98,7 @@ $data = UserAction::retrieveData();
                                     <a class="nav-link" href="notes.php"><i class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="Task-Progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Task Progress</a>
+                                    <a class="nav-link" href="Task-Progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Research Progress</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
@@ -318,7 +318,7 @@ $data = UserAction::retrieveData();
                         bodyFormData.set('task-done', this.done);
                         axios({
                                 method: 'post',
-                                url: '/assets/api/create_task.php?id=<?php echo htmlentities($task_id); ///XSS SECURITY PRACTICES ?>',
+                                url: '/assets/api/task/create_task.php?id=<?php echo htmlentities($task_id); ///XSS SECURITY PRACTICES ?>',
                                 data: bodyFormData,
                                 config: null
                         }).then(function (response) {
@@ -365,7 +365,7 @@ $data = UserAction::retrieveData();
 
                     axios({
                         method: 'post',
-                        url: '/assets/api/get_tasks.php?id=<?php echo htmlentities($task_id); ///XSS SECURITY PRACTICES ?>',
+                        url: '/assets/api/task/get_tasks.php?id=<?php echo htmlentities($task_id); ///XSS SECURITY PRACTICES ?>',
                         data: null,
                         config: null
                         }).then(function (response) {

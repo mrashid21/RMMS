@@ -70,7 +70,7 @@ $img = UserAction::getImageDir();
                     <li class="nav-item pb-9">
                         <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
                     </li>
-                    <form class="d-flex justify-content-center pt-9" action="assets/api/logout_user.php">
+                    <form class="d-flex justify-content-center pt-9" action="assets/api/user/logout_user.php">
                         <input type="submit" class="btn" value="Logout" style="width: 80%">
                     </form>
                 </ul>
@@ -152,7 +152,7 @@ $img = UserAction::getImageDir();
                                     <img src=<?= $img ?> class="img-fluid img-circle card-user-image" alt="User Image">
                                 </div>
                                 <div class="d-flex col-12 justify-content-center pt-3">
-                                    <form action="assets/api/upload.php" method="post" enctype="multipart/form-data">
+                                    <form action="assets/api/upload/upload.php" method="post" enctype="multipart/form-data">
                                         <div class="d-flex justify-content-center pt-3">
                                             Select image to upload:
                                         </div>

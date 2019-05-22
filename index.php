@@ -58,7 +58,7 @@
                   </div>
                 <?php endif; ?>
 
-                <form role="form" action="../assets/api/signin_user.php" method="POST">
+                <form role="form" action="../assets/api/user/signin_user.php" method="POST">
                   <div class="form-group mb-3">
                     <!-- Email Field -->
                     <div class="input-group input-group-alternative">

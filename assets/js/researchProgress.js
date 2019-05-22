@@ -22,7 +22,7 @@ var app = new Vue({
             bodyFormData.set('research-completionPercentage', this.completion);
             axios({
                     method: 'post',
-                    url: '/assets/api/create_research.php',
+                    url: '/assets/api/research/create_research.php',
                     data: bodyFormData,
                     config: null
             }).then(function (response) {
@@ -80,7 +80,7 @@ var app = new Vue({
 
         axios({
             method: 'post',
-            url: '/assets/api/get_researchs.php',
+            url: '/assets/api/research/get_researchs.php',
             data: null,
             config: null
             }).then(function (response) {

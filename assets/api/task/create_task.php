@@ -1,6 +1,6 @@
 <?php
 
-include_once "../helper/classes/helper.view.php";
+include_once "../../helper/helper.view.php";
 
 if(isset($_POST['task-name'])){
 	$task = new Task();
