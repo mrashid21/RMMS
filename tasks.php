@@ -1,7 +1,11 @@
-<?php
-    require "assets/validation/validateUser.php";
-    $task_id = $_GET['id']; 
-    $userName = $_SESSION['logged_firstName'];
+<?php 
+require "./assets/validation/validateUser.php";
+require "./assets/helper/UserAction.php";
+
+$task_id = $_GET['id']; 
+
+$img = UserAction::getImageDir();
+$data = UserAction::retrieveData();
 ?>
 
 <!DOCTYPE html>
@@ -58,9 +62,12 @@
                             <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload
                                 Report</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="profile.html"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
+                        <li class="nav-item pb-9">
+                            <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
                         </li>
+                        <form class="d-flex justify-content-center pt-9" action="assets/api/logout_user.php">
+                            <input type="submit" class="btn" value="Logout" style="width: 80%">
+                        </form>
                     </ul>
                 </div>
             </div>
@@ -103,55 +110,54 @@
 
                 <!--===== Main =====-->
                 <div class="main-content">
-                    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-                        <div class="container-fluid">
-                            <!-- Profie Dropdown -->
-                            <!-- <form action="assets/api/logout_user.php">
-                    <input type="submit" class="btn" value="Logout" style="width: 100%">
-                </form> -->
-                            <form>
-                                <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
-                                <div class="dropdown user user-menu" style="width:150px;">
-                                    <a href="#" class="" data-toggle="dropdown">
-                                        <img src="https://api.adorable.io/avatars/160/ayoob.png" class="img-fluid img-circle header-user-image small-img" alt="User Image">
-                                        <span class="hidden-xs"><?= $userName ?></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <!-- Menu Body -->
-                                        <li class="user-body p-4 header-profile-margin">
-                                            <div class="row d-flex p-2 justify-content-center">
-                                                <img src="https://api.adorable.io/avatars/160/ayoob.png" class="img-fluid img-circle small-img" alt="User Image">
-                                                <p class="text-center pt-3">
-                                                    <strong><?= $userName ?></strong><br>
-                                                    <small>Member since Nov. 2012</small>
-                                                </p>
-                                            </div>
-                                            <div class="d-flex row justify-content-center">
-                                                <div class="col-xs-12 text-center">
-                                                    <a href="#" class="btn btn-default btn-sm btn-flat mr-1">Profile</a>
-                                                    <a href="#" class="btn btn-default btn-sm btn-flat">Friends</a>
-                                                </div>
-                                            </div>
-                                            <!-- /.row -->
-                                        </li>
-
-                                    </ul>
+                <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+            <div class="container-fluid">
+                <!-- Profie Dropdown -->
+                <form>
+                    <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
+                    <div class="dropdown user user-menu" style="width:300px;">
+                        <a href="#" class="small-img" data-toggle="dropdown">
+                            <img src= <?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
+                            <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- Menu Body -->
+                            <li class="user-body p-4 header-profile-margin">
+                                <div class="row d-flex justify-content-center">
+                                    <img src= <?= $img ?>  class="img-fluid img-circle card-user-image" alt="User Image"> 
                                 </div>
-                            </form>
-
-                            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-                                <div class="form-group mb-0">
-                                    <div class="input-group input-group-alternative">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                        </div>
-                                        <input class="form-control" placeholder="Search" type="text">
+                                <div class="row d-flex justify-content-around">
+                                    <p class="text-center pt-2">
+                                        <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></b></small><br>
+                                        <small>Member since <?= $data['timeCreated'] ?></small>
+                                    </p>
+                                </div>
+                                <div class="d-flex row justify-content-center">
+                                    <div class="col-xs-12 text-center">
+                                        <a href="#" class="btn btn-default btn-sm btn-flat mr-1">Profile</a>
+                                        <a href="#" class="btn btn-default btn-sm btn-flat">Friends</a>
                                     </div>
                                 </div>
-                            </form>
+                                <!-- /.row -->
+                            </li>
 
+                        </ul>
+                    </div>
+                </form>
+
+                <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                    <div class="form-group mb-0">
+                        <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Search" type="text">
                         </div>
-                    </nav>
+                    </div>
+                </form>
+
+            </div>
+        </nav>
 
                     <!--===== header =====-->
                     <div class="header container-fluid bg-gradient-light pt-md-6 pb-2">

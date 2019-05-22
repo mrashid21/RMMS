@@ -45,7 +45,7 @@ class Activity
 
         $Db = self::connect();
         
-        $query = $Db->prepare("SELECT * FROM activities WHERE memberId = :memberId");
+        $query = $Db->prepare("SELECT * FROM activities WHERE memberId = :memberId ORDER BY time DESC");
         
         $memberId = $_SESSION['logged_id'];
 

@@ -3,12 +3,11 @@ require "./assets/validation/validateUser.php";
 require "./assets/helper/UserAction.php";
 require "./assets/helper/Activity.php";
 
-//$img = "/assets/img/users/" . $_SESSION['logged_id'] . "." .pathinfo($_SESSION['logged_img'], PATHINFO_EXTENSION);
-
 $data = UserAction::retrieveData();
 
 $activities = Activity::getActivities();
-$i = 0;
+$i = 1;
+$img = UserAction::getImageDir();
 ?>
 
 
@@ -43,7 +42,7 @@ $i = 0;
     <nav class="navbar bg-white shadow navbar-vertical fixed-left navbar-expand-md navbar-light">
         <div class="container-fluid">
             <!-- ORMMS Logo -->
-            <a class="navbar-brand pt-0" href="index.html">
+            <a class="navbar-brand pt-0" href="overview.php">
                 <img src="assets/png/ormms.png" class="navbar-brand-img" alt="">
             </a>
             <div class="collapse navbar-collapse" id="sidenav-collapse-main">
@@ -68,9 +67,12 @@ $i = 0;
                     <li class="nav-item">
                         <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item pb-9">
                         <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
                     </li>
+                    <form class="d-flex justify-content-center pt-9" action="assets/api/logout_user.php">
+                        <input type="submit" class="btn" value="Logout" style="width: 80%">
+                    </form>
                 </ul>
             </div>
         </div>
@@ -81,24 +83,23 @@ $i = 0;
         <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
             <div class="container-fluid">
                 <!-- Profie Dropdown -->
-                <!-- <form action="assets/api/logout_user.php">
-                    <input type="submit" class="btn" value="Logout" style="width: 100%">
-                </form> -->
                 <form>
                     <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
                     <div class="dropdown user user-menu" style="width:300px;">
                         <a href="#" class="small-img" data-toggle="dropdown">
-                            <img src= <?= $_SESSION['logged_img'] ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
+                            <img src= <?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
                             <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Menu Body -->
                             <li class="user-body p-4 header-profile-margin">
                                 <div class="row d-flex justify-content-center">
-                                    <img src= <?= $_SESSION['logged_img'] ?>  class="img-fluid img-circle card-user-image" alt="User Image"> 
+                                    <img src= <?= $img ?>  class="img-fluid img-circle card-user-image" alt="User Image"> 
+                                </div>
+                                <div class="row d-flex justify-content-around">
                                     <p class="text-center pt-2">
-                                        <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?> - Web Developer</b></small>
-                                        <small><?= $data['timeCreated'] ?></small>
+                                        <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></b></small><br>
+                                        <small>Member since <?= $data['timeCreated'] ?></small>
                                     </p>
                                 </div>
                                 <div class="d-flex row justify-content-center">
@@ -148,7 +149,7 @@ $i = 0;
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex col-12 justify-content-center">
-                                    <img src=<?= $_SESSION['logged_img'] ?> class="img-fluid img-circle card-user-image" alt="User Image">
+                                    <img src=<?= $img ?> class="img-fluid img-circle card-user-image" alt="User Image">
                                 </div>
                                 <div class="d-flex col-12 justify-content-center pt-3">
                                     <form action="assets/api/upload.php" method="post" enctype="multipart/form-data">

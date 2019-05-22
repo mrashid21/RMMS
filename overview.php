@@ -1,4 +1,10 @@
-<?php require "assets/validation/validateUser.php"; ?>
+<?php 
+require "./assets/validation/validateUser.php";
+require "./assets/helper/UserAction.php";
+
+$img = UserAction::getImageDir();
+$data = UserAction::retrieveData();
+?>
 
 <!DOCTYPE html>
 
@@ -23,6 +29,7 @@
   <!-- Include Nucleo CSS Icons -->
   <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/profile-layout.css">
 
 </head>
 
@@ -56,9 +63,13 @@
           <li class="nav-item">
             <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
+          <li class="nav-item pb-9">
+              <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
           </li>
+          <form class="d-flex justify-content-center pt-9" action="assets/api/logout_user.php">
+              <input type="submit" class="btn" value="Logout" style="width: 80%">
+          </form>
+          
         </ul>
       </div>
     </div>
@@ -66,26 +77,54 @@
 
   <!--===== Main =====-->
   <div class="main-content">
-    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-      <div class="container-fluid">
-        <!-- Section -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="overview.php">Overview</a>
-        <!-- Search Form -->
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-          <div class="form-group mb-0">
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-              </div>
-              <input class="form-control" placeholder="Search" type="text">
+  <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+            <div class="container-fluid">
+                <!-- Profie Dropdown -->
+                <form>
+                    <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
+                    <div class="dropdown user user-menu" style="width:300px;">
+                        <a href="#" class="small-img" data-toggle="dropdown">
+                            <img src= <?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
+                            <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- Menu Body -->
+                            <li class="user-body p-4 header-profile-margin">
+                                <div class="row d-flex justify-content-center">
+                                    <img src= <?= $img ?>  class="img-fluid img-circle card-user-image" alt="User Image"> 
+                                </div>
+                                <div class="row d-flex justify-content-around">
+                                    <p class="text-center pt-2">
+                                        <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></b></small><br>
+                                        <small>Member since <?= $data['timeCreated'] ?></small>
+                                    </p>
+                                </div>
+                                <div class="d-flex row justify-content-center">
+                                    <div class="col-xs-12 text-center">
+                                        <a href="#" class="btn btn-default btn-sm btn-flat mr-1">Profile</a>
+                                        <a href="#" class="btn btn-default btn-sm btn-flat">Friends</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+
+                        </ul>
+                    </div>
+                </form>
+
+                <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                    <div class="form-group mb-0">
+                        <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Search" type="text">
+                        </div>
+                    </div>
+                </form>
+
             </div>
-          </div>
-        </form>
-        <form action="assets/api/logout_user.php">
-          <input type="submit" class="btn" value="Logout" style="width: 100%">
-        </form>
-      </div>
-    </nav>
+        </nav>
 
     <!--===== Timer =====-->
 

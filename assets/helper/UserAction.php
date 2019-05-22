@@ -30,7 +30,7 @@ class UserAction
 		$userType = $user->getUserType();
 
 		date_default_timezone_set('Asia/Kuala_Lumpur');
-		$date = date('Y-m-d H:i:s', time());
+		$date = date('Y-m-d', time());
 
 		$img = "https://api.adorable.io/avatars/160/ayoob.png";
 
@@ -75,12 +75,25 @@ class UserAction
 	public static function Login($user)
 	{
 
+		$email = $user->getEmail();
+
+		$Db = self::connect();
+		
+		$query = $Db->prepare("SELECT password FROM users WHERE email = :email");
+
+		$query->bindParam(':email', $email);
+
+		$stat = $query->execute();
+
+		$password = $query->fetch(PDO::FETCH_ASSOC);
+
+		$query = null;
+
+		$Db = null;
+
 		include_once "SessionAction.php";
 
-		$email = $user->getEmail();
-		$hashedPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
-
-		$checkPassword = password_verify($user->getPassword(), $hashedPassword);
+		$checkPassword = password_verify($user->getPassword(), $password['password']);
 
 		$exist = self::userExists($email);
 
@@ -90,9 +103,9 @@ class UserAction
 
 			SessionAction::startSession($exist);
 
-			$exist = null;
-			$checkPassword = null;
-			$hashedPassword = null;
+			// $exist = null;
+			// $checkPassword = null;
+			// $hashedPassword = null;
 
 			header("Location: /overview.php");
 			Activity::addActivity("Loged in Successfully");
@@ -115,25 +128,6 @@ class UserAction
 		return $exist;
 	}
 
-	public static function uploadImage()
-	{
-		$Db = self::connect();
-
-		$query = $Db->prepare("INSERT INTO users profileImage VALUES :profileImage");
-
-		$img = $_SESSION['logged_img'];
-
-		$query->bindParam(':profileImage', $img);
-
-		$query->execute();
-
-		$query = null;
-
-		$Db = null;
-
-		Activity::addActivity("Uploaded profile image");
-	}
-
 	public static function getImageDir()
 	{
 
@@ -153,28 +147,20 @@ class UserAction
 
 		$Db = null;
 		
-		return $_SERVER["DOCUMENT_ROOT"] . $data['profileImage'];
+		return $data['profileImage'];
 	}
 
-	public static function upadateProfileImg()
+	public static function upadateProfileImg($img)
 	{
 		$Db = self::connect();
 
 		$query = $Db->prepare("UPDATE users SET profileImage = :profileImage WHERE id = :id");
 
-		$query->bindParam(':profileImage', $_SESSION['logged_img']);
+		$query->bindParam(':profileImage', $img);
 
 		$query->bindParam(':id', $_SESSION['logged_id']);
 
 		$query->execute();
-
-		$query = $Db->prepare("SELECT profileImage FROM users WHERE id = :id");
-
-		$query->bindParam(':id', $_SESSION['logged_id']);
-
-		$query->execute();
-
-		$data = $query->fetch(PDO::FETCH_ASSOC);
 
 		$query = null;
 
@@ -182,7 +168,6 @@ class UserAction
 
 		Activity::addActivity("Uploaded profile image");
 
-		return $data;
 	}
 
 	public static function retrieveData()

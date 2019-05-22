@@ -18,12 +18,12 @@ if(isset($_POST["submit"])) {
     }
 }
 // Check if file already exists
-if (file_exists($target_file)) {
-    header("Location: /profile.php?error=alreadyThere");
-    die();
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-}
+// if (file_exists($target_file)) {
+//     header("Location: /profile.php?error=alreadyThere");
+//     die();
+//     echo "Sorry, file already exists.";
+//     $uploadOk = 0;
+// }
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 500000) {
     header("Location: /profile.php?error=size");
@@ -47,7 +47,8 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        header("Location: /profile.php");
+        //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     } else {
         header("Location: /profile.php?error=wrong");
         die();
@@ -58,11 +59,7 @@ if ($uploadOk == 0) {
 require_once "../helper/UserAction.php";
 
 if(UserAction::getImageDir() !== null){
-    $_SESSION['logged_img'] = "/assets/img/users/" . $_SESSION['logged_id'] . "." .pathinfo($target_file, PATHINFO_EXTENSION);
-    UserAction::upadateProfileImg();
+    $img = "/assets/img/users/" . $_SESSION['logged_id'] . "." . pathinfo($target_file,PATHINFO_EXTENSION);
+    UserAction::upadateProfileImg($img);
     
-}
-else{
-    UserAction::uploadImage($target_file);
-    $_SESSION['logged_img'] = "/assets/img/users/" . $_SESSION['logged_id'] . "." .pathinfo($target_file, PATHINFO_EXTENSION);
 }
