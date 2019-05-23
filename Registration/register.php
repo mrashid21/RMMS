@@ -72,7 +72,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Frist Name" type="text" name="firstName"
+                    <input class="form-control" placeholder="First Name" type="text" name="firstName"
                     oninput="validateName(this)" required>
                   </div>
                 </div>
