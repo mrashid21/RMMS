@@ -198,15 +198,15 @@ $data = UserAction::retrieveData();
                                         </div>
                                     </th>
                                     <td>
-                                    <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center">
                                             <span class="mr-2"> {{ task.start_date }}</span>
-    
+
                                         </div>
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <span class="mr-2"> {{ task.due_date }}</span>
-    
+
                                         </div>
                                     </td>
                                     <td>
@@ -250,7 +250,7 @@ $data = UserAction::retrieveData();
                                 <input class="form-control" placeholder="Task Name" type="text" v-model='name' name="task-name" required>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
@@ -268,7 +268,7 @@ $data = UserAction::retrieveData();
                                 <input class="form-control" placeholder="Due date" type="date" v-model='due_date' name="task-due_date" required>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
@@ -347,12 +347,12 @@ $data = UserAction::retrieveData();
                             bodyFormData.set('task-done', this.done);
                             axios({
                                 method: 'post',
-                                url: '/assets/api/task/create_task.php?id=<?php echo htmlentities($task_id);?>',
+                                url: '/assets/api/task/create_task.php?id=<?php echo htmlentities($task_id); ?>',
                                 data: bodyFormData,
                                 config: null
                             }).then(function(response) {
                                 alert('Submitted!')
-                                // self.tasks.push(response.data);
+                                self.tasks.push(response.data);
                                 this.name = x.name;
                                 this.start_date = x.start_date;
                                 this.due_date = x.due_date;
@@ -363,24 +363,46 @@ $data = UserAction::retrieveData();
                                 console.log(error);
                             })
                         },
+
                         add(name, start_date, due_date, done, completion) {
                             this.mode = 'save';
                             console.log(name, start_date, due_date, done, completion);
-                            this.tasks.push({
-                                name,
-                                start_date,
-                                due_date,
-                                done,
-                                completion
-                            });
-
 
                             this.$modal.hide('taskForm');
                         },
+
                         update(name, start_date, due_date, done, completion) {
-                            this.remove(this.model);
-                            this.add(name, start_date, due_date, done, completion);
+
+                            const self = this;
+                            var bodyFormData = new FormData();
+                            bodyFormData.set('task-name', this.name);
+                            bodyFormData.set('task-start_date', this.start_date);
+                            bodyFormData.set('task-due_date', this.due_date);
+                            bodyFormData.set('task-completion', this.completion);
+                            bodyFormData.set('task-done', this.done);
+
+                            axios({
+                                method: 'post',
+                                url: '/assets/api/task/edit_task.php?id=<?php echo htmlentities($task_id); ?>',
+                                data: bodyFormData,
+                                config: null
+                            }).then(function(response) {
+                                alert('Submitted!')
+                                self.tasks.push(response.data);
+                                let idx = this.tasks.indexOf(x);
+                                this.tasks.splice(idx, 1);
+                                this.name = "";
+                                this.start_date = "";
+                                this.due_date = "";
+                                this.completion = "";
+                                this.done = "";
+                            }).catch(function(error) {
+                                // handle error
+                                console.log(error);
+                            })
+
                         },
+
                         edit(x) {
                             this.mode = 'edit'
                             this.model = x
@@ -393,8 +415,34 @@ $data = UserAction::retrieveData();
                             console.log(axios);
                         },
                         remove(x) {
-                            let idx = this.tasks.indexOf(x);
-                            this.tasks.splice(idx, 1);
+
+                            var r = confirm("Are you sure you want to remove the phase?");
+                            
+                            if(r == true){
+
+                                const self = this;
+                                var bodyFormData = new FormData();
+                                bodyFormData.set('task-name', this.name);
+                                bodyFormData.set('task-start_date', this.start_date);
+                                bodyFormData.set('task-due_date', this.due_date);
+                                bodyFormData.set('task-completion', this.completion);
+                                bodyFormData.set('task-done', this.done);
+
+                                axios({
+                                    method: 'post',
+                                    url: '/assets/api/task/remove_task.php?id=<?php echo htmlentities($task_id); ?>',
+                                    data: bodyFormData,
+                                    config: null
+                                }).then(function(response) {
+                                    alert('Submitted!')
+                                    let idx = this.tasks.indexOf(x);
+                                    this.tasks.splice(idx, 1);
+                                }).catch(function(error) {
+                                    // handle error
+                                    console.log(error);
+                                })
+                            }
+
                         }
                     },
                     created() {
