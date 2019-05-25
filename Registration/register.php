@@ -44,19 +44,19 @@
                   <small>Sign up with credentials</small>
                 </div>
 
-                <?php if(isset($_GET['action']) && ($_GET['action'] === 'emailUsed')): ?>
+                <?php if (isset($_GET['action']) && ($_GET['action'] === 'emailUsed')) : ?>
                   <div class="alert alert-danger" role="alert">
                     Email already used by another user!
                   </div>
                 <?php endif; ?>
 
-                <?php if(isset($_GET['action']) && ($_GET['action'] === 'somethingWrong')): ?>
+                <?php if (isset($_GET['action']) && ($_GET['action'] === 'somethingWrong')) : ?>
                   <div class="alert alert-warning" role="alert">
                     Something went wrong, please try again!
                   </div>
                 <?php endif; ?>
 
-                <?php if(isset($_GET['action']) && ($_GET['action'] === 'success')): ?>
+                <?php if (isset($_GET['action']) && ($_GET['action'] === 'success')) : ?>
                   <div class="alert alert-success" role="alert">
                     Registrated Successfully!
                   </div>
@@ -64,123 +64,131 @@
 
 
 
-              <form role="form" action="../assets/api/user/create_user.php" method="POST" name="credentialsForm">
-                <!-- Each of the inputs will have its own ID -->
-                <!-- First name field -->
-                <div class="form-group">
-                  <div class="input-group input-group-alternative mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="First Name" type="text" name="firstName"
-                    oninput="validateName(this)" required>
-                  </div>
-                </div>
-
-                <!-- Last name field -->
-                <div class="form-group">
-                  <div class="input-group input-group-alternative mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Last Name" type="text" name="lastName"
-                    oninput="validateName(this)" required>
-                  </div>
-                </div>
-
-                <!-- Email field -->
-                <div class="form-group">
-                  <div class="input-group input-group-alternative mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Email" type="email" name="email" required>
-                  </div>
-                </div>
-
-                <!-- Password field -->
-                <div class="form-group">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Password" type="password" name="password"
-                    id="passwordField" oninput="validatePassword(this)" required>
-                  </div>
-                </div>
-
-                <!-- Repeat Password field -->
-                <div class="form-group">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Confirm Password" type="password" name="confirmPassword"
-                    oninput="validateConfirmPassword(this)" required>
-                  </div>
-                </div>
-
-                <!-- Type of user -->
-                <div class="form-group ">
-                  <div class="input-group input-group-alternative">
-                    <select class="custom-select" name="userType" required>
-                      <option value="">User Type</option>
-                      <option value="student">Student</option>
-                      <option value="supervisor">Supervisor</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="text-muted font-italic">
-                  <small>password strength:
-                    <span class="text-success font-weight-700">strong</span>
-                  </small>
-                </div>
-                <div class="row my-4">
-                  <div class="col-12">
-                    <div class="custom-control custom-control-alternative custom-checkbox">
-                      <input class="custom-control-input " id="customCheckRegister" type="checkbox" required>
-                      <label class="custom-control-label" for="customCheckRegister">
-                        <span>I agree with the
-                          <a href="#">Privacy Policy</a>
-                        </span>
-                      </label>
+                <form role="form" action="../assets/api/user/create_user.php" method="POST" name="credentialsForm">
+                  <!-- Each of the inputs will have its own ID -->
+                  <!-- First name field -->
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="First Name" type="text" name="firstName" oninput="validateName(this)" required>
                     </div>
                   </div>
-                </div>
-                <div class="text-center" style="padding-bottom:10px">
-                  <input type="submit" class="btn btn-primary mt-4" value="Create an account" name="submit-signup">
-                </div>
-                <div class="text-center">
-                  <p>Already have an accoutn? <a href="../index.php"><b>Sign in</b></a></p>
-                </div>
-              </form>
+
+                  <!-- Last name field -->
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Last Name" type="text" name="lastName" oninput="validateName(this)" required>
+                    </div>
+                  </div>
+
+                  <!-- Email field -->
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Email" type="email" name="email" required>
+                    </div>
+                  </div>
+
+                  <!-- Matric number field -->
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Matric Number" type="text" name="matricNumber" required>
+                    </div>
+                  </div>
+
+                  <!-- Password field -->
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Password" type="password" name="password" id="passwordField" oninput="validatePassword(this)" required>
+                    </div>
+                  </div>
+
+                  <!-- Repeat Password field -->
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Confirm Password" type="password" name="confirmPassword" oninput="validateConfirmPassword(this)" required>
+                    </div>
+                  </div>
+
+                  <!-- Type of user -->
+                  <div class="form-group ">
+                    <div class="input-group input-group-alternative">
+                      <select class="custom-select" name="userType" required>
+                        <option value="">User Type</option>
+                        <option value="student">Student</option>
+                        <option value="supervisor">Supervisor</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="text-muted font-italic">
+                    <small>password strength:
+                      <span class="text-success font-weight-700">strong</span>
+                    </small>
+                  </div>
+                  <div class="row my-4">
+                    <div class="col-12">
+                      <div class="custom-control custom-control-alternative custom-checkbox">
+                        <input class="custom-control-input " id="customCheckRegister" type="checkbox" required>
+                        <label class="custom-control-label" for="customCheckRegister">
+                          <span>I agree with the
+                            <a href="#">Privacy Policy</a>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center" style="padding-bottom:10px">
+                    <input type="submit" class="btn btn-primary mt-4" value="Create an account" name="submit-signup">
+                  </div>
+                  <div class="text-center">
+                    <p>Already have an accoutn? <a href="../index.php"><b>Sign in</b></a></p>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
+    <?php if (isset($_GET['reg']) && ($_GET['reg'] === "success")) {
+      alert("User Created Successfully!!");
+    } ?>
+  </main>
+
+  <footer class="footer" style="width: 70%">
+    <div class="footerContent">
+      <hr>
+      Copyright &copy; ORMMS TEAM 1<br>
+      <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
     </div>
-  </section>
-  <?php if(isset($_GET['reg']) && ($_GET['reg'] === "success")){alert("User Created Successfully!!");} ?>
-</main>
+  </footer>
 
-<footer class="footer" style="width: 70%">
-  <div class="footerContent">
-    <hr>
-    Copyright &copy; ORMMS TEAM 1<br>
-    <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
-  </div>
-</footer>
+  <!-- Core -->
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../assets/vendor/popper/popper.min.js"></script>
+  <script src="../assets/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="../assets/vendor/headroom/headroom.min.js"></script>
 
-<!-- Core -->
-<script src="../assets/vendor/jquery/jquery.min.js"></script>
-<script src="../assets/vendor/popper/popper.min.js"></script>
-<script src="../assets/vendor/bootstrap/bootstrap.min.js"></script>
-<script src="../assets/vendor/headroom/headroom.min.js"></script>
-
-<!-- Argon JS -->
-<script src="../assets/js/argon.js"></script>
-<script src="../assets/validation/validateUserRegisterClient.js"></script>
+  <!-- Argon JS -->
+  <script src="../assets/js/argon.js"></script>
+  <script src="../assets/validation/validateUserRegisterClient.js"></script>
 
 </body>
 

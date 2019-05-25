@@ -49,7 +49,6 @@ if ($uploadOk == 0) {
     // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        header("Location: /profile.php");
         //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     } else {
         header("Location: /profile.php?error=wrong");
@@ -58,7 +57,8 @@ if ($uploadOk == 0) {
     }
 }
 
-require_once "../helper/UserAction.php";
+require_once "../../helper/UserAction.php";
 
 $img = "/assets/img/users/" . $_SESSION['logged_id'] . "." . pathinfo($target_file, PATHINFO_EXTENSION);
 UserAction::upadateProfileImg($img);
+header("Location: /profile.php");

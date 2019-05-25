@@ -9,14 +9,15 @@ var app = new Vue({
         completion: null,
         researches: [],
         mode: 'save',
-        model: null
+        model: null,
+        selected_student: null
     },
     methods: {
         onSubmit(){
             const self = this;
 
             var bodyFormData = new FormData();
-            bodyFormData.set('research-name', this.name);
+            bodyFormData.set('research-name', this.name); // $_POST['research-name']
             bodyFormData.set('research-status', this.status);
             bodyFormData.set('research-contributers', this.contributers);
             bodyFormData.set('research-completionPercentage', this.completion);
@@ -45,8 +46,36 @@ var app = new Vue({
             this.$modal.hide('researchForm');
         },
         update(name,  contributers, status, completion) {
-            this.remove(this.model);
-            this.add(name,  contributers, status, completion);
+            
+            
+            const self = this;
+
+            var bodyFormData = new FormData();
+            bodyFormData.set('research-name', this.name); // $_POST['research-name']
+            bodyFormData.set('research-status', this.status);
+            bodyFormData.set('research-contributers', this.contributers);
+            bodyFormData.set('research-completionPercentage', this.completion);
+            axios({
+                    method: 'post',
+                    url: '/assets/api/research/update_research.php',
+                    data: bodyFormData,
+                    config: null
+            }).then(function (response) {
+                alert('Submitted!')
+                let idx = this.researches.indexOf(x);
+                this.researches.splice(idx, 1);
+                self.researches.push(response.data);
+                this.name = "";
+                this.contributers = "";
+                this.status = "";
+                this.completion = "";
+            }).catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            
+
+
         },
         edit(x) {
             this.mode = 'edit'
@@ -59,8 +88,27 @@ var app = new Vue({
             console.log(axios);
         },
         remove(x) {
-            let idx = this.researches.indexOf(x);
-            this.researches.splice(idx, 1);
+            const self = this;
+
+            var bodyFormData = new FormData();
+            bodyFormData.set('research-name', this.name); // $_POST['research-name']
+            bodyFormData.set('research-status', this.status);
+            bodyFormData.set('research-contributers', this.contributers);
+            bodyFormData.set('research-completionPercentage', this.completion);
+            axios({
+                    method: 'post',
+                    url: '/assets/api/research/remove_research.php',
+                    data: bodyFormData,
+                    config: null
+            }).then(function (response) {
+                alert('Removed!')
+                let idx = this.researches.indexOf(x);
+                this.researches.splice(idx, 1);
+            }).catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+
         },
         statusColor(x) {
             if (x == 'completed') {
@@ -85,9 +133,30 @@ var app = new Vue({
             config: null
             }).then(function (response) {
                 self.researches = response.data;
+                console.log(response.data);
             }).catch(function (error) {
                 // handle error
                 console.log(error);
             })
+    },
+    watch: {
+        selected_student: function(newValue){
+            alert(newValue)
+
+            const self = this;
+
+            axios({
+                method: 'post',
+                url: '/assets/api/research/get_researchs.php?selected_student=' + newValue,
+                data: null,
+                config: null
+                }).then(function (response) {
+                    self.researches = response.data;
+                    console.log(response.data);
+                }).catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+        }
     }
 });

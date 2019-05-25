@@ -5,6 +5,7 @@ class Task
 
     protected $name;
     protected $completion;
+    protected $start_date;
     protected $due_date;
     protected $done;
     protected $researchId;
@@ -47,6 +48,26 @@ class Task
     public function setCompletion($completion)
     {
         $this->completion = $completion;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStartDate()
+    {
+        return $this->start_date;
+    }
+
+    /**
+     * @param mixed $due_date
+     *
+     * @return self
+     */
+    public function setStartDate($start_date)
+    {
+        $this->start_date = $start_date;
 
         return $this;
     }
@@ -108,6 +129,7 @@ class Task
         if (filter_has_var(INPUT_POST, 'task-name')){
             $this->setName($_POST['task-name']);
             $this->setCompletion($_POST['task-completion']);
+            $this->setStartDate($_POST['task-start_date']);
             $this->setDueDate($_POST['task-due_date']);
             $this->setDone((int)$_POST['task-done']);
             $this->setResearchId($_GET['id']);

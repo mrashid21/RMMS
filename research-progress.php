@@ -4,6 +4,11 @@ require "./assets/helper/UserAction.php";
 
 $img = UserAction::getImageDir();
 $data = UserAction::retrieveData();
+$list = UserAction::retrieveList();
+
+if (isset($_POST['studentId'])) {
+    UserAction::insertSupervisee($_POST['studentId']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -125,9 +130,27 @@ $data = UserAction::retrieveData();
             <div class="header container-fluid bg-gradient-light pt-md-6 pb-2">
 
             </div>
+            <?php if ($_SESSION['logged_type'] === 'supervisor'):?>
+                
+                <div class="row pt-2 pb-4 justify-content-center">
+                    <button type="button" class="col-4 btn btn-block btn-default" @click="$modal.show('studentForm')">Add Students</button>
+                </div>
+                
+                
+                
+                <div class="row pt-2 pb-4 justify-content-center">
+                    <select name="" v-model='selected_student'>
+                        <option :value="null">All</option>
+                        <?php foreach (UserAction::retrieveSupervisorStudents() as $value):?>
+                            <option value='<?= $value['id']?>'> <?=$value['firstName'] . " " .$value['lastName']?> </option>
+                        <?php endforeach;?>
+                    </select>
+                </div>
+
+            <?php endif;?>
 
             <div class="row pt-2 pb-4 justify-content-center">
-                <button type="button" class="col-4 btn btn-block btn-default" @click="$modal.show('researchForm');">Add Research</button>
+                <button type="button" class="col-4 btn btn-block btn-default" @click="$modal.show('researchForm')">Add Phase</button>
             </div>
             <!--===== Page content =====-->
 
@@ -136,7 +159,7 @@ $data = UserAction::retrieveData();
                 <table class="table align-items-center" id="myTable">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col">Research</th>
+                            <th scope="col">Phase</th>
                             <th scope="col">Status</th>
                             <th scope="col">Contributers</th>
                             <th scope="col">Completion</th>
@@ -147,9 +170,7 @@ $data = UserAction::retrieveData();
                         <tr v-for="research in researches">
                             <th scope="row">
                                 <div class="media align-items-center">
-                                    <a href="#" class="avatar rounded-circle mr-3" data-toggle="tooltip" data-placement="top" data-original-title="i">
-                                        <img alt="Image placeholder" :src="'https://api.adorable.io/avatars/256/' + i" class="rounded-circle">
-                                    </a>
+
                                     <div class="media-body">
                                         <span class="mb-0 text-sm">{{ research.name }}</span>
 
@@ -163,10 +184,7 @@ $data = UserAction::retrieveData();
                             </td>
                             <td>
                                 <div class="avatar-group">
-                                    <a href="#" class="avatar avatar-sm" data-toggle="tooltip" data-placement="top" data-original-title="i" v-for='i in parseInt(research.contributers)'>
-                                        <img alt="Image placeholder" :src="'https://api.adorable.io/avatars/256/' + i" class="rounded-circle">
-                                    </a>
-                                </div>
+
 
                             </td>
                             <td>
@@ -197,6 +215,29 @@ $data = UserAction::retrieveData();
 
             </div>
         </div>
+        <modal name="studentForm" :height="200">
+            <div class="text-center text-muted mb-4" style="padding:0 20px">
+                <h3 style="padding-top: 20px;">Add Student</h3>
+            </div>
+            <form role="form" style="height: 400px; padding:0 20px" method="POST" action="research-progress.php">
+                <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-map-big"></i></span>
+                        </div>
+                        <select name="studentId" >
+                            <?php foreach ($list as $key => $value):?>
+                                <option value=<?= $value['id']?>> <?=$value['firstName'] . " " .$value['lastName']?> </option>
+                            <?php endforeach;?>
+                        </select>
+                        </div>
+                </div>
+
+                <div class="text-center">
+                    <input type="submit" value="Add Studnet">
+                </div>
+            </form>
+        </modal>
         <modal name="researchForm" :height="500">
             <div class="text-center text-muted mb-4" style="padding:0 20px">
                 <h3 style="padding-top: 20px;">Add Research</h3>

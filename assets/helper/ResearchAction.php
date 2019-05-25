@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 class ResearchAction
 {
 
@@ -31,7 +33,6 @@ class ResearchAction
 		$query = $Db->prepare("INSERT INTO progress (memberId, name, status, completion, contributers) VALUES
 			(:memberId, :name, :status, :percentage, :contributers)");
 
-		session_start();
 
 		$query->bindParam(':memberId', $_SESSION['logged_id']);
 
@@ -68,16 +69,18 @@ class ResearchAction
 		return json_encode($data);
 	}
 
-	public static function getResearch()
+	public static function getResearch($selceted_student = null)
 	{
+	
 
 		$Db = self::connect();
 
 		$query = $Db->prepare("SELECT * FROM progress WHERE memberId = :memberId");
 
-		session_start();
-
-		$query->bindParam(':memberId', $_SESSION['logged_id']);
+		if (is_null($selceted_student))
+			$query->bindParam(':memberId', $_SESSION['logged_id']);
+		else
+			$query->bindParam(':memberId', $selceted_student);
 
 		$stat = $query->execute();
 

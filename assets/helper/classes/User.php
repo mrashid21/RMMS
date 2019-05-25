@@ -5,11 +5,12 @@ class User
 
 	protected $firstName;
 	protected $lastName;
-	protected $userName;
 	protected $email;
 	protected $password;
 	protected $confirmPassword;
     protected $userType;
+    protected $matricNumber;
+    protected $bio;
 
 
     public function getFirstName()
@@ -84,13 +85,37 @@ class User
         return $this;
     }
 
-    public function setUserInfoSignup($firstName, $lastName, $email, $password, $userType){
+    public function getMatricNumber()
+    {
+        return $this->matricNumber;
+    }
+
+    public function setMatricNumber($matricNumber)
+    {
+        $this->matricNumber = $matricNumber;
+
+        return $this;
+    }
+
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    public function setUserInfoSignup($firstName, $lastName, $email, $password, $userType, $matricNumber){
         $this->setFirstName($firstName);
         $this->setLastName($lastName);
         $this->setEmail($email);
         $this->setPassword($password);
         $this->setUserType($userType);
-
+        $this->setMatricNumber($matricNumber);
     }
 
     public function setUserInfoLogin($email, $password){
@@ -110,7 +135,8 @@ class User
                 $_POST['lastName'],
                 $_POST['email'],
                 $this->hashedPassword(),
-                $_POST['userType']
+                $_POST['userType'],
+                $_POST['matricNumber']
             );
             return true;
         }
@@ -135,6 +161,7 @@ class User
         $this->setPassword(null);
         $this->setConfirmPassword(null);
         $this->setUserType(null);
+        $this->setMatricNumber(null);
     }
 
 

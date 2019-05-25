@@ -1,8 +1,8 @@
-<?php 
+<?php
 require "./assets/validation/validateUser.php";
 require "./assets/helper/UserAction.php";
 
-$task_id = $_GET['id']; 
+$task_id = $_GET['id'];
 
 $img = UserAction::getImageDir();
 $data = UserAction::retrieveData();
@@ -56,13 +56,13 @@ $data = UserAction::retrieveData();
                             <a class="nav-link" href="notes.php"><i class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Task-Progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Task Progress</a>
+                            <a class="nav-link" href="research-progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Task Progress</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload
                                 Report</a>
                         </li>
-                        <li class="nav-item pb-9">
+                        <li class="nav-item pb-8">
                             <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
                         </li>
                         <form class="d-flex justify-content-center pt-9" action="assets/api/user/user/logout_user.php">
@@ -98,11 +98,17 @@ $data = UserAction::retrieveData();
                                     <a class="nav-link" href="notes.php"><i class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="Task-Progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Research Progress</a>
+                                    <a class="nav-link" href="research-progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Research Progress</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
                                 </li>
+                                <li class="nav-item pb-9">
+                                    <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
+                                </li>
+                                <form class="d-flex justify-content-center pt-9" action="assets/api/user/logout_user.php">
+                                    <input type="submit" class="btn" value="Logout" style="width: 80%">
+                                </form>
                             </ul>
                         </div>
                     </div>
@@ -110,54 +116,54 @@ $data = UserAction::retrieveData();
 
                 <!--===== Main =====-->
                 <div class="main-content">
-                <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-            <div class="container-fluid">
-                <!-- Profie Dropdown -->
-                <form>
-                    <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
-                    <div class="dropdown user user-menu" style="width:300px;">
-                        <a href="#" class="small-img" data-toggle="dropdown">
-                            <img src= <?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
-                            <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- Menu Body -->
-                            <li class="user-body p-4 header-profile-margin">
-                                <div class="row d-flex justify-content-center">
-                                    <img src= <?= $img ?>  class="img-fluid img-circle card-user-image" alt="User Image"> 
+                    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+                        <div class="container-fluid">
+                            <!-- Profie Dropdown -->
+                            <form>
+                                <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
+                                <div class="dropdown user user-menu" style="width:300px;">
+                                    <a href="#" class="small-img" data-toggle="dropdown">
+                                        <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
+                                        <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <!-- Menu Body -->
+                                        <li class="user-body p-4 header-profile-margin">
+                                            <div class="row d-flex justify-content-center">
+                                                <img src=<?= $img ?> class="img-fluid img-circle card-user-image" alt="User Image">
+                                            </div>
+                                            <div class="row d-flex justify-content-around">
+                                                <p class="text-center pt-2">
+                                                    <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></b></small><br>
+                                                    <small>Member since <?= $data['timeCreated'] ?></small>
+                                                </p>
+                                            </div>
+                                            <div class="d-flex row justify-content-center">
+                                                <div class="col-xs-12 text-center">
+                                                    <a href="profile.php" class="btn btn-default btn-sm btn-flat mr-1">Profile</a>
+                                                    <a href="#" class="btn btn-default btn-sm btn-flat">Friends</a>
+                                                </div>
+                                            </div>
+                                            <!-- /.row -->
+                                        </li>
+
+                                    </ul>
                                 </div>
-                                <div class="row d-flex justify-content-around">
-                                    <p class="text-center pt-2">
-                                        <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></b></small><br>
-                                        <small>Member since <?= $data['timeCreated'] ?></small>
-                                    </p>
-                                </div>
-                                <div class="d-flex row justify-content-center">
-                                    <div class="col-xs-12 text-center">
-                                        <a href="profile.php" class="btn btn-default btn-sm btn-flat mr-1">Profile</a>
-                                        <a href="#" class="btn btn-default btn-sm btn-flat">Friends</a>
+                            </form>
+
+                            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                                <div class="form-group mb-0">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                        </div>
+                                        <input class="form-control" placeholder="Search" type="text">
                                     </div>
                                 </div>
-                                <!-- /.row -->
-                            </li>
+                            </form>
 
-                        </ul>
-                    </div>
-                </form>
-
-                <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-                    <div class="form-group mb-0">
-                        <div class="input-group input-group-alternative">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-search"></i></span>
-                            </div>
-                            <input class="form-control" placeholder="Search" type="text">
                         </div>
-                    </div>
-                </form>
-
-            </div>
-        </nav>
+                    </nav>
 
                     <!--===== header =====-->
                     <div class="header container-fluid bg-gradient-light pt-md-6 pb-2">
@@ -175,6 +181,7 @@ $data = UserAction::retrieveData();
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">Task</th>
+                                    <th scope="col">Start Date</th>
                                     <th scope="col">Due Date</th>
                                     <th scope="col">Completion</th>
                                     <th scope="col"></th>
@@ -184,9 +191,6 @@ $data = UserAction::retrieveData();
                                 <tr v-for="task in tasks">
                                     <th scope="row">
                                         <div class="media align-items-center">
-                                            <a href="#" class="avatar rounded-circle mr-3" data-toggle="tooltip" data-placement="top" data-original-title="i">
-                                                <img alt="Image placeholder" :src="'https://api.adorable.io/avatars/256/' + i" class="rounded-circle">
-                                            </a>
                                             <div class="media-body">
                                                 <span class="mb-0 text-sm">{{ task.name }}</span>
 
@@ -194,9 +198,16 @@ $data = UserAction::retrieveData();
                                         </div>
                                     </th>
                                     <td>
-                                        <span class="badge badge-dot mr-4">
-                                            <i class="badge-warning"></i> {{ task.due_date }}
-                                        </span>
+                                    <div class="d-flex align-items-center">
+                                            <span class="mr-2"> {{ task.start_date }}</span>
+    
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="mr-2"> {{ task.due_date }}</span>
+    
+                                        </div>
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
@@ -230,6 +241,7 @@ $data = UserAction::retrieveData();
                         <h3 style="padding-top: 20px;">Add Task</h3>
                     </div>
                     <form role="form" style="height: 400px; padding:0 20px" method="POST" action="#" v-on:submit.prevent="onSubmit">
+
                         <div class="form-group mb-3">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
@@ -238,7 +250,16 @@ $data = UserAction::retrieveData();
                                 <input class="form-control" placeholder="Task Name" type="text" v-model='name' name="task-name" required>
                             </div>
                         </div>
-                    
+                        
+                        <div class="form-group">
+                            <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-diamond"></i></span>
+                                </div>
+                                <input class="form-control" placeholder="Start date" type="date" v-model='start_date' name="task_start_date" required>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
@@ -247,6 +268,7 @@ $data = UserAction::retrieveData();
                                 <input class="form-control" placeholder="Due date" type="date" v-model='due_date' name="task-due_date" required>
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
@@ -255,18 +277,21 @@ $data = UserAction::retrieveData();
                                 <input class="form-control" placeholder="Completion" type="number" min="0" max="100" v-model="completion" name="task-completion" required>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                 </div>
-                                <input  type="checkbox" v-model="done" name="task-done" > <p>Done?</p>
+                                <input type="checkbox" v-model="done" name="task-done">
+                                <p>Done?</p>
                             </div>
                         </div>
+
                         <div class="text-center">
 
-                            <button type="input" v-show="mode == 'save'" class="btn btn-primary my-4" @click="add(name, due_date, done, completion)" name="submit-add-task">Add</button>
-                            <button type="button" v-show="mode == 'edit'" class="btn btn-primary my-4" @click="update(name, due_date, done, completion)">Edit</button>
+                            <button type="input" v-show="mode == 'save'" class="btn btn-primary my-4" @click="add(name, start_date,due_date, done, completion)" name="submit-add-task">Add</button>
+                            <button type="button" v-show="mode == 'edit'" class="btn btn-primary my-4" @click="update(name, start_date,due_date, done, completion)">Edit</button>
 
                         </div>
                     </form>
@@ -297,85 +322,98 @@ $data = UserAction::retrieveData();
             <script src="https://cdn.jsdelivr.net/npm/vue-axios@2.1.4/dist/vue-axios.min.js"></script>
             <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
             <script>
-            Vue.use(window["vue-js-modal"].default)
+                Vue.use(window["vue-js-modal"].default)
 
-            var app = new Vue({
-                el: '#app',
-                data: {
-                    name: null,
-                    completion: null,
-                    tasks: [],
-                    mode: 'save',
-                    model: null
-                },
-                methods: {
-                    onSubmit(){
-                        const self = this;
-                        var bodyFormData = new FormData();
-                        bodyFormData.set('task-name', this.name);
-                        bodyFormData.set('task-due_date', this.due_date);
-                        bodyFormData.set('task-completion', this.completion);
-                        bodyFormData.set('task-done', this.done);
-                        axios({
+                var app = new Vue({
+                    el: '#app',
+                    data: {
+                        name: null,
+                        completion: null,
+                        start_date: null,
+                        due_date: null,
+                        done: null,
+                        tasks: [],
+                        mode: 'save',
+                        model: null
+                    },
+                    methods: {
+                        onSubmit() {
+                            const self = this;
+                            var bodyFormData = new FormData();
+                            bodyFormData.set('task-name', this.name);
+                            bodyFormData.set('task-start_date', this.start_date);
+                            bodyFormData.set('task-due_date', this.due_date);
+                            bodyFormData.set('task-completion', this.completion);
+                            bodyFormData.set('task-done', this.done);
+                            axios({
                                 method: 'post',
-                                url: '/assets/api/task/create_task.php?id=<?php echo htmlentities($task_id); ///XSS SECURITY PRACTICES ?>',
+                                url: '/assets/api/task/create_task.php?id=<?php echo htmlentities($task_id);?>',
                                 data: bodyFormData,
                                 config: null
-                        }).then(function (response) {
-                            alert('Submitted!')
-                            self.tasks.push(response.data);
+                            }).then(function(response) {
+                                alert('Submitted!')
+                                // self.tasks.push(response.data);
+                                this.name = x.name;
+                                this.start_date = x.start_date;
+                                this.due_date = x.due_date;
+                                this.completion = x.completion;
+                                this.done = x.done;
+                            }).catch(function(error) {
+                                // handle error
+                                console.log(error);
+                            })
+                        },
+                        add(name, start_date, due_date, done, completion) {
+                            this.mode = 'save';
+                            console.log(name, start_date, due_date, done, completion);
+                            this.tasks.push({
+                                name,
+                                start_date,
+                                due_date,
+                                done,
+                                completion
+                            });
+
+
+                            this.$modal.hide('taskForm');
+                        },
+                        update(name, start_date, due_date, done, completion) {
+                            this.remove(this.model);
+                            this.add(name, start_date, due_date, done, completion);
+                        },
+                        edit(x) {
+                            this.mode = 'edit'
+                            this.model = x
                             this.name = x.name;
+                            this.start_date = x.start_date;
                             this.due_date = x.due_date;
                             this.completion = x.completion;
                             this.done = x.done;
-                        }).catch(function (error) {
-                            // handle error
-                            console.log(error);
-                        })
+                            this.$modal.show('taskForm');
+                            console.log(axios);
+                        },
+                        remove(x) {
+                            let idx = this.tasks.indexOf(x);
+                            this.tasks.splice(idx, 1);
+                        }
                     },
-                    add(name, due_date, done, completion) {
-                        this.mode = 'save';
-                        console.log(name, due_date, done, completion);
-                        this.tasks.push({name, due_date, done, completion});
+                    created() {
+                        const self = this;
 
-                    
-                        this.$modal.hide('taskForm');
-                    },
-                    update(name, due_date, done, completion) {
-                        this.remove(this.model);
-                        this.add(name, due_date, done, completion);
-                    },
-                    edit(x) {
-                        this.mode = 'edit'
-                        this.model = x
-                        this.name = x.name;
-                        this.due_date = x.due_date;
-                        this.completion = x.completion;
-                        this.done = x.done;
-                        this.$modal.show('taskForm');
-                        console.log(axios);
-                    },
-                    remove(x) {
-                        let idx = this.tasks.indexOf(x);
-                        this.tasks.splice(idx, 1);
-                    }
-                },
-                created(){
-                    const self = this;
-
-                    axios({
-                        method: 'post',
-                        url: '/assets/api/task/get_tasks.php?id=<?php echo htmlentities($task_id); ///XSS SECURITY PRACTICES ?>',
-                        data: null,
-                        config: null
-                        }).then(function (response) {
+                        axios({
+                            method: 'post',
+                            url: '/assets/api/task/get_tasks.php?id=<?php echo htmlentities($task_id); ?>',
+                            data: null,
+                            config: null
+                        }).then(function(response) {
                             self.tasks = response.data;
-                        }).catch(function (error) {
+                            console.log(response)
+                        }).catch(function(error) {
                             // handle error
                             console.log(error);
                         })
-                }
-            });
+                    }
+                });
             </script>
 
         </body>
