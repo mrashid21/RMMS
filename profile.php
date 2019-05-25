@@ -172,7 +172,7 @@ $img = UserAction::getImageDir();
                                 </div>
 
                                 <div>
-                                    <p><?= $data['bio']?></p>
+                                    <p><?= htmlspecialchars($data['bio'])?></p>
                                 </div>
                                 <hr>
                                 <p class="text-center" style="font-weight:bold;">  <?= $data['firstName'] . " " . $data['lastName']?> </p>
@@ -220,47 +220,54 @@ $img = UserAction::getImageDir();
                                         </div>
 
                                         <div class="tab-pane" id="settings">
-                                            <form class="form-horizontal">
+                                            <form class="form-horizontal" action="/assets/api/user/update_profile.php" method="POST">
                                                 <div class="form-group">
-                                                    <label for="inputName" class="col-sm control-label pt-4">First Name</label>
+                                                    <label class="col-sm control-label pt-4">First Name</label>
 
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" id="inputName" placeholder="First Name" name="firstName" value = <?=  $data['firstName'] ?> >
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputName" class="col-sm control-label">Last Name</label>
+                                                    <label class="col-sm control-label">Last Name</label>
 
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" id="inputName" placeholder="Last Name" name="lastName" value = <?=  $data['lastName'] ?> >
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputEmail" class="col-sm control-label">Email (You can't change the email)</label>
+                                                    <label class="col-sm control-label">Matric Number (You can't change the matric number)</label>
 
                                                     <div class="col-sm-10">
-                                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" value = <?=  $data['email'] ?> readonly>
+                                                        <input type="email" class="form-control" id="inputEmail" placeholder="Matric Number" value = <?=  $data['matricNumber'] ?> readonly>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputEmail" class="col-sm control-label">Password</label>
+                                                    <label class="col-sm control-label">Email (You can't change the email)</label>
+
+                                                    <div class="col-sm-10">
+                                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" value = <?=  $data['email'] ?> readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm control-label">Password</label>
 
                                                     <div class="col-sm-10">
                                                         <input type="password" class="form-control" placeholder="Password" name="password">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputEmail" class="col-sm control-label">Confirm Password</label>
+                                                    <label class="col-sm control-label">Confirm Password</label>
 
                                                     <div class="col-sm-10">
                                                         <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputExperience" class="col-sm control-label">Biography</label>
+                                                    <label class="col-sm control-label">Biography</label>
 
                                                     <div class="col-sm-10">
-                                                        <textarea class="form-control" id="inputExperience" placeholder="Biography" name="bio"> Enter your biography here... </textarea>
+                                                        <textarea class="form-control" id="inputExperience" placeholder="Biography" name="bio"></textarea>
                                                     </div>
                                                 </div>
 
@@ -274,8 +281,8 @@ $img = UserAction::getImageDir();
                                                 </div>
 
                                                 <div class="form-group pt-4">
-                                                    <div class="col-sm-offset-2 col-sm-10">
-                                                        <button type="submit" class="btn btn-danger">Submit</button>
+                                                    <div class="col-md-4">
+                                                        <input type="submit" class="btn btn-primary" value="Update Profile" name="update-profile">
                                                     </div>
                                                 </div>
                                             </form>

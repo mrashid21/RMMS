@@ -1,7 +1,6 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT'] .  "/assets/helper/classes/helper.view.php";
-include_once $_SERVER['DOCUMENT_ROOT'] .  "/assets/helper/UserAction.php";
+include_once $_SERVER['DOCUMENT_ROOT'] .  "/assets/helper/helper.view.php";
 
 if(isset($_POST['submit-signup'])){
     

@@ -8,6 +8,7 @@ class SessionAction{
 		$_SESSION['logged_id'] = $user['id'];
 		$_SESSION['logged_firstName'] = $user['firstName'];
 		$_SESSION['logged_lastName'] = $user['lastName'];
+		$_SESSION['logged_type'] = $user['userType'];
 
 		$_SESSION['logged_img'] = UserAction::getImageDir();
 
