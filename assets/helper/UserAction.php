@@ -277,4 +277,22 @@ class UserAction
 		return $data;
 
 	}
+
+	public static function checkStudent(){
+
+		$Db = self::connect();
+
+		$query = $Db->prepare("SELECT studentId FROM user_supervisor");
+
+		$query->execute();
+
+		$data = $query->fetchAll(PDO::FETCH_ASSOC);
+
+		$query = null;
+
+		$Db = null;
+
+		return $data;
+
+	}
 }

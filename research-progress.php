@@ -5,9 +5,21 @@ require "./assets/helper/UserAction.php";
 $img = UserAction::getImageDir();
 $data = UserAction::retrieveData();
 $list = UserAction::retrieveList();
+$studentList = UserAction::checkStudent();
 
 if (isset($_POST['studentId'])) {
-    UserAction::insertSupervisee($_POST['studentId']);
+    $stat = true;
+    foreach ($studentList as $key => $value) {
+        if($value['studentId'] === $_POST['studentId']){
+            $stat = false;
+            break;
+        }
+    }
+
+    if($stat){
+        UserAction::insertSupervisee($_POST['studentId']);
+    }
+    
 }
 ?>
 
@@ -203,8 +215,8 @@ if (isset($_POST['studentId'])) {
                                         <i class="ni ni-bullet-list-67"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" @click="edit(research)">Edit</a>
-                                        <a class="dropdown-item" @click="remove(research)">Remove</a>
+                                        <a class="dropdown-item" @click="edit(research, research.id)">Edit</a>
+                                        <a class="dropdown-item" @click="remove(research, research.id)">Remove</a>
                                         <a class="dropdown-item" :href="'/tasks.php?id=' + research.id">Tasks</a>
                                     </div>
                                 </div>

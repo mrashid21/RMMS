@@ -92,4 +92,56 @@ class ResearchAction
 
 		return json_encode($data);
 	}
+
+	public static function editResearch($research, $id){
+
+		$Db = self::connect();
+
+		$name = $research->getName();
+		$status = $research->getStatus();
+		$percentage = $research->getCompletion();
+		$contributers = $research->getContributers();
+		$stage = $research->getStage();
+
+		$query = $Db->prepare("UPDATE progress SET name = :name, status = :status, completion = :percentage, contributers = :contributers, stage = :stage WHERE id = :id");
+
+		$query->bindParam(':id', $id);
+
+		$query->bindParam(':name', $name);
+
+		$query->bindParam(':status', $status);
+		
+		$query->bindParam(':percentage', $percentage);
+		
+		$query->bindParam(':contributers', $contributers);
+
+		$query->bindParam(':stage', $stage);
+		
+		$stat = $query->execute();
+
+		// $data = $query->fetch(PDO::FETCH_ASSOC);
+
+		$query = null;
+
+		$Db = null;
+
+	}
+
+	public static function removeResearch($id){
+
+		$Db = self::connect();
+
+		$query = $Db->prepare("DELETE FROM progress WHERE id = :id");
+
+		$query->bindParam(':id', $id);
+
+		$stat = $query->execute();
+
+		// $data = $query->fetch(PDO::FETCH_ASSOC);
+
+		$query = null;
+
+		$Db = null;
+
+	}
 }
