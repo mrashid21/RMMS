@@ -1,14 +1,14 @@
 <?php 
-require "./assets/validation/validateUser.php";
-require "./assets/helper/UserAction.php";
+// require "./assets/validation/validateUser.php";
+// require "./assets/helper/UserAction.php";
 
-$img = UserAction::getImageDir();
-$data = UserAction::retrieveData();
+// $img = UserAction::getImageDir();
+// $data = UserAction::retrieveData();
 ?>
 
 <!DOCTYPE html>
 <html>
-
+<?php include_once "config.php" ?>
 <head>
   <meta charset="utf-8">
   <meta name="viewport">
@@ -25,7 +25,7 @@ $data = UserAction::retrieveData();
   <link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="/assets/css/profile-layout.css">
+  <link rel="stylesheet" href="assets/css/profile-layout.css">
 
   <style type="text/css">
     hr {
@@ -147,10 +147,10 @@ $data = UserAction::retrieveData();
         <form>
           <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
           <div class="dropdown user user-menu" style="width:300px;">
-            <a href="#" class="small-img" data-toggle="dropdown">
+            <!-- <a href="#" class="small-img" data-toggle="dropdown">
               <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
               <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
-            </a>
+            </a> -->
             <ul class="dropdown-menu">
               <!-- Menu Body -->
               <li class="user-body p-4 header-profile-margin">
@@ -203,8 +203,21 @@ $data = UserAction::retrieveData();
     <div class="container-fluid" style="height: 600px">
       <div class="col-sm-9" style="height: 100%; margin-left:120px;">
         <form role="form" name="addNote" id="addSticky">
+        <div class="control-group form-group">
+            <div class="controls"><br>
+            <label for="meeting">Select Meeting</label>
+               <input list="appointment" name="MeetingTitle" class="form-control" placeholder="Select Meeting" id="appointment">
+               <datalist id="appointment">
+                 <select>
+                   <?php foreach($users as $appointment):?>
+                   <option value="<?=$appointment['MeetingTitle'];?>"></option>
+                   <?php endforeach; ?>
+                  </select>
+                </datalist>
+            </div>
+          </div>
           <div class="control-group form-group">
-            <div class="controls"><br><br>
+            <div class="controls"><br>
               <label for="title">Title</label>
               <input type="text" class="form-control" placeholder="Notes Title" id="notename" required data-validation-required-message="You must enter a title" />
             </div>
