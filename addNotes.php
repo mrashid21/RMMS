@@ -209,7 +209,7 @@ if (mysqli_connect_errno())
       <a href="notes.php" class="btn btn-warning" role="button">Insert New Notes</a><br><br>
       <table class="table table-striped" id=savednotes width="100%" style="border-collapse:collapse;">
       <thead style="align:center;">
-        <tr><th><strong>Meeting Title</strong></th><th><strong>Notes Title</strong></th><th><strong>Notes Content</strong></th><th><strong>Last Modified</strong></th><th><strong>Edit</strong></th><th><strong>Delete</strong></th></tr>
+        <tr><th><strong>Meeting Title</strong></th><th><strong>Notes Title</strong></th><th><strong>Last Modified</strong></th><th><strong>View</strong></th><th><strong>Edit</strong></th><th><strong>Delete</strong></th></tr>
       </thead>
       <tbody>
         <?php
@@ -217,7 +217,7 @@ if (mysqli_connect_errno())
         $sel_query="Select * from new_notes ORDER BY id desc;";
         $result = mysqli_query($con,$sel_query);
         while($row = mysqli_fetch_assoc($result)) { ?>
-        <tr><td><?php echo $row["meetingTitle"]; ?></td><td><?php echo $row["noteTitle"]; ?></td><td><?php echo $row["content"]; ?></td><td><?php echo $row["trn_date"]; ?></td><td><a href="edit.php?id=<?php echo $row["id"]; ?>">Edit</a></td><td><a href="delete.php?id=<?php echo $row["id"]; ?>">Delete</a></td></tr>
+        <tr><td><?php echo $row["meetingTitle"]; ?></td><td><?php echo $row["noteTitle"]; ?></td><td><?php echo $row["trn_date"]; ?></td><td><a href="viewNotes.php?id=<?php echo $row["id"]; ?>">View</a></td><td><a href="edit.php?id=<?php echo $row["id"]; ?>">Edit</a></td><td><a href="delete.php?id=<?php echo $row["id"]; ?>">Delete</a></td></tr>
         <?php $count++; } ?>
       </tbody>
     </table>
