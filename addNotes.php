@@ -98,7 +98,6 @@ if (mysqli_connect_errno())
     }
 
   </style>
-
 </head>
 
 <body class="bg-gradient-lighter">
@@ -195,14 +194,14 @@ if (mysqli_connect_errno())
     </nav>
 
     <div class="header container-fluid bg-gradient-light pb-3 pt-5 pt-md-8">
-
-    </div>
-
+     <!--===== Notes =====-->
     <div class="event_time_area">
       <div class="event_time_inner">
         <h1>Saved Meeting Notes</h1>
       </div>
     </div>
+  </div>
+
     <!--===== Notes =====-->
     <div class="container-fluid" style="height: 600px"><br>
       <div class="col-sm-9" style="height: 100%; margin-left:120px;">
