@@ -9,7 +9,12 @@
 <!DOCTYPE html>
 <html>
 <?php
-require('db.php');
+$con = mysqli_connect("localhost","root","","rmms");
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
 ?>
 <head>
   <meta charset="utf-8">
