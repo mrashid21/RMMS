@@ -218,9 +218,9 @@ head>
     $noteTitle =$_REQUEST['NoteTitle'];
     $content =$_REQUEST['message'];
     // $submittedby = $_SESSION["username"];
-    $update="update new_notes set trn_date='".$trn_date."', noteTitle='".$noteTitle."', content='".$content."' where id='".$id."'";
+    // $update="update new_notes set trn_date='".$trn_date."', noteTitle='".$noteTitle."', content='".$content."' where id='".$id."'";
     mysqli_query($con, $update) or die(mysqli_error());
-    $status = "Record Updated Successfully. </br></br><a href='addNotes.php'>View Updated Record</a>";
+    // $status = "Record Updated Successfully. </br></br><a href='addNotes.php'>View Updated Record</a>";
     echo '<p style="color:#FF0000;">'.$status.'</p>';
   }else {
     ?>
@@ -237,9 +237,6 @@ head>
               <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
               <textarea class="form-field" id="message" name="message" rows="15" cols="43" ><?php echo $row['content'];?></textarea>
             </div>
-      <div class="control-group form-group">
-      <input name="submit" type="submit" value="Update Notes" />
-      </div>
       </form>
       <?php } ?>   
     </div>
