@@ -38,8 +38,78 @@ $tasks = ChecklistAction::getCheckkistTasks();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
   <style>
-
+    <<<<<<< HEAD
+    ||||||| merged common ancestors
+    
     #myform {
+     width: 100%; 
+     margin: 30px auto; 
+     border-radius: 10px; 
+     padding: 10px;
+     background: pink;
+     border: 1px solid red;
+   }
+   #myform p {
+     color: red;
+     margin: 0px;
+   }
+   .task_input {
+     width: 75%;
+     height: 60px; 
+     padding: 10px;
+     border: 2px solid red;
+   }
+   .add_btn {
+     height: 39px;
+     background: red;
+     color: 	white; 
+     padding: 1px 20px;
+   }
+   .edit a{
+     color: white;
+     background: #038680;
+     padding: 1px 6px;
+     border-radius: 3px;
+     text-decoration: none;
+   }
+
+   =======
+   
+   #myform {
+     width: 100%; 
+     margin: 30px auto; 
+     border-radius: 10px; 
+     padding: 10px;
+     background: pink;
+     border: 1px solid red;
+   }
+   #myform p {
+     color: red;
+     margin: 0px;
+   }
+   .task_input {
+     width: 100%;
+     height: 60px; 
+     padding: 10px;
+     border: 2px solid red;
+   }
+   .add_btn {
+     height: 39px;
+     background: red;
+     color: 	white; 
+     padding: 1px 20px;
+   }
+   .edit a{
+     color: white;
+     background: #038680;
+     padding: 1px 6px;
+     border-radius: 3px;
+     text-decoration: none;
+   }
+
+   >>>>>>> 931117d121d31e6b46c1ca293ba01b4212caebbe
+
+   #myform {
      width: 100%; 
      margin: 30px auto; 
      border-radius: 10px; 
@@ -165,34 +235,44 @@ h1 {
   <div class="main-content">
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
-        <!-- Profie Dropdown -->
+        <!-- Profile Dropdown -->
         <form>
+          <<<<<<< HEAD
           <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
           <div class="dropdown user user-menu" style="width:300px;">
-            <a href="#" class="small-img" data-toggle="dropdown">
-              <img src=<?= $img ?> class= "img-fluid img-circle header-user-image small-img" alt="User Image">
-              <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- Menu Body -->
-              <li class="user-body p-4 header-profile-margin">
-                <div class="row d-flex justify-content-center">
-                  <img src=<?= $img ?> class= "img-fluid img-circle card-user-image" alt="User Image">
-                </div>
-                <div class="row d-flex justify-content-around">
-                  <p class="text-center pt-2">
-                    <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></b></small><br>
-                    <small>Member since <?= $data['timeCreated'] ?></small>
-                  </p>
-                </div>
-                <div class="d-flex row justify-content-center">
-                  <div class="col-xs-12 text-center">
-                    <a href="profile.php" class="btn btn-default btn-sm btn-flat mr-1">Profile</a>
-                    <a href="#" class="btn btn-default btn-sm btn-flat">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row-->
+            ||||||| merged common ancestors
+            <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
+            <div class="dropdown user user-menu" style="width:300px;">
+              =======
+              <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
+              <div class="dropdown user user-menu" style="width:300px;">
+                >>>>>>> 931117d121d31e6b46c1ca293ba01b4212caebbe
+                <a href="#" class="small-img" data-toggle="dropdown">
+                  <img src=<?= $img ?> class= "img-fluid img-circle header-user-image small-img" alt="User Image">
+                  <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- Menu Body--> 
+                  <li class="user-body p-4 header-profile-margin">
+                    <div class="row d-flex justify-content-center">
+                      <img src=<?= $img ?> class= "img-fluid img-circle card-user-image" alt="User Image">
+                    </div>
+                    <div class="row d-flex justify-content-around">
+                      <p class="text-center pt-2">
+                        <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></b></small><br>
+                        <small>Member since <?= $data['timeCreated'] ?></small>
+                      </p>
+                    </div>
+                    <div class="d-flex row justify-content-center">
+                      <div class="col-xs-12 text-center">
+                        <a href="profile.php" class="btn btn-default btn-sm btn-flat mr-1">Profile</a>
+                        <a href="#" class="btn btn-default btn-sm btn-flat">Friends</a>
+                      </div>
+                    </div>
+                  </li>
+                </li>
               </li>
+
 
             </ul>
           </div>
@@ -251,35 +331,35 @@ h1 {
                     <tbody>
                       <?php $count = 1; foreach($tasks as $key=>$value): ?>
 
-                        <tr>
-                         <td> <?= $count ?> </td>
-                         <td class="task"> <?= $value['task']; ?> </td>
-                         <td class="edit">
-                            <a href="/ChecklistEdit.php?id=<?= $value['id'] ?>" >Edit</a></td>
-                           <td class="delete">
-                              <a href="/assets/api/checklist/delete_task_checklist.php?del_task=<?= $value['id'] ?>" onClick="return confirm('Are you sure you want to delete?')">x</a>
-                           </td>
-                         </tr>
+                      <tr>
+                       <td> <?= $count ?> </td>
+                       <td class="task"> <?= $value['task']; ?> </td>
+                       <td class="edit">
+                        <a href="/ChecklistEdit.php?id=<?= $value['id'] ?>" >Edit</a></td>
+                        <td class="delete">
+                          <a href="/assets/api/checklist/delete_task_checklist.php?del_task=<?= $value['id'] ?>" onClick="return confirm('Are you sure you want to delete?')">x</a>
+                        </td>
+                      </tr>
                       <?php $count++; endforeach; ?>
-                     </tbody>
-                   </table>
+                    </tbody>
+                  </table>
 
 
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
-     </div>
+    </div>
 
 
-     <br><br>
-     <hr>
-     <footer class="text-center font-georgia">
+    <br><br>
+    <hr>
+    <footer class="text-center font-georgia">
       Copyright &copy; ORMMS TEAM 1<br>
       <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
     </footer>
