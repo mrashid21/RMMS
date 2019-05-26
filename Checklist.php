@@ -193,16 +193,16 @@ h1 {
   <div class="main-content">
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
-        <!-- Profie Dropdown -->
+        <!-- Profile Dropdown -->
         <form>
-          <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
+          <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
          <div class="dropdown user user-menu" style="width:300px;">
             <a href="#" class="small-img" data-toggle="dropdown">
               <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
               <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
             </a>
             <ul class="dropdown-menu">
-              <!-- Menu Body -->
+              <!-- Menu Body--> 
               <li class="user-body p-4 header-profile-margin">
                 <div class="row d-flex justify-content-center">
                   <img src=<?= $img ?> class="img-fluid img-circle card-user-image" alt="User Image">
@@ -219,7 +219,7 @@ h1 {
                     <a href="#" class="btn btn-default btn-sm btn-flat">Friends</a>
                   </div>
                 </div>
-                <!-- /.row-->
+                <!-- /.row -->
              </li>
 
             </ul>
