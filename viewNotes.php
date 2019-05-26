@@ -79,6 +79,12 @@ head>
       background-color: #FF7F50;
       color: white;
     }
+    #box {
+      width: 500px;
+      padding: 15px;
+      border: 2px solid #FF7F50;
+      margin: 0;
+}
     .margin {
       margin-top: 25px;
     }
@@ -229,14 +235,18 @@ head>
       <div class="control-group form-group"><br>
       <input type="hidden" name="new" value="1" />
       </div>
-      <div class="control-group form-group">
+      <div id=box><?php echo $row['noteTitle'];?>
+      </div>
+      <div id=box><?php echo $row['content'];?>
+      </div>
+      <!-- <div class="control-group form-group">
               <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
               <input type="text" name="NoteTitle" placeholder="Enter Name" required value="<?php echo $row['noteTitle'];?>" />
-      </div>
-      <div class="control-group form-group">
+      </div> -->
+      <!-- <div class="control-group form-group">
               <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
               <textarea class="form-field" id="message" name="message" rows="15" cols="43" ><?php echo $row['content'];?></textarea>
-            </div>
+            </div> -->
       </form>
       <?php } ?>   
     </div>
