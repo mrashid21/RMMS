@@ -8,24 +8,26 @@
 
 <!DOCTYPE html>
 <html>
-<?php include_once "config.php" ?>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport">
   <meta name="author" content="WIF2003">
-  <title>Notes</title>
-  <!-- CSS -->
-  <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
-  <!-- Google Fonts Poppins -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-  <!-- Argon CSS Bootstrap -->
-  <link rel="stylesheet" href="assets/css/argon.css">
-  <!-- Include Nucleo CSS Icons -->
-  <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
-  <link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="assets/css/profile-layout.css">
+  <title>Task Checklist</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/reminder-pop.css">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <!-- Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- Argon CSS Bootstrap -->
+    <link rel="stylesheet" href="assets/css/argon.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.css">
+    <!-- Include Nucleo CSS Icons -->
+    <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
+    <link rel="stylesheet" href="assets/css/profile-layout.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
   <style type="text/css">
     hr {
@@ -36,8 +38,13 @@
     }
 
     .event_time_inner {
-      margin-left: 130px;
-      margin-right: 130px
+      margin-left: 150px;
+      margin-right: 150px;
+      
+    }
+    .event_time_area {
+      margin-top: 30px;
+      padding-bottom: 1px;
     }
 
     h1 {
@@ -52,24 +59,17 @@
       background-color: white;
       color: black;
       border: 2px solid #FF7F50;
-      padding: 12px 28px;
+      padding: 10px 24px;
+      margin:auto;
+      display:block;
     }
 
     #saveButton:hover {
       background-color: #FF7F50;
       color: white;
     }
-
-    html {
-      font-size: 100%;
-    }
-
     .margin {
       margin-top: 25px;
-    }
-
-    .grayout {
-      opacity: .45;
     }
 
     .headingcolor {
@@ -90,10 +90,9 @@
       box-shadow: 2px 1px 6px 4px grey;
     }
 
-    .glyphicon:after {
-      pointer-events: none;
-    }
   </style>
+
+</head>
 
 </head>
 
@@ -125,7 +124,7 @@
               Progress</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
+            <a class="nav-link" href="Upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
           </li>
           <li class="nav-item pb-9">
             <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
@@ -133,7 +132,6 @@
           <form class="d-flex justify-content-center pt-9" action="assets/api/user/logout_user.php">
             <input type="submit" class="btn" value="Logout" style="width: 80%">
           </form>
-
         </ul>
       </div>
     </div>
@@ -147,10 +145,10 @@
         <form>
           <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
           <div class="dropdown user user-menu" style="width:300px;">
-            <!-- <a href="#" class="small-img" data-toggle="dropdown">
-              <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
-              <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
-            </a> -->
+            <a href="#" class="small-img" data-toggle="dropdown">
+              <!-- <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
+              <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span> -->
+            </a>
             <ul class="dropdown-menu">
               <!-- Menu Body -->
               <li class="user-body p-4 header-profile-margin">
@@ -191,76 +189,55 @@
     </nav>
 
     <div class="header container-fluid bg-gradient-light pb-3 pt-5 pt-md-8">
-
-    </div>
-
+     <!--===== Notes =====-->
     <div class="event_time_area">
       <div class="event_time_inner">
-        <h1>Meeting Notes</h1>
-      </div>
-    </div>
-    <!--===== Notes =====-->
-    <div class="container-fluid" style="height: 600px">
-      <div class="col-sm-9" style="height: 100%; margin-left:120px;">
-        <form role="form" name="addNote" id="addSticky">
-        <div class="control-group form-group">
-            <div class="controls"><br>
-            <label for="meeting">Select Meeting</label>
-               <input list="appointment" name="MeetingTitle" class="form-control" placeholder="Select Meeting" id="appointment">
-               <datalist id="appointment">
-                 <select>
-                   <?php foreach($users as $appointment):?>
-                   <option value="<?=$appointment['MeetingTitle'];?>"></option>
-                   <?php endforeach; ?>
-                  </select>
-                </datalist>
-            </div>
-          </div>
-          <div class="control-group form-group">
-            <div class="controls"><br>
-              <label for="title">Title</label>
-              <input type="text" class="form-control" placeholder="Notes Title" id="notename" required data-validation-required-message="You must enter a title" />
-            </div>
-          </div>
-          <div class="control-group form-group">
-            <div class="controls">
-              <label for="content">Content</label>
-              <textarea id="notecontent" class="form-control" placeholder="Notes Content" maxlength="999" rows="18" required style="resize: none;"></textarea>
-            </div>
-          </div>
-          <div id="success"></div>
-          <button type="submit" class="btn btn-primary pull-right" id="saveButton" style="margin-bottom:10px">Save
-            Notes</button>
-        </form>
-      </div>
-      <div class="col-sm-12" style="height: 100%;margin: auto">
-        <h3>Saved Notes</h3>
-        <h5><img src="assets/png/edit.png" style="height:18px; width:18px"><i>&nbspClick the content box to edit</i></h5>
-        <div class="row" style="height: 100%;overflow:auto;">
-          <div class="col-sm-12" id="container">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="deleteModal" role="dialog">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Delete</h4>
-          </div>
-          <div class="modal-body">
-            <p>Are you sure you want to delete this note?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" id="deleteButton" data-dismiss="modal">Yes</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-          </div>
-        </div>
+        <h1>Create Meeting Notes</h1>
       </div>
     </div>
   </div>
-
+    <?php
+    require('db.php');
+    $status = "";
+    if(isset($_POST['new']) && $_POST['new']==1)
+    {
+      $trn_date = date("Y-m-d");
+      $noteTitle =$_REQUEST['NoteTitle'];
+      $content = $_REQUEST['message'];
+      $meeting = $_REQUEST['MeetingTitle'];
+      $submittedby = $_SESSION["'logged_firstName'"];
+      $ins_query="insert into new_notes (`trn_date`,`meetingTitle`,`noteTitle`,`content`,`submittedby`) values ('$trn_date','$meeting','$noteTitle','$content','$submittedby')";
+      mysqli_query($con,$ins_query) or die(mysql_error());
+      $status = "New Notes Inserted Successfully.</br></br><a href='addNotes.php'>View Inserted Notes</a>";
+    }
+    ?><br><br>
+    <div class="container-fluid" style="height: 600px">
+      <div class="col-sm-9" style="height: 100%; margin-left:120px;">
+      <div class="form">
+       <a href="addNotes.php" class="btn btn-warning" role="button">View Notes</a>
+          <form name="form" method="post" action=""> 
+            <div class="control-group form-group">
+              <input type="hidden" name="new" value="1" />
+            </div>
+            <div class="control-group form-group">
+              <label for="meeting"> Meeting Title : <span id="message-title"></span></label><br>
+              <input type="text" name="MeetingTitle" placeholder="Enter Meeting Title" required />
+            </div>
+            <div class="control-group form-group">
+              <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
+              <input type="text" name="NoteTitle" placeholder="Enter Notes Title" required />
+            </div>
+            <div class="control-group form-group">
+              <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
+              <textarea class="form-field" id="message" name="message" rows="15" cols="43"></textarea>
+            </div>
+            <p><input id ="saveButton" name="submit" type="submit" value="Save Notes" /></p>
+          </form>
+          <p style="color:#FF0000;"><?php echo $status; ?></p><br />
+        </div>
+      </div>
+    </div>
+      
   <footer class="footer">
     <div class="footerContent">
       <hr>
@@ -268,140 +245,5 @@
       <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
     </div>
   </footer>
-
-  <script>
-    var id;
-    var i = 1;
-
-    $(document).ready(function() {
-      document.getElementById("saveButton").onclick = function() {
-        if (CheckNote("notename", "notecontent")) {
-          var element = CreateNote();
-          element.setAttribute("id", i++);
-          var insert = document.getElementById("container");
-
-          if (insert != null)
-            insert.insertBefore(element, insert.firstChild);
-          else
-            document.getElementById("container").appendChild(element);
-          return false;
-        }
-        return true;
-      };
-
-      document.getElementById("deleteButton").onclick = function() {
-        var toRemove = document.getElementById(id);
-        toRemove.parentElement.removeChild(toRemove);
-
-        var insert = document.getElementById("deteledContainer");
-
-        if (insert != null)
-          insert.insertBefore(toRemove, insert.firstChild);
-        else
-          document.getElementById("deletedContainer").appendChild(toRemove);
-
-        document.getElementById("g0" + toRemove.id).remove();
-        document.getElementById("g1" + toRemove.id).remove();
-        document.getElementById("g2" + toRemove.id).remove();
-
-        toRemove.className += " grayout";
-      };
-
-    });
-
-    function NoGlyph(currentId) {
-      var span2 = document.createElement("span");
-      span2.className = "glyphicon glyphicon-remove pull-right";
-      span2.setAttribute("id", 'g2' + currentId);
-      span2.setAttribute("onclick", "okGlyphInDiv(this)");
-      span2.setAttribute("data-toggle", "modal");
-      span2.setAttribute("data-target", "#deleteModal");
-      return span2;
-    };
-
-    function okGlyph(that) {
-      id = that.parentElement.parentElement.parentElement.id;
-    };
-
-    function okGlyphInDiv(that) {
-      id = that.parentElement.parentElement.parentElement.parentElement.id;
-    };
-
-    function CreateNote() {
-      var date = new Date();
-      var day = date.getDate();
-      var month = date.getMonth() + 1;
-      var year = date.getFullYear();
-      var fulldate = day + "-" + month + "-" + year;
-      var note = document.createElement("div");
-      note.className = "col-sm-9 margin";
-      note.setAttribute("id", "notehover");
-      var panel = document.createElement("div");
-      panel.className = "panel panel-default";
-      panel.style.height = "200px";
-      var heading = document.createElement("div");
-      heading.className = "panel-body headingcolor";
-      heading.setAttribute("id", "heading" + i);
-      heading.textContent = document.getElementById("notename").value + "   (" + fulldate + ")";
-      var body = document.createElement("div");
-      body.className = "panel-body";
-      body.setAttribute("id", "glyphContainer" + i);
-      body.setAttribute("contenteditable", true);
-      body.style.overflow = "hidden";
-      body.style.position = "relative";
-      body.style.height = "73%";
-      body.textContent = document.getElementById("notecontent").value;
-      body.innerHTML += '<br/><br/>';
-      body = createGlyphs(body, i);
-      panel.appendChild(heading);
-      panel.appendChild(body);
-      note.appendChild(panel);
-      return note;
-    };
-
-    function createGlyphs(body, id) {
-      var cont = document.createElement("div");
-      cont.style.position = "absolute";
-      cont.style.bottom = "0";
-      cont.style.right = "0";
-      cont.style.marginRight = "5px";
-      cont.style.marginBottom = "5px";
-      cont.appendChild(NoGlyph(id));
-      body.appendChild(cont);
-      return body;
-    };
-
-    function CheckNote(nameId, contentId) {
-      if (document.getElementById(nameId).value == "" || document.getElementById(contentId).value == "")
-        return false;
-      return true;
-    };
-  </script>
-    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-      <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-
-<script src="assets/js/argon.js"></script>
-<script src="assets/js/jquery-3.3.1.min.js"></script>
-<script src="assets/flipclock/timer.js"></script>
-<script src="assets/counter-up/jquery.counterup.js"></script>
-<script src="assets/counter-up/jquery.waypoints.min.js"></script>
-<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/chart.js/dist/Chart.min.js"></script>
-<script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
-<script src="assets/vendor/jquery/dist/jquery.min.js"></script>
-<script src="assets/js/reminder-pop.js"></script>
-<script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-
-<script>
-  document.getElementById('button').addEventListener("click", function() {
-    document.querySelector('.bg-modal').style.display = "flex";
-  });
-
-  document.querySelector('.close').addEventListener("click", function() {
-    document.querySelector('.bg-modal').style.display = "none";
-  });
-</script>
-
 </body>
-
 </html>
