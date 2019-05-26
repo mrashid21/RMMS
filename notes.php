@@ -240,12 +240,12 @@
               <input type="text" name="MeetingTitle" placeholder="Enter Meeting Title" required />
               <datalist id="appointment">
             <?php
-                $commandtext = "SELECT MeetingTitle from appointment order by AppointmentID";
+                $commandtext = "Select AppointmentSubject from appointment order by AppointmentID";
                 $cmd = $sqlconnection->prepare($commandtext);
                 $cmd->execute();
                 $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
                 foreach($result as $row) {
-                    echo '<option value="'.$row['MeetingTitle'].'">';
+                    echo '<option value="'.$row['AppointmentSubject'].'">';
                 }
                 ?>
                 </datalist> 
