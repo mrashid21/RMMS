@@ -16,21 +16,23 @@ include("auth.php");
   <meta charset="utf-8">
   <meta name="viewport">
   <meta name="author" content="WIF2003">
-  <title>Notes</title>
-  <!-- CSS -->
-  <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
-  <!-- Google Fonts Poppins -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-  <!-- Argon CSS Bootstrap -->
-  <link rel="stylesheet" href="assets/css/argon.css">
-  <!-- Include Nucleo CSS Icons -->
-  <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
-  <link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="assets/css/profile-layout.css">
+  <title>Task Checklist</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/reminder-pop.css">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <!-- Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- Argon CSS Bootstrap -->
+    <link rel="stylesheet" href="assets/css/argon.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.css">
+    <!-- Include Nucleo CSS Icons -->
+    <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
+    <link rel="stylesheet" href="assets/css/profile-layout.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
-  <style type="text/css">
+    <style type="text/css">
     hr {
       height: 1px;
       color: grey;
@@ -39,8 +41,13 @@ include("auth.php");
     }
 
     .event_time_inner {
-      margin-left: 130px;
-      margin-right: 130px
+      margin-left: 150px;
+      margin-right: 150px;
+      
+    }
+    .event_time_area {
+      margin-top: 30px;
+      padding-bottom: 1px;
     }
 
     h1 {
@@ -55,24 +62,17 @@ include("auth.php");
       background-color: white;
       color: black;
       border: 2px solid #FF7F50;
-      padding: 12px 28px;
+      padding: 10px 24px;
+      margin:auto;
+      display:block;
     }
 
     #saveButton:hover {
       background-color: #FF7F50;
       color: white;
     }
-
-    html {
-      font-size: 100%;
-    }
-
     .margin {
       margin-top: 25px;
-    }
-
-    .grayout {
-      opacity: .45;
     }
 
     .headingcolor {
@@ -93,9 +93,6 @@ include("auth.php");
       box-shadow: 2px 1px 6px 4px grey;
     }
 
-    .glyphicon:after {
-      pointer-events: none;
-    }
   </style>
 
 </head>
@@ -203,7 +200,7 @@ include("auth.php");
       </div>
     </div>
     <!--===== Notes =====-->
-    <div class="container-fluid" style="height: 600px">
+    <div class="container-fluid" style="height: 600px"><br>
       <div class="col-sm-9" style="height: 100%; margin-left:120px;">
       <div class="form">
       <a href="notes.php" class="btn btn-warning" role="button">Insert New Notes</a><br><br>
