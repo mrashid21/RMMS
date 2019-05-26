@@ -45,7 +45,17 @@ foreach ($tasks as $key => $value) {
 <!DOCTYPE html>
 
 <html>
-
+<style>
+.task_input {
+     width: 100%;
+     height: 60px; 
+     padding: 10px;
+     border: 2px solid red;
+}
+h1 {
+    text-align : center;
+}
+</style>
 <head>
   <meta charset="utf-8">
   <meta name="viewport">
@@ -85,7 +95,7 @@ foreach ($tasks as $key => $value) {
             <a class="nav-link" href="overview.php"><i class="ni ni-tv-2 text-teal"></i>Overview</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="schedule.php"><i class="ni ni-calendar-grid-58 text-purple"></i>Schedule</a>
+            <a class="nav-link" href="appointment.php"><i class="ni ni-calendar-grid-58 text-purple"></i>Appointment</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Checklist.php"><i class="ni ni-bullet-list-67 text text-green"></i>Checklist</a>
@@ -94,14 +104,14 @@ foreach ($tasks as $key => $value) {
             <a class="nav-link" href="Notes.php"><i class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Research-Progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Research
+            <a class="nav-link" href="Research-Progress.php"><i class="ni ni-ui-04 text-orange"></i>Research
             Progress</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
           </li>
           <li class="nav-item pb-9">
-            <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
+            <a class="nav-link" href="profile.php"><i class="ni ni-single-02 text-black"></i>Profile</a>
           </li>
           <form class="d-flex justify-content-center pt-9" action="assets/api/user/logout_user.php">
             <input type="submit" class="btn" value="Logout" style="width: 80%">

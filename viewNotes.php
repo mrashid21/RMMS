@@ -125,7 +125,7 @@ head>
             <a class="nav-link" href="overview.php"><i class="ni ni-tv-2 text-teal"></i>Overview</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="schedule.php"><i class="ni ni-calendar-grid-58 text-purple"></i>Schedule</a>
+            <a class="nav-link" href="appointment.php"><i class="ni ni-calendar-grid-58 text-purple"></i>Appointment</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Checklist.php"><i class="ni ni-bullet-list-67 text text-green"></i>Checklist</a>
@@ -134,14 +134,14 @@ head>
             <a class="nav-link" href="Notes.php"><i class="ni ni-ruler-pencil text-yellow"></i>Notes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Research-Progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Research
+            <a class="nav-link" href="Research-Progress.php"><i class="ni ni-ui-04 text-orange"></i>Research
               Progress</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
           </li>
           <li class="nav-item pb-9">
-            <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
+            <a class="nav-link" href="profile.php"><i class="ni ni-single-02 text-black"></i>Profile</a>
           </li>
           <form class="d-flex justify-content-center pt-9" action="assets/api/user/logout_user.php">
             <input type="submit" class="btn" value="Logout" style="width: 80%">
@@ -235,18 +235,10 @@ head>
       <div class="control-group form-group"><br>
       <input type="hidden" name="new" value="1" />
       </div>
-      <div id=box><?php echo $row['noteTitle'];?>
+      <div id=box style="text-align:center;"><strong><?php echo $row['noteTitle'];?></strong>
       </div>
       <div id=box><?php echo $row['content'];?>
       </div>
-      <!-- <div class="control-group form-group">
-              <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
-              <input type="text" name="NoteTitle" placeholder="Enter Name" required value="<?php echo $row['noteTitle'];?>" />
-      </div> -->
-      <!-- <div class="control-group form-group">
-              <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
-              <textarea class="form-field" id="message" name="message" rows="15" cols="43" ><?php echo $row['content'];?></textarea>
-            </div> -->
       </form>
       <?php } ?>   
     </div>

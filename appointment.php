@@ -13,7 +13,7 @@ $data = UserAction::retrieveData();
   <meta charset="utf-8">
   <meta name="viewport">
   <meta name="author" content="WIF2003">
-  <title>Notes</title>
+  <title>Appointment</title>
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/reminder-pop.css">
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
@@ -32,8 +32,8 @@ $data = UserAction::retrieveData();
   <style type="text/css">
     hr {
       height: 1px;
-      color: grey;
-      background-color: grey;
+      color: blue;
+      background-color: blue;
       border: none;
     }
 
@@ -51,22 +51,22 @@ $data = UserAction::retrieveData();
       text-align: center;
       text-transform: uppercase;
       font-family: Georgia;
-      color: #FF7F50;
+      color: #9529d8;
     }
 
     #saveButton {
       border-radius: 12px;
       background-color: white;
       color: black;
-      border: 2px solid #FF7F50;
+      border: 2px solid #9529d8;
       padding: 10px 24px;
       margin:auto;
       display:block;
     }
 
     #saveButton:hover {
-      background-color: #FF7F50;
-      color: white;
+      background-color: #9529d8;
+      color: blue;
     }
     .margin {
       margin-top: 25px;
@@ -74,7 +74,7 @@ $data = UserAction::retrieveData();
 
     .headingcolor {
       color: white;
-      background-color: #FF7F50;
+      background-color: #9529d8;
       border-color: #ddd;
       padding: 10px 15px;
       border-bottom: 1px solid transparent;
@@ -87,7 +87,7 @@ $data = UserAction::retrieveData();
     }
 
     .panel:hover {
-      box-shadow: 2px 1px 6px 4px grey;
+      box-shadow: 2px 1px 6px 4px blue;
     }
 
   </style>
@@ -143,6 +143,7 @@ $data = UserAction::retrieveData();
       <div class="container-fluid">
         <!-- Profie Dropdown -->
         <form>
+          <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
           <div class="dropdown user user-menu" style="width:300px;">
             <a href="#" class="small-img" data-toggle="dropdown">
               <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
@@ -152,7 +153,7 @@ $data = UserAction::retrieveData();
               <!-- Menu Body -->
               <li class="user-body p-4 header-profile-margin">
                 <div class="row d-flex justify-content-center">
-                  <img src=<?= $img ?> class = "img-fluid img-circle card-user-image" alt="User Image">
+                  <img src=<?= $img ?> class="img-fluid img-circle card-user-image" alt="User Image">
                 </div>
                 <div class="row d-flex justify-content-around">
                   <p class="text-center pt-2">
@@ -166,7 +167,7 @@ $data = UserAction::retrieveData();
                     <a href="#" class="btn btn-default btn-sm btn-flat">Friends</a>
                   </div>
                 </div>
-                <!-- /.row -->
+                
               </li>
 
             </ul>
@@ -188,10 +189,10 @@ $data = UserAction::retrieveData();
     </nav>
 
     <div class="header container-fluid bg-gradient-light pb-3 pt-5 pt-md-8">
-     <!--===== Notes =====-->
+     <!--===== Appointment =====-->
     <div class="event_time_area">
       <div class="event_time_inner">
-        <h1>Create Meeting Notes</h1>
+        <h1>Create New Appointment</h1>
       </div>
     </div>
   </div>
@@ -205,62 +206,79 @@ $data = UserAction::retrieveData();
     $status = "";
     if(isset($_POST['new']) && $_POST['new']==1)
     {
-      $trn_date = date("Y-m-d");
-      $noteTitle =$_REQUEST['NoteTitle'];
-      $content = $_REQUEST['message'];
-      $meeting = $_REQUEST['MeetingTitle'];
-      $submittedby = $_SESSION["'logged_firstName'"];
-      $ins_query="insert into new_notes (`trn_date`,`meetingTitle`,`noteTitle`,`content`,`submittedby`) values ('$trn_date','$meeting','$noteTitle','$content','$submittedby')";
+        $id =$_REQUEST['id'];
+        $subject =$_REQUEST['subject'];
+        $date = $_REQUEST['date'];
+        $startTime = $_REQUEST['startTime'];
+        $endTime = $_REQUEST['endTime'];
+        //$studentname = $_SESSION["'logged_firstName'"];
+        $supervisor = $_REQUEST['supervisor'];
+      
+      $ins_query="insert into appointment (`AppointmentID`,`AppointmentSubject`,`AppointmentDate`,`StartTime`,`EndTime`,`SupervisorName`) 
+      values ('$id','$subject','$date','$startTime','$endTime','$supervisor')";
       mysqli_query($con,$ins_query) or die(mysql_error());
-      $status = "New Notes Inserted Successfully.</br></br><a href='addNotes.php'>View Inserted Notes</a>";
+      $status = "Appointment Created Successfully.</br></br><a href='schedule.php'>View Appointment Schedule</a>";
     }
-    ?>
-    <?php
+    
     try{
-        $sqlconnection = new pdo('mysql:host=localhost;dbname=rmms;charset=utf8','user1','user1abc');
+        $sqlconnection = new pdo('mysql:host=localhost;dbname=rmms;charset=utf8','root','');
         }   
     catch(PDOException $pe){
         echo 'Cannot connect to database';
         die;
     }
-?>
+    ?>
 
     <br><br>
     <div class="container-fluid" style="height: 800px">
     <div class="col-sm-9" style="height: 100%; margin-left:120px;">
       <div class="form">
-       <a href="addNotes.php" class="btn btn-warning" role="button">View Notes</a>
+       <a href="schedule.php" class="btn btn-info" role="button">View Scheduled Appointment</a>
           <form name="form" method="post" action=""> 
             <div class="control-group form-group">
               <input type="hidden" name="new" value="1" />
             </div>
             <div class="control-group form-group">
-              <label for="meeting"> Meeting Title : <span id="message-title"></span></label><br>
-              <input type="text" name="MeetingTitle" placeholder="Enter Meeting Title" required />
-   
-             <datalist id="appointment">
-            <?php
-                $commandtext = "select AppointmentSubject from appointment";
-                $cmd = $sqlconnection->prepare($commandtext);
-                $cmd->execute();
-                $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
-                foreach($result as $row) {
-                    echo '<option value="'. $row['AppointmentSubject'] . "</option>";
-                }
+              <label for="id">  Appointment ID   :   </label><br>
+              <input type="text" name="id" placeholder="Enter Appointment ID (eg. 1001)" required />
+            </div>
+            <div class="control-group form-group">
+              <label for="subject">  Appointment Subject   :   </label><br>
+              <input type="text" name="subject" placeholder="Enter Appointment Subject" required />
+            </div>
+            <div class="control-group form-group">
+              <label for="date">  Date   :   </label><br>
+              <input type="date" name="date" placeholder="dd/mm/yy" required />
+            </div>
+            <div class="control-group form-group">
+              <label for="startTime">  Start Time   :   </label><br>
+              <input type="time" name="startTime" placeholder="hh:mm" required />
+            </div>
+            <div class="control-group form-group">
+              <label for="startTime">  End Time   :   </label><br>
+              <input type="time" name="endTime" placeholder="hh:mm" required />
+            </div>
+            <div class="control-group form-group">
+              <label for="supervisor"> Name of Supervisor : </label><br>
+              <select name="supervisor">
+              <option value =''>Choose Supervisor</option>
+                <?php
+                    $con = mysqli_connect("localhost","root","","rmms");
+                    // Check connection
+                    if (mysqli_connect_errno())
+                    {
+                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                    }
+                    $sql = mysqli_query($con, "select SupervisorID, SupervisorName from supervisor");
+                    while ($row = $sql->fetch_assoc()){
+                        echo "<option value=''>" . $row['SupervisorID'] .' '. $row['SupervisorName'] . "</option>";
+                    }
                 ?>
-                </datalist>
+                </select>
             </div>
-            <div class="control-group form-group">
-              <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
-              <input type="text" name="NoteTitle" placeholder="Enter Notes Title" required />
-            </div>
-            <div class="control-group form-group">
-              <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
-              <textarea class="form-field" id="message" name="message" rows="15" cols="43"></textarea>
-            </div>
-            <p><input name="submit" type="submit" value="Save Notes" /></p>
+            <p><input name="submit" type="submit" value="Create" /></p>
           </form>
-          <p style="color:#FF0000;"><?php echo $status; ?></p><br />
+          <p style="color:#9529d8;"><?php echo $status; ?></p><br />
         </div>
       </div>
     </div>
