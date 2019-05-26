@@ -1,9 +1,9 @@
 <?php 
-// require "./assets/validation/validateUser.php";
-// require "./assets/helper/UserAction.php";
+require "./assets/validation/validateUser.php";
+require "./assets/helper/UserAction.php";
 
-// $img = UserAction::getImageDir();
-// $data = UserAction::retrieveData();
+$img = UserAction::getImageDir();
+$data = UserAction::retrieveData();
 ?>
 
 <!DOCTYPE html>
@@ -143,11 +143,10 @@
       <div class="container-fluid">
         <!-- Profie Dropdown -->
         <form>
-          <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
           <div class="dropdown user user-menu" style="width:300px;">
             <a href="#" class="small-img" data-toggle="dropdown">
-              <!-- <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
-              <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span> -->
+              <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
+              <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- Menu Body -->
