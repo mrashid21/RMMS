@@ -1,9 +1,9 @@
 <?php 
-require "./assets/validation/validateUser.php";
-require "./assets/helper/UserAction.php";
+// require "./assets/validation/validateUser.php";
+// require "./assets/helper/UserAction.php";
 
-$img = UserAction::getImageDir();
-$data = UserAction::retrieveData();
+// $img = UserAction::getImageDir();
+// $data = UserAction::retrieveData();
 ?>
 
 <!DOCTYPE html>
@@ -145,13 +145,8 @@ $data = UserAction::retrieveData();
           <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
           <div class="dropdown user user-menu" style="width:300px;">
             <a href="#" class="small-img" data-toggle="dropdown">
-<<<<<<< HEAD
               <!-- <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
               <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span> -->
-=======
-              <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
-              <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
->>>>>>> 1a0a1a29ab174818a7b6d7a22e670d212b6910cb
             </a>
             <ul class="dropdown-menu">
               <!-- Menu Body -->
