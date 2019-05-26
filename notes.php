@@ -210,7 +210,18 @@
       mysqli_query($con,$ins_query) or die(mysql_error());
       $status = "New Notes Inserted Successfully.</br></br><a href='addNotes.php'>View Inserted Notes</a>";
     }
-    ?><br><br>
+    ?>
+    <?php
+    try{
+        $sqlconnection = new pdo('mysql:host=localhost;dbname=rmms;charset=utf8','user1','user1abc');
+        }   
+    catch(PDOException $pe){
+        echo 'Cannot connect to database';
+        die;
+    }
+?>
+
+    <br><br>
     <div class="container-fluid" style="height: 800px">
     <div class="col-sm-9" style="height: 100%; margin-left:120px;">
       <div class="form">
@@ -222,6 +233,17 @@
             <div class="control-group form-group">
               <label for="meeting"> Meeting Title : <span id="message-title"></span></label><br>
               <input type="text" name="MeetingTitle" placeholder="Enter Meeting Title" required />
+              <datalist id="appointment">
+            <?php
+                $commandtext = "SELECT MeetingTitle from appointment order by AppointmentID";
+                $cmd = $sqlconnection->prepare($commandtext);
+                $cmd->execute();
+                $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
+                foreach($result as $row) {
+                    echo '<option value="'.$row['MeetingTitle'].'">';
+                }
+                ?>
+                </datalist> 
             </div>
             <div class="control-group form-group">
               <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
