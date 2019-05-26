@@ -1,26 +1,48 @@
-<?php 
-// require "./assets/validation/validateUser.php";
-// require "./assets/helper/UserAction.php";
-
-// $img = UserAction::getImageDir();
-// $data = UserAction::retrieveData();
-?>
-
-<!DOCTYPE html>
-<html>
 <?php
-$con = mysqli_connect("localhost","root","","rmms");
-// Check connection
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
+// including the database connection file
+$db = mysqli_connect("localhost", "root", "", "rmms");
+
+if(isset($_POST['update']))
+{	
+
+	$id = mysqli_real_escape_string($db, $_POST['id']);
+	
+	$task = mysqli_real_escape_string($db, $_POST['task']);	
+	
+	// checking empty fields
+	if(empty($_POST['task'])){	
+        echo "You must fill in the task";    
+		}	
+	else {	
+		//updating the table
+		$tasks = mysqli_query($db, "UPDATE checklist SET task='$task' WHERE id=$id");
+		
+		//redirectig to the display page. 
+		header("Location: Checklist.php");
+	}
+}
 ?>
+<?php
+//getting id from url
+$id = $_GET['id'];
+
+//selecting data associated with this particular id
+$tasks = mysqli_query($db, "SELECT * FROM checklist WHERE id=$id");
+
+while($row = mysqli_fetch_array($tasks))
+{
+	$task = $row['task'];
+}
+?>
+<!DOCTYPE html>
+
+<html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport">
   <meta name="author" content="WIF2003">
-  <title>Saved Notes</title>
+  <title>Task Checklist</title>
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/reminder-pop.css">
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
@@ -36,68 +58,8 @@ if (mysqli_connect_errno())
     <link rel="stylesheet" href="assets/css/profile-layout.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
-    <style type="text/css">
-    hr {
-      height: 1px;
-      color: grey;
-      background-color: grey;
-      border: none;
-    }
+  
 
-    .event_time_inner {
-      margin-left: 150px;
-      margin-right: 150px;
-      
-    }
-    .event_time_area {
-      margin-top: 30px;
-      padding-bottom: 1px;
-    }
-
-    h1 {
-      text-align: center;
-      text-transform: uppercase;
-      font-family: Georgia;
-      color: #FF7F50;
-    }
-
-    #saveButton {
-      border-radius: 12px;
-      background-color: white;
-      color: black;
-      border: 2px solid #FF7F50;
-      padding: 10px 24px;
-      margin:auto;
-      display:block;
-    }
-
-    #saveButton:hover {
-      background-color: #FF7F50;
-      color: white;
-    }
-    .margin {
-      margin-top: 25px;
-    }
-
-    .headingcolor {
-      color: white;
-      background-color: #FF7F50;
-      border-color: #ddd;
-      padding: 10px 15px;
-      border-bottom: 1px solid transparent;
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
-    }
-
-    .panel {
-      transition: box-shadow 200ms;
-    }
-
-    .panel:hover {
-      box-shadow: 2px 1px 6px 4px grey;
-    }
-
-  </style>
 </head>
 
 <body class="bg-gradient-lighter">
@@ -128,7 +90,7 @@ if (mysqli_connect_errno())
               Progress</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
+            <a class="nav-link" href="Upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
           </li>
           <li class="nav-item pb-9">
             <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
@@ -136,7 +98,6 @@ if (mysqli_connect_errno())
           <form class="d-flex justify-content-center pt-9" action="assets/api/user/logout_user.php">
             <input type="submit" class="btn" value="Logout" style="width: 80%">
           </form>
-
         </ul>
       </div>
     </div>
@@ -149,13 +110,13 @@ if (mysqli_connect_errno())
         <!-- Profie Dropdown -->
         <form>
           <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
-          <div class="dropdown user user-menu" style="width:300px;">
-            <!-- <a href="#" class="small-img" data-toggle="dropdown">
+         <!-- <div class="dropdown user user-menu" style="width:300px;">
+            <a href="#" class="small-img" data-toggle="dropdown">
               <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
               <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
-            </a> -->
+            </a>
             <ul class="dropdown-menu">
-              <!-- Menu Body -->
+              <!-- Menu Body 
               <li class="user-body p-4 header-profile-margin">
                 <div class="row d-flex justify-content-center">
                   <img src=<?= $img ?> class="img-fluid img-circle card-user-image" alt="User Image">
@@ -173,11 +134,11 @@ if (mysqli_connect_errno())
                   </div>
                 </div>
                 <!-- /.row -->
-              </li>
+            <!--  </li>
 
             </ul>
           </div>
-        </form>
+        </form>-->
 
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
@@ -193,48 +154,81 @@ if (mysqli_connect_errno())
       </div>
     </nav>
 
-    <div class="header container-fluid bg-gradient-light pb-3 pt-5 pt-md-8">
-     <!--===== Notes =====-->
-    <div class="event_time_area">
-      <div class="event_time_inner">
-        <h1>Saved Meeting Notes</h1>
+    <div class="header container-fluid bg-gradient-light pb- pt-5 pt-md-8">
+      <div class="event_time_area">
+        <div class="event_time_inner  ">
+          <h1 class="text-danger">Task Checklist</h1>
+        </div>
       </div>
     </div>
-  </div>
+    <br>
+    <!--===== Checklist =====-->
 
-    <!--===== Notes =====-->
-    <div class="container-fluid" style="height: 600px"><br>
-      <div class="col-sm-9" style="height: 100%; margin-left:120px;">
-      <div class="form">
-      <a href="notes.php" class="btn btn-warning" role="button">Insert New Notes</a><br><br>
-      <table class="table table-striped" id=savednotes width="100%" style="border-collapse:collapse;">
-      <thead style="align:center;">
-        <tr><th><strong>Meeting Title</strong></th><th><strong>Notes Title</strong></th><th><strong>Notes Content</strong></th><th><strong>Last Modified</strong></th><th><strong>Edit</strong></th><th><strong>Delete</strong></th></tr>
-      </thead>
-      <tbody>
-        <?php
-        $count=1;
-        $sel_query="Select * from new_notes ORDER BY id desc;";
-        $result = mysqli_query($con,$sel_query);
-        while($row = mysqli_fetch_assoc($result)) { ?>
-        <tr><td><?php echo $row["meetingTitle"]; ?></td><td><?php echo $row["noteTitle"]; ?></td><td><?php echo $row["content"]; ?></td><td><?php echo $row["trn_date"]; ?></td><td><a href="edit.php?id=<?php echo $row["id"]; ?>">Edit</a></td><td><a href="delete.php?id=<?php echo $row["id"]; ?>">Delete</a></td></tr>
-        <?php $count++; } ?>
-      </tbody>
-    </table>
-  </div>
-</div>
-</div>
-      
-  <footer class="footer">
-    <div class="footerContent">
-      <hr>
+    <br><br>
+    <div class="container-fluid mt--10">
+      <div class="row ">
+        <div class="col-xl-7 col-centered">
+          <div class="card shadow">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <div id="myDIV" class="header">
+	
+	<form name="form1" method="post" action="ChecklistEdit.php">
+		<table border="0">
+			<tr> 
+				<td>New Task</td>
+				<td><input type="text" name="task" value="<?php echo $task;?>"></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="id" value=<?php echo $_GET['id']; ?>></td>
+				<td><input type="submit" name="update" value="Update"></td>
+			</tr>
+		</table>
+	</form>
+    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    
+    <br><br>
+    <hr>
+    <footer class="text-center font-georgia">
       Copyright &copy; ORMMS TEAM 1<br>
       <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
-    </div>
-  </footer>
+    </footer>
 
-  
+  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 
+<script src="assets/js/argon.js"></script>
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/flipclock/timer.js"></script>
+<script src="assets/counter-up/jquery.counterup.js"></script>
+<script src="assets/counter-up/jquery.waypoints.min.js"></script>
+<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/chart.js/dist/Chart.min.js"></script>
+<script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
+<script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="assets/js/reminder-pop.js"></script>
+<script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+<script>
+  document.getElementById('button').addEventListener("click", function() {
+    document.querySelector('.bg-modal').style.display = "flex";
+  });
+
+  document.querySelector('.close').addEventListener("click", function() {
+    document.querySelector('.bg-modal').style.display = "none";
+  });
+</script>
 </body>
 
 </html>
