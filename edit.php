@@ -5,7 +5,6 @@
 // $img = UserAction::getImageDir();
 // $data = UserAction::retrieveData();
 ?>
-
 <!DOCTYPE html>
 <html>
 <?php
@@ -26,7 +25,7 @@ $row = mysqli_fetch_assoc($result);
   <meta charset="utf-8">
   <meta name="viewport">
   <meta name="author" content="WIF2003">
-  <title>Notes</title>
+  <title>Edit Notes</title>
   <!-- CSS -->
   <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
   <!-- Google Fonts Poppins -->
