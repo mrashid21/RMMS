@@ -80,7 +80,7 @@ $data = UserAction::retrieveData();
 	margin: 0px;
 }
 .task_input {
-	width: 75%;
+	width: 100%;
 	height: 60px; 
 	padding: 10px;
 	border: 2px solid red;
