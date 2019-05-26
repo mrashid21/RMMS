@@ -8,10 +8,6 @@ $data = UserAction::retrieveData();
 
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-
-=======
->>>>>>> 1a0a1a29ab174818a7b6d7a22e670d212b6910cb
 <head>
   <meta charset="utf-8">
   <meta name="viewport">
