@@ -21,24 +21,27 @@ $query = "SELECT * from new_notes where id='".$id."'";
 $result = mysqli_query($con, $query) or die ( mysqli_error());
 $row = mysqli_fetch_assoc($result);
 ?>
-<head>
+head>
   <meta charset="utf-8">
   <meta name="viewport">
   <meta name="author" content="WIF2003">
   <title>Edit Notes</title>
-  <!-- CSS -->
-  <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
-  <!-- Google Fonts Poppins -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-  <!-- Argon CSS Bootstrap -->
-  <link rel="stylesheet" href="assets/css/argon.css">
-  <!-- Include Nucleo CSS Icons -->
-  <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
-  <link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="assets/css/profile-layout.css">
-  <style type="text/css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/reminder-pop.css">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <!-- Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- Argon CSS Bootstrap -->
+    <link rel="stylesheet" href="assets/css/argon.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.css">
+    <!-- Include Nucleo CSS Icons -->
+    <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
+    <link rel="stylesheet" href="assets/css/profile-layout.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <style type="text/css">
     hr {
       height: 1px;
       color: grey;
@@ -100,7 +103,6 @@ $row = mysqli_fetch_assoc($result);
     }
 
   </style>
-
 </head>
 
 <body class="bg-gradient-lighter">
@@ -197,14 +199,13 @@ $row = mysqli_fetch_assoc($result);
     </nav>
 
     <div class="header container-fluid bg-gradient-light pb-3 pt-5 pt-md-8">
-
-    </div>
-
     <div class="event_time_area">
       <div class="event_time_inner">
-        <h1>Saved Meeting Notes</h1>
+        <h1>Edit Meeting Notes</h1>
       </div>
     </div>
+  </div>
+
     <!--===== Notes =====-->
     <div class="container-fluid" style="height: 600px">
       <div class="col-sm-9" style="height: 100%; margin-left:120px;">
@@ -217,7 +218,7 @@ $row = mysqli_fetch_assoc($result);
         $noteTitle =$_REQUEST['NoteTitle'];
         $content =$_REQUEST['message'];
         $submittedby = $_SESSION["'logged_firstName'"];
-        $update="update new_notes set trn_date='".$trn_date."', noteTitle='".$noteTitle."', content='".$content"' where id='".$id."'";
+        $update="update new_record set trn_date='".$trn_date."', noteTitle='".$noteTitle."', content='".$content."', submittedby='".$submittedby."' where id='".$id."'";
         mysqli_query($con, $update) or die(mysqli_error());
         $status = "Notes Updated Successfully. </br></br><a href='view.php'>View Updated Notes</a>";
         echo '<p style="color:#FF0000;">'.$status.'</p>';
