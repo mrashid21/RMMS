@@ -38,7 +38,6 @@ $row = mysqli_fetch_assoc($result);
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="assets/css/profile-layout.css">
-
   <style type="text/css">
     hr {
       height: 1px;
@@ -48,8 +47,13 @@ $row = mysqli_fetch_assoc($result);
     }
 
     .event_time_inner {
-      margin-left: 130px;
-      margin-right: 130px
+      margin-left: 150px;
+      margin-right: 150px;
+      
+    }
+    .event_time_area {
+      margin-top: 30px;
+      padding-bottom: 1px;
     }
 
     h1 {
@@ -64,24 +68,17 @@ $row = mysqli_fetch_assoc($result);
       background-color: white;
       color: black;
       border: 2px solid #FF7F50;
-      padding: 12px 28px;
+      padding: 10px 24px;
+      margin:auto;
+      display:block;
     }
 
     #saveButton:hover {
       background-color: #FF7F50;
       color: white;
     }
-
-    html {
-      font-size: 100%;
-    }
-
     .margin {
       margin-top: 25px;
-    }
-
-    .grayout {
-      opacity: .45;
     }
 
     .headingcolor {
@@ -102,9 +99,6 @@ $row = mysqli_fetch_assoc($result);
       box-shadow: 2px 1px 6px 4px grey;
     }
 
-    .glyphicon:after {
-      pointer-events: none;
-    }
   </style>
 
 </head>
