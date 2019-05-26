@@ -5,15 +5,27 @@
 // $img = UserAction::getImageDir();
 // $data = UserAction::retrieveData();
 ?>
-
 <!DOCTYPE html>
 <html>
+<?php
 
+$con = mysqli_connect("localhost","root","","rmms");
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+
+$id=$_REQUEST['id'];
+$query = "SELECT * FROM appointment WHERE AppintmentID='".$id."'"; 
+$result = mysqli_query($con, $query) or die ( mysqli_error());
+$row = mysqli_fetch_assoc($result);
+?>
 <head>
   <meta charset="utf-8">
   <meta name="viewport">
   <meta name="author" content="WIF2003">
-  <title>Notes</title>
+  <title>Update Appointment</title>
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/reminder-pop.css">
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
@@ -29,11 +41,11 @@
     <link rel="stylesheet" href="assets/css/profile-layout.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
-  <style type="text/css">
+    <style type="text/css">
     hr {
       height: 1px;
       color: grey;
-      background-color: grey;
+      background-color: blue;
       border: none;
     }
 
@@ -51,21 +63,21 @@
       text-align: center;
       text-transform: uppercase;
       font-family: Georgia;
-      color: #FF7F50;
+      color: #9529d8;
     }
 
     #saveButton {
       border-radius: 12px;
       background-color: white;
       color: black;
-      border: 2px solid #FF7F50;
+      border: 2px solid #9529d8;
       padding: 10px 24px;
       margin:auto;
       display:block;
     }
 
     #saveButton:hover {
-      background-color: #FF7F50;
+      background-color: #9529d8;
       color: white;
     }
     .margin {
@@ -74,7 +86,7 @@
 
     .headingcolor {
       color: white;
-      background-color: #FF7F50;
+      background-color: #9529d8;
       border-color: #ddd;
       padding: 10px 15px;
       border-bottom: 1px solid transparent;
@@ -87,13 +99,10 @@
     }
 
     .panel:hover {
-      box-shadow: 2px 1px 6px 4px grey;
+      box-shadow: 2px 1px 6px 4px blue;
     }
 
   </style>
-
-</head>
-
 </head>
 
 <body class="bg-gradient-lighter">
@@ -124,7 +133,7 @@
               Progress</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
+            <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
           </li>
           <li class="nav-item pb-9">
             <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
@@ -132,6 +141,7 @@
           <form class="d-flex justify-content-center pt-9" action="assets/api/user/logout_user.php">
             <input type="submit" class="btn" value="Logout" style="width: 80%">
           </form>
+
         </ul>
       </div>
     </div>
@@ -145,15 +155,15 @@
         <form>
           <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
           <div class="dropdown user user-menu" style="width:300px;">
-            <a href="#" class="small-img" data-toggle="dropdown">
-              <!-- <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
-              <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span> -->
-            </a>
+            <!-- <a href="#" class="small-img" data-toggle="dropdown">
+              <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
+              <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
+            </a> -->
             <ul class="dropdown-menu">
               <!-- Menu Body -->
               <li class="user-body p-4 header-profile-margin">
                 <div class="row d-flex justify-content-center">
-                  <img src=<?= $img ?> class = "img-fluid img-circle card-user-image" alt="User Image">
+                  <img src=<?= $img ?> class="img-fluid img-circle card-user-image" alt="User Image">
                 </div>
                 <div class="row d-flex justify-content-around">
                   <p class="text-center pt-2">
@@ -189,81 +199,82 @@
     </nav>
 
     <div class="header container-fluid bg-gradient-light pb-3 pt-5 pt-md-8">
-     <!--===== Notes =====-->
     <div class="event_time_area">
       <div class="event_time_inner">
-        <h1>Create Meeting Notes</h1>
+        <h1>Update Appointment</h1>
       </div>
     </div>
   </div>
-    <?php
-    $con = mysqli_connect("localhost","root","","rmms");
-    // Check connection
-    if (mysqli_connect_errno())
-      {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-      }
-    $status = "";
-    if(isset($_POST['new']) && $_POST['new']==1)
-    {
-      $trn_date = date("Y-m-d");
-      $noteTitle =$_REQUEST['NoteTitle'];
-      $content = $_REQUEST['message'];
-      $meeting = $_REQUEST['MeetingTitle'];
-      $submittedby = $_SESSION["'logged_firstName'"];
-      $ins_query="insert into new_notes (`trn_date`,`meetingTitle`,`noteTitle`,`content`,`submittedby`) values ('$trn_date','$meeting','$noteTitle','$content','$submittedby')";
-      mysqli_query($con,$ins_query) or die(mysql_error());
-      $status = "New Notes Inserted Successfully.</br></br><a href='addNotes.php'>View Inserted Notes</a>";
-    }
-    ?>
-    <?php
-    try{
-        $sqlconnection = new pdo('mysql:host=localhost;dbname=rmms;charset=utf8','user1','user1abc');
-        }   
-    catch(PDOException $pe){
-        echo 'Cannot connect to database';
-        die;
-    }
-?>
 
-    <br><br>
-    <div class="container-fluid" style="height: 800px">
-    <div class="col-sm-9" style="height: 100%; margin-left:120px;">
-      <div class="form">
-       <a href="addNotes.php" class="btn btn-warning" role="button">View Notes</a>
-          <form name="form" method="post" action=""> 
-            <div class="control-group form-group">
+    <!--===== Appointment =====-->
+    <div class="container-fluid" style="height: 600px">
+      <div class="col-sm-9" style="height: 100%; margin-left:120px;">
+      <?php
+      $status = "";
+      if(isset($_POST['new']) && $_POST['new']==1)
+      {
+        $id =$_REQUEST['id'];
+        $subject =$_REQUEST['subject'];
+        $date = $_REQUEST['date'];
+        $startTime = $_REQUEST['startTime'];
+        $endTime = $_REQUEST['endTime'];
+        //$studentname = $_SESSION["'logged_firstName'"];
+        $supervisor = $_REQUEST['supervisor'];
+        $update="UPDATE appointment set AppointmentSubject='".$subject."', AppointmentDate='".$date."', StartTime='".$startTime."', EndTime='".$endTime."', SupervisorName='".$supervisor."'   
+        where AppointmentID='".$id."'";
+        mysqli_query($con, $update) or die(mysqli_error());
+        $status = "Notes Updated Successfully. </br></br><a href='view.php'>View Updated Notes</a>";
+        echo '<p style="color:#9529d8;">'.$status.'</p>';
+      }else {
+        ?>
+        <div>
+        <form name="form" method="post" action=""> 
+            <div class="row">
               <input type="hidden" name="new" value="1" />
-            </div>
-            <div class="control-group form-group">
-              <label for="meeting"> Meeting Title : <span id="message-title"></span></label><br>
-              <input type="text" name="MeetingTitle" placeholder="Enter Meeting Title" required />
-              <datalist id="appointment">
-            <?php
-                $commandtext = "Select AppointmentSubject from appointment order by AppointmentID";
-                $cmd = $sqlconnection->prepare($commandtext);
-                $cmd->execute();
-                $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
-                foreach($result as $row) {
-                    echo '<option value="'.$row['AppointmentSubject'].'">';
-                }
+            </div><br><br>
+            <div class="row">
+            <input name="id" type="hidden" value="<?php echo $row['AppointmentID'];?>" />
+            </div><br><br>
+            <div class="row">
+                <label for="subject">  Appointment Subject   :   </label><br>
+              <input type="text" name="subject" required value="<?php echo $row['AppointmentSubject'];?>" /><br><br>
+            </div><br><br>
+            <div class="row">
+                <label for="subject">  Date   :   </label><br>
+              <input type="date" name="date" required value="<?php echo $row['AppointmentDate'];?>" /><br><br>
+            </div><br><br>
+            <div class="row">
+                <label for="subject">  Start Time   :   </label><br>
+              <input type="time" name="startTime" required value="<?php echo $row['StartDate'];?>" /><br><br>
+            </div><br><br>
+            <div class="row">
+                <label for="subject">  End Time   :   </label><br>
+              <input type="time" name="endTime" required value="<?php echo $row['EndDate'];?>" /><br><br>
+            </div><br><br>
+            <div class="row">
+                <label for="supervisor">  Name of Supervisor   :   </label><br>
+                <select name="supervisor">
+              <option value ='<?php echo $row['SupervisorName'];?>'>Choose Supervisor</option>
+                <?php
+                    $con = mysqli_connect("localhost","root","","rmms");
+                    // Check connection
+                    if (mysqli_connect_errno())
+                    {
+                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                    }
+                    $sql = mysqli_query($con, "SELECT SupervisorID, SupervisorName FROM supervisor");
+                    while ($row = $sql->fetch_assoc()){
+                        echo "<option value=''>" . $row['SupervisorID'] .' '. $row['SupervisorName'] . "</option>";
+                    }
                 ?>
-                </datalist> 
-            </div>
-            <div class="control-group form-group">
-              <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
-              <input type="text" name="NoteTitle" placeholder="Enter Notes Title" required />
-            </div>
-            <div class="control-group form-group">
-              <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
-              <textarea class="form-field" id="message" name="message" rows="15" cols="43"></textarea>
-            </div>
-            <p><input name="submit" type="submit" value="Save Notes" /></p>
+                </select><br><br>
+            </div><br><br>
+
+            <p><input name="submit" type="submit" value="Update"/></p>
           </form>
-          <p style="color:#FF0000;"><?php echo $status; ?></p><br />
+          <?php } ?>
         </div>
       </div>
-    </div>
       
   <footer class="footer">
     <div class="footerContent">
@@ -272,5 +283,9 @@
       <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
     </div>
   </footer>
+
+  
+
 </body>
+
 </html>
