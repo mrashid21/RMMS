@@ -8,6 +8,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport">
@@ -152,7 +153,7 @@
               <!-- Menu Body -->
               <li class="user-body p-4 header-profile-margin">
                 <div class="row d-flex justify-content-center">
-                  <img src=<?= $img ?> class = "img-fluid img-circle card-user-image" alt="User Image">
+                  <img src=<?= $img ?> class="img-fluid img-circle card-user-image" alt="User Image">
                 </div>
                 <div class="row d-flex justify-content-around">
                   <p class="text-center pt-2">
@@ -210,8 +211,8 @@
       $status = "New Notes Inserted Successfully.</br></br><a href='addNotes.php'>View Inserted Notes</a>";
     }
     ?><br><br>
-    <div class="container-fluid" style="height: 600px">
-      <div class="col-sm-9" style="height: 100%; margin-left:120px;">
+    <div class="container-fluid" style="height: 800px">
+    <div class="col-sm-9" style="height: 100%; margin-left:120px;">
       <div class="form">
        <a href="addNotes.php" class="btn btn-warning" role="button">View Notes</a>
           <form name="form" method="post" action=""> 
@@ -230,7 +231,7 @@
               <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
               <textarea class="form-field" id="message" name="message" rows="15" cols="43"></textarea>
             </div>
-            <p><input id ="saveButton" name="submit" type="submit" value="Save Notes" /></p>
+            <p><input name="submit" type="submit" value="Save Notes" /></p>
           </form>
           <p style="color:#FF0000;"><?php echo $status; ?></p><br />
         </div>
