@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 <html>
 <?php
-
 $con = mysqli_connect("localhost","root","","rmms");
 // Check connection
 if (mysqli_connect_errno())
@@ -199,52 +198,55 @@ head>
     </nav>
 
     <div class="header container-fluid bg-gradient-light pb-3 pt-5 pt-md-8">
+     <!--===== Notes =====-->
     <div class="event_time_area">
       <div class="event_time_inner">
         <h1>Edit Meeting Notes</h1>
       </div>
     </div>
   </div>
-
-    <!--===== Notes =====-->
-    <div class="container-fluid" style="height: 600px">
-      <div class="col-sm-9" style="height: 100%; margin-left:120px;">
-      <?php
-      $status = "";
-      if(isset($_POST['new']) && $_POST['new']==1)
-      {
-        $id=$_REQUEST['id'];
-        $trn_date = date("Y-m-d");
-        $noteTitle =$_REQUEST['NoteTitle'];
-        $content =$_REQUEST['message'];
-        $submittedby = $_SESSION["'logged_firstName'"];
-        $update="update new_record set trn_date='".$trn_date."', noteTitle='".$noteTitle."', content='".$content."', submittedby='".$submittedby."' where id='".$id."'";
-        mysqli_query($con, $update) or die(mysqli_error());
-        $status = "Notes Updated Successfully. </br></br><a href='view.php'>View Updated Notes</a>";
-        echo '<p style="color:#FF0000;">'.$status.'</p>';
-      }else {
-        ?>
-        <div>
-        <form name="form" method="post" action=""> 
-            <div class="row">
-              <input type="hidden" name="new" value="1" />
-            </div><br><br>
-            <div class="row">
-            <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
-            </div><br><br>
-            <div class="row">
-              <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
-              <input type="text" name="noteTitle" placeholder="Enter Notes Title" required value="<?php echo $row['noteTitle'];?>" /><br><br>
-            </div><br><br>
-            <div class="row">
-              <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
-              <textarea class="form-field" id="message" name="message" rows="15" cols="40" required value="<?php echo $row['content'];?>"></textarea><br><br>
-            </div><br><br>
-            <p><input name="submit" type="submit" value="Submit" /></p>
-          </form>
-          <?php } ?>
-        </div>
+  <div class="container-fluid" style="height: 800px">
+    <div class="col-sm-9" style="height: 100%; margin-left:120px;">
+      <div class="form"><br><br>
+      <a href="addNotes.php" class="btn btn-warning" role="button">View Notes</a>
+  <?php
+  $status = "";
+  if(isset($_POST['new']) && $_POST['new']==1)
+  {
+    $id=$_REQUEST['id'];
+    $trn_date = date("Y-m-d");
+    $noteTitle =$_REQUEST['NoteTitle'];
+    $content =$_REQUEST['message'];
+    // $submittedby = $_SESSION["username"];
+    $update="update new_notes set trn_date='".$trn_date."', noteTitle='".$noteTitle."', content='".$content."' where id='".$id."'";
+    mysqli_query($con, $update) or die(mysqli_error());
+    $status = "Record Updated Successfully. </br></br><a href='addNotes.php'>View Updated Record</a>";
+    echo '<p style="color:#FF0000;">'.$status.'</p>';
+  }else {
+    ?>
+    <div>
+      <form name="form" method="post" action=""> 
+      <div class="control-group form-group"><br>
+      <input type="hidden" name="new" value="1" />
       </div>
+      <div class="control-group form-group">
+              <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
+              <input type="text" name="NoteTitle" placeholder="Enter Name" required value="<?php echo $row['noteTitle'];?>" />
+      </div>
+      <div class="control-group form-group">
+              <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
+              <textarea class="form-field" id="message" name="message" rows="15" cols="43" ><?php echo $row['content'];?></textarea>
+            </div>
+      <div class="control-group form-group">
+      <input name="submit" type="submit" value="Update Notes" />
+      </div>
+      </form>
+      <?php } ?>   
+    </div>
+  </div>
+  </div>
+
+    
       
   <footer class="footer">
     <div class="footerContent">
@@ -254,8 +256,5 @@ head>
     </div>
   </footer>
 
-  
-
 </body>
-
 </html>
