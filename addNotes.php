@@ -10,7 +10,7 @@
 <html>
 <?php
 require('db.php');
-include("auth.php");
+
 ?>
 <head>
   <meta charset="utf-8">
