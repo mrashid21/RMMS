@@ -238,17 +238,18 @@
             <div class="control-group form-group">
               <label for="meeting"> Meeting Title : <span id="message-title"></span></label><br>
               <input type="text" name="MeetingTitle" placeholder="Enter Meeting Title" required />
-              <datalist id="appointment">
+   
+             <datalist id="appointment">
             <?php
-                $commandtext = "Select AppointmentSubject from appointment order by AppointmentID";
+                $commandtext = "select AppointmentSubject from appointment";
                 $cmd = $sqlconnection->prepare($commandtext);
                 $cmd->execute();
                 $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
                 foreach($result as $row) {
-                    echo '<option value="'.$row['AppointmentSubject'].'">';
+                    echo '<option value="'. $row['AppointmentSubject'] . "</option>";
                 }
                 ?>
-                </datalist> 
+                </datalist>
             </div>
             <div class="control-group form-group">
               <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
