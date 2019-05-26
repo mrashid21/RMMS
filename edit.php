@@ -5,15 +5,26 @@
 // $img = UserAction::getImageDir();
 // $data = UserAction::retrieveData();
 ?>
-
 <!DOCTYPE html>
 <html>
+<?php
+$con = mysqli_connect("localhost","root","","rmms");
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
 
-<head>
+$id=$_REQUEST['id'];
+$query = "SELECT * from new_notes where id='".$id."'"; 
+$result = mysqli_query($con, $query) or die ( mysqli_error());
+$row = mysqli_fetch_assoc($result);
+?>
+head>
   <meta charset="utf-8">
   <meta name="viewport">
   <meta name="author" content="WIF2003">
-  <title>Notes</title>
+  <title>Edit Notes</title>
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/reminder-pop.css">
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
@@ -29,7 +40,7 @@
     <link rel="stylesheet" href="assets/css/profile-layout.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
-  <style type="text/css">
+    <style type="text/css">
     hr {
       height: 1px;
       color: grey;
@@ -91,9 +102,6 @@
     }
 
   </style>
-
-</head>
-
 </head>
 
 <body class="bg-gradient-lighter">
@@ -124,7 +132,7 @@
               Progress</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
+            <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
           </li>
           <li class="nav-item pb-9">
             <a class="nav-link" href="profile.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Profile</a>
@@ -132,6 +140,7 @@
           <form class="d-flex justify-content-center pt-9" action="assets/api/user/logout_user.php">
             <input type="submit" class="btn" value="Logout" style="width: 80%">
           </form>
+
         </ul>
       </div>
     </div>
@@ -145,10 +154,10 @@
         <form>
           <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
           <div class="dropdown user user-menu" style="width:300px;">
-            <a href="#" class="small-img" data-toggle="dropdown">
-              <!-- <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
-              <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span> -->
-            </a>
+            <!-- <a href="#" class="small-img" data-toggle="dropdown">
+              <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
+              <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
+            </a> -->
             <ul class="dropdown-menu">
               <!-- Menu Body -->
               <li class="user-body p-4 header-profile-margin">
@@ -192,78 +201,52 @@
      <!--===== Notes =====-->
     <div class="event_time_area">
       <div class="event_time_inner">
-        <h1>Create Meeting Notes</h1>
+        <h1>Edit Meeting Notes</h1>
       </div>
     </div>
   </div>
-    <?php
-    $con = mysqli_connect("localhost","root","","rmms");
-    // Check connection
-    if (mysqli_connect_errno())
-      {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-      }
-    $status = "";
-    if(isset($_POST['new']) && $_POST['new']==1)
-    {
-      $trn_date = date("Y-m-d");
-      $noteTitle =$_REQUEST['NoteTitle'];
-      $content = $_REQUEST['message'];
-      $meeting = $_REQUEST['MeetingTitle'];
-      $submittedby = $_SESSION["'logged_firstName'"];
-      $ins_query="insert into new_notes (`trn_date`,`meetingTitle`,`noteTitle`,`content`,`submittedby`) values ('$trn_date','$meeting','$noteTitle','$content','$submittedby')";
-      mysqli_query($con,$ins_query) or die(mysql_error());
-      $status = "New Notes Inserted Successfully.</br></br><a href='addNotes.php'>View Inserted Notes</a>";
-    }
-    ?>
-    <?php
-    try{
-        $sqlconnection = new pdo('mysql:host=localhost;dbname=rmms;charset=utf8','user1','user1abc');
-        }   
-    catch(PDOException $pe){
-        echo 'Cannot connect to database';
-        die;
-    }
-?>
-
-    <br><br>
-    <div class="container-fluid" style="height: 800px">
+  <div class="container-fluid" style="height: 800px">
     <div class="col-sm-9" style="height: 100%; margin-left:120px;">
-      <div class="form">
-       <a href="addNotes.php" class="btn btn-warning" role="button">View Notes</a>
-          <form name="form" method="post" action=""> 
-            <div class="control-group form-group">
-              <input type="hidden" name="new" value="1" />
-            </div>
-            <div class="control-group form-group">
-              <label for="meeting"> Meeting Title : <span id="message-title"></span></label><br>
-              <input type="text" name="MeetingTitle" placeholder="Enter Meeting Title" required />
-              <datalist id="appointment">
-            <?php
-                $commandtext = "SELECT MeetingTitle from appointment order by AppointmentID";
-                $cmd = $sqlconnection->prepare($commandtext);
-                $cmd->execute();
-                $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
-                foreach($result as $row) {
-                    echo '<option value="'.$row['MeetingTitle'].'">';
-                }
-                ?>
-                </datalist> 
-            </div>
-            <div class="control-group form-group">
-              <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
-              <input type="text" name="NoteTitle" placeholder="Enter Notes Title" required />
-            </div>
-            <div class="control-group form-group">
-              <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
-              <textarea class="form-field" id="message" name="message" rows="15" cols="43"></textarea>
-            </div>
-            <p><input name="submit" type="submit" value="Save Notes" /></p>
-          </form>
-          <p style="color:#FF0000;"><?php echo $status; ?></p><br />
-        </div>
+      <div class="form"><br><br>
+      <a href="addNotes.php" class="btn btn-warning" role="button">View Notes</a>
+  <?php
+  $status = "";
+  if(isset($_POST['new']) && $_POST['new']==1)
+  {
+    $id=$_REQUEST['id'];
+    $trn_date = date("Y-m-d");
+    $noteTitle =$_REQUEST['NoteTitle'];
+    $content =$_REQUEST['message'];
+    // $submittedby = $_SESSION["username"];
+    $update="update new_notes set trn_date='".$trn_date."', noteTitle='".$noteTitle."', content='".$content."' where id='".$id."'";
+    mysqli_query($con, $update) or die(mysqli_error());
+    $status = "Record Updated Successfully. </br></br><a href='addNotes.php'>View Updated Record</a>";
+    echo '<p style="color:#FF0000;">'.$status.'</p>';
+  }else {
+    ?>
+    <div>
+      <form name="form" method="post" action=""> 
+      <div class="control-group form-group"><br>
+      <input type="hidden" name="new" value="1" />
       </div>
+      <div class="control-group form-group">
+              <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
+              <input type="text" name="NoteTitle" placeholder="Enter Name" required value="<?php echo $row['noteTitle'];?>" />
+      </div>
+      <div class="control-group form-group">
+              <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
+              <textarea class="form-field" id="message" name="message" rows="15" cols="43" ><?php echo $row['content'];?></textarea>
+            </div>
+      <div class="control-group form-group">
+      <input name="submit" type="submit" value="Update Notes" />
+      </div>
+      </form>
+      <?php } ?>   
     </div>
+  </div>
+  </div>
+
+    
       
   <footer class="footer">
     <div class="footerContent">
@@ -272,5 +255,6 @@
       <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
     </div>
   </footer>
+
 </body>
 </html>
