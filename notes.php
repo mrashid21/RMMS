@@ -197,7 +197,10 @@
     </div>
   </div>
     <?php
-    require('db.php');
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/assets/database/Connection.php";
+		require_once "Activity.php";
+		$config = require $_SERVER['DOCUMENT_ROOT'] . "/assets/database/config.php";
+		return Connection::make($config['database']);
     $status = "";
     if(isset($_POST['new']) && $_POST['new']==1)
     {
