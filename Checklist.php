@@ -2,44 +2,16 @@
 
 require "./assets/validation/validateUser.php";
 require "./assets/helper/UserAction.php";
+require "./assets/helper/ChecklistAction.php";
+
+$errors = "";
 
 $img = UserAction::getImageDir();
 $data = UserAction::retrieveData();
+$tasks = ChecklistAction::getCheckkistTasks();
 
 ?>
 
-<?php 
-	
-	$errors = "";
-
-	// connect to database
-	$db = mysqli_connect("localhost", "root", "", "rmms");
-
-	// insert a quote if submit button is clicked
-	if (isset($_POST['submit'])) {
-
-		if (empty($_POST['task'])) {
-			$errors = "You must fill in the task";
-		}else{
-			$task = $_POST['task'];
-			$query = "INSERT INTO checklist (task) VALUES ('$task')";
-			mysqli_query($db, $query);
-			header('location: Checklist.php');
-		}
-	}	
-
-	// delete task
-	if (isset($_GET['del_task'])) {
-		$id = $_GET['del_task'];
-		mysqli_query($db, "DELETE FROM checklist WHERE id=".$id);
-		header('location: Checklist.php');
-	}
-
-	// select all tasks if page is visited or refreshed
-  $tasks = mysqli_query($db, "SELECT * FROM checklist");
-  
-  
-?>
 
 <!DOCTYPE html>
 
@@ -50,83 +22,83 @@ $data = UserAction::retrieveData();
   <meta name="viewport">
   <meta name="author" content="WIF2003">
   <title>Task Checklist</title>
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/reminder-pop.css">
-    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
-    <!-- Google Fonts Poppins -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <!-- Argon CSS Bootstrap -->
-    <link rel="stylesheet" href="assets/css/argon.css">
-    <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.css">
-    <!-- Include Nucleo CSS Icons -->
-    <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
-    <link rel="stylesheet" href="assets/css/profile-layout.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/reminder-pop.css">
+  <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+  <!-- Google Fonts Poppins -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Argon CSS Bootstrap -->
+  <link rel="stylesheet" href="assets/css/argon.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.css">
+  <!-- Include Nucleo CSS Icons -->
+  <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
+  <link rel="stylesheet" href="assets/css/profile-layout.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
   <style>
-  
-#myform {
-	width: 100%; 
-	margin: 30px auto; 
-	border-radius: 10px; 
-	padding: 10px;
-	background: pink;
-	border: 1px solid red;
-}
-#myform p {
-	color: red;
-	margin: 0px;
-}
-.task_input {
-	width: 75%;
-	height: 60px; 
-	padding: 10px;
-	border: 2px solid red;
-}
-.add_btn {
-	height: 39px;
-	background: red;
-	color: 	white; 
-  padding: 1px 20px;
-}
-.edit a{
-	color: white;
-	background: #038680;
-	padding: 1px 6px;
-	border-radius: 3px;
-	text-decoration: none;
-}
+
+    #myform {
+     width: 100%; 
+     margin: 30px auto; 
+     border-radius: 10px; 
+     padding: 10px;
+     background: pink;
+     border: 1px solid red;
+   }
+   #myform p {
+     color: red;
+     margin: 0px;
+   }
+   .task_input {
+     width: 75%;
+     height: 60px; 
+     padding: 10px;
+     border: 2px solid red;
+   }
+   .add_btn {
+     height: 39px;
+     background: red;
+     color: 	white; 
+     padding: 1px 20px;
+   }
+   .edit a{
+     color: white;
+     background: #038680;
+     padding: 1px 6px;
+     border-radius: 3px;
+     text-decoration: none;
+   }
 
 
 
-#mytable table {
+   #mytable table {
     width: 50%;
     margin: 30px auto;
     border-collapse: collapse;
-}
+  }
 
-#mytable tr {
-	border-bottom: 1px solid #cbcbcb;
-}
+  #mytable tr {
+   border-bottom: 1px solid #cbcbcb;
+ }
 
-#mytable th {
-	font-size: 19px;
-	color: red;
-}
+ #mytable th {
+   font-size: 19px;
+   color: red;
+ }
 
-#mytable th, td{
-	border: none;
-    height: 30px;
-    padding: 2px;
-}
+ #mytable th, td{
+   border: none;
+   height: 30px;
+   padding: 2px;
+ }
 
-#mytable tr:hover {
-	background: #E9E9E9;
-}
+ #mytable tr:hover {
+   background: #E9E9E9;
+ }
 
-.task {
+ .task {
   text-align: left;
 }
 
@@ -144,7 +116,7 @@ h1 {
   text-align: center;
 }
 
-  </style>
+</style>
 
 </head>
 
@@ -173,7 +145,7 @@ h1 {
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Research-Progress.php"><i class="ni ni-cloud-upload-96 text-orange"></i>Research
-              Progress</a>
+            Progress</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
@@ -196,16 +168,16 @@ h1 {
         <!-- Profie Dropdown -->
         <form>
           <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
-         <div class="dropdown user user-menu" style="width:300px;">
+          <div class="dropdown user user-menu" style="width:300px;">
             <a href="#" class="small-img" data-toggle="dropdown">
-              <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
+              <img src=<?= $img ?> class= "img-fluid img-circle header-user-image small-img" alt="User Image">
               <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- Menu Body -->
               <li class="user-body p-4 header-profile-margin">
                 <div class="row d-flex justify-content-center">
-                  <img src=<?= $img ?> class="img-fluid img-circle card-user-image" alt="User Image">
+                  <img src=<?= $img ?> class= "img-fluid img-circle card-user-image" alt="User Image">
                 </div>
                 <div class="row d-flex justify-content-around">
                   <p class="text-center pt-2">
@@ -220,7 +192,7 @@ h1 {
                   </div>
                 </div>
                 <!-- /.row-->
-             </li>
+              </li>
 
             </ul>
           </div>
@@ -260,84 +232,82 @@ h1 {
                 <div class="col">
                   <div id="myDIV" class="header">
                     <div id="myform">
-                  <form method="post" action="Checklist.php" class="input_form">
-		<?php if (isset($errors)) { ?>
-			<p><?php echo $errors; ?></p>
-		<?php } ?> 
-		<input type="text" placeholder= "New Task" name="task" class="task_input">
-		<button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
-	</form></div>
+                      <form method="POST" action="./assets/api/checklist/create_task_checklist.php" class="input_form">
+                       <input type="text" placeholder= "New Task" name="task" class="task_input" required>
+                       <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
+                     </form></div>
 
 
-	<table id="mytable">
-		<thead>
-			<tr>
-				<th style="width: 80px;">No.</th>
-				<th style="width: 1000000px">Tasks</th>
-				<th style="width : 60px;">Edit      </th>
-				<th style="width: 60px;">Delete</th>
-			</tr>
-		</thead>
+                     <table id="mytable">
+                      <thead>
+                       <tr>
+                        <th style="width: 80px;">No.</th>
+                        <th style="width: 1000000px">Tasks</th>
+                        <th style="width : 60px;">Edit      </th>
+                        <th style="width: 60px;">Delete</th>
+                      </tr>
+                    </thead>
 
-		<tbody>
-			<?php $i = 1; while ($row = mysqli_fetch_array($tasks)) { ?>
-				<tr>
-					<td> <?php echo $i; ?> </td>
-					<td class="task"> <?php echo $row['task']; ?> </td>
-					<td class="edit">
-             <?php echo "<a href=\"ChecklistEdit.php?id=$row[id]\">Edit</a>" ?></td>
-					<td class="delete">
-             <?php echo "<a href=\"Checklist.php?del_task=$row[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">x</a>" ?>
-					</td>
-				</tr>
-			<?php $i++; } ?>	
-		</tbody>
-	</table>
+                    <tbody>
+                      <?php $count = 1; foreach($tasks as $key=>$value): ?>
+
+                        <tr>
+                         <td> <?= $count ?> </td>
+                         <td class="task"> <?= $value['task']; ?> </td>
+                         <td class="edit">
+                            <a href="/ChecklistEdit.php?id=<?= $value['id'] ?>" >Edit</a></td>
+                           <td class="delete">
+                              <a href="/assets/api/checklist/delete_task_checklist.php?del_task=<?= $value['id'] ?>" onClick="return confirm('Are you sure you want to delete?')">x</a>
+                           </td>
+                         </tr>
+                      <?php $count++; endforeach; ?>
+                     </tbody>
+                   </table>
 
 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
 
 
 
-    </div>
+     </div>
 
-    
-    <br><br>
-    <hr>
-    <footer class="text-center font-georgia">
+
+     <br><br>
+     <hr>
+     <footer class="text-center font-georgia">
       Copyright &copy; ORMMS TEAM 1<br>
       <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
     </footer>
 
-  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
     <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 
-<script src="assets/js/argon.js"></script>
-<script src="assets/js/jquery-3.3.1.min.js"></script>
-<script src="assets/flipclock/timer.js"></script>
-<script src="assets/counter-up/jquery.counterup.js"></script>
-<script src="assets/counter-up/jquery.waypoints.min.js"></script>
-<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/chart.js/dist/Chart.min.js"></script>
-<script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
-<script src="assets/vendor/jquery/dist/jquery.min.js"></script>
-<script src="assets/js/reminder-pop.js"></script>
-<script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="assets/js/argon.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/flipclock/timer.js"></script>
+    <script src="assets/counter-up/jquery.counterup.js"></script>
+    <script src="assets/counter-up/jquery.waypoints.min.js"></script>
+    <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
+    <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="assets/js/reminder-pop.js"></script>
+    <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
-<script>
-  document.getElementById('button').addEventListener("click", function() {
-    document.querySelector('.bg-modal').style.display = "flex";
-  });
+    <script>
+      document.getElementById('button').addEventListener("click", function() {
+        document.querySelector('.bg-modal').style.display = "flex";
+      });
 
-  document.querySelector('.close').addEventListener("click", function() {
-    document.querySelector('.bg-modal').style.display = "none";
-  });
-</script>
-</body>
+      document.querySelector('.close').addEventListener("click", function() {
+        document.querySelector('.bg-modal').style.display = "none";
+      });
+    </script>
+  </body>
 
-</html>
+  </html>

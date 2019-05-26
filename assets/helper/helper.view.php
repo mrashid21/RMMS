@@ -9,3 +9,4 @@ require_once "classes/Task.php";
 require_once "ResearchAction.php";
 require_once "TaskAction.php";
 require_once "UserAction.php";
+require_once "ChecklistAction.php";
