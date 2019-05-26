@@ -14,20 +14,20 @@ $data = UserAction::retrieveData();
   <meta name="viewport">
   <meta name="author" content="WIF2003">
   <title>Notes</title>
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/reminder-pop.css">
-    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
-    <!-- Google Fonts Poppins -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <!-- Argon CSS Bootstrap -->
-    <link rel="stylesheet" href="assets/css/argon.css">
-    <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.css">
-    <!-- Include Nucleo CSS Icons -->
-    <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
-    <link rel="stylesheet" href="assets/css/profile-layout.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/reminder-pop.css">
+  <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+  <!-- Google Fonts Poppins -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Argon CSS Bootstrap -->
+  <link rel="stylesheet" href="assets/css/argon.css">
+  <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.css">
+  <!-- Include Nucleo CSS Icons -->
+  <link rel="stylesheet" href="assets/nucleo/css/nucleo.css">
+  <link rel="stylesheet" href="assets/css/profile-layout.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
   <style type="text/css">
     hr {
@@ -121,7 +121,7 @@ $data = UserAction::retrieveData();
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Research-Progress.php"><i class="ni ni-ui-04 text-orange"></i>Research
-              Progress</a>
+            Progress</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
@@ -146,7 +146,7 @@ $data = UserAction::retrieveData();
           <div class="dropdown user user-menu" style="width:300px;">
             <a href="#" class="small-img" data-toggle="dropdown">
               <img src=<?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
-              <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
+              <span class="hidden-xs"><?= $data['firstName'] . " " . $data['lastName'] ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- Menu Body -->
@@ -156,7 +156,7 @@ $data = UserAction::retrieveData();
                 </div>
                 <div class="row d-flex justify-content-around">
                   <p class="text-center pt-2">
-                    <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></b></small><br>
+                    <small><b> <?= $data['firstName'] . " " . $data['lastName'] ?></b></small><br>
                     <small>Member since <?= $data['timeCreated'] ?></small>
                   </p>
                 </div>
@@ -189,88 +189,93 @@ $data = UserAction::retrieveData();
 
     <div class="header container-fluid bg-gradient-light pb-3 pt-5 pt-md-8">
      <!--===== Notes =====-->
-    <div class="event_time_area">
+     <div class="event_time_area">
       <div class="event_time_inner">
         <h1>Create Meeting Notes</h1>
       </div>
     </div>
   </div>
-    <?php
-    $con = mysqli_connect("localhost","root","","rmms");
-    // Check connection
-    if (mysqli_connect_errno())
-      {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-      }
-    $status = "";
-    if(isset($_POST['new']) && $_POST['new']==1)
-    {
-      $trn_date = date("Y-m-d");
-      $noteTitle =$_REQUEST['NoteTitle'];
-      $content = $_REQUEST['message'];
-      $meeting = $_REQUEST['MeetingTitle'];
-      $submittedby = $_SESSION["'logged_firstName'"];
-      $ins_query="insert into new_notes (`trn_date`,`meetingTitle`,`noteTitle`,`content`,`submittedby`) values ('$trn_date','$meeting','$noteTitle','$content','$submittedby')";
-      mysqli_query($con,$ins_query) or die(mysql_error());
-      $status = "New Notes Inserted Successfully.</br></br><a href='addNotes.php'>View Inserted Notes</a>";
-    }
-    ?>
-    <?php
-    try{
-        $sqlconnection = new pdo('mysql:host=localhost;dbname=rmms;charset=utf8','user1','user1abc');
-        }   
-    catch(PDOException $pe){
-        echo 'Cannot connect to database';
-        die;
-    }
+  <?php
+  $con = mysqli_connect("localhost","root","","rmms");
+	    // Check connection
+  if (mysqli_connect_errno())
+  {
+   echo "Failed to connect to MySQL: " . mysqli_connect_error();
+ }
+ $status = "";
+ if(isset($_POST['new']) && $_POST['new']==1)
+ {
+   $trn_date = date("Y-m-d");
+   $noteTitle =$_REQUEST['NoteTitle'];
+   $content = $_REQUEST['message'];
+   $meeting = $_REQUEST['MeetingTitle'];
+   $submittedby = $_SESSION['logged_firstName'];
+   $ins_query="insert into new_notes (`trn_date`,`meetingTitle`,`noteTitle`,`content`,`submittedby`) values ('$trn_date','$meeting','$noteTitle','$content','$submittedby')";
+   mysqli_query($con,$ins_query) or die(mysqli_connect_error());
+   $status = "New Notes Inserted Successfully.</br></br><a href='addNotes.php'>View Inserted Notes</a>";
+ }
+ ?>
+ <?php
+ try{
+  $sqlconnection = new pdo('mysql:host=localhost;dbname=rmms;charset=utf8','user1','user1abc');
+}   
+catch(PDOException $pe){
+  echo 'Cannot connect to database';
+  die;
+}
 ?>
 
-    <br><br>
-    <div class="container-fluid" style="height: 800px">
-    <div class="col-sm-9" style="height: 100%; margin-left:120px;">
-      <div class="form">
-       <a href="addNotes.php" class="btn btn-warning" role="button">View Notes</a>
-          <form name="form" method="post" action=""> 
-            <div class="control-group form-group">
-              <input type="hidden" name="new" value="1" />
-            </div>
-            <div class="control-group form-group">
-              <label for="meeting"> Meeting Title : <span id="message-title"></span></label><br>
-              <input type="text" name="MeetingTitle" placeholder="Enter Meeting Title" required />
-   
-             <datalist id="appointment">
-            <?php
-                $commandtext = "select AppointmentSubject from appointment";
-                $cmd = $sqlconnection->prepare($commandtext);
-                $cmd->execute();
-                $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
-                foreach($result as $row) {
-                    echo '<option value="'. $row['AppointmentSubject'] . "</option>";
-                }
-                ?>
-                </datalist>
-            </div>
-            <div class="control-group form-group">
-              <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
-              <input type="text" name="NoteTitle" placeholder="Enter Notes Title" required />
-            </div>
-            <div class="control-group form-group">
-              <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
-              <textarea class="form-field" id="message" name="message" rows="15" cols="43"></textarea>
-            </div>
-            <p><input name="submit" type="submit" value="Save Notes" /></p>
-          </form>
-          <p style="color:#FF0000;"><?php echo $status; ?></p><br />
-        </div>
+<br><br>
+<div class="container-fluid" style="height: 800px">
+  <div class="col-sm-9" style="height: 100%; margin-left:120px;">
+    <div class="form">
+     <a href="addNotes.php" class="btn btn-warning" role="button">View Notes</a>
+     <form name="form" method="post" action=""> 
+      <div class="control-group form-group">
+        <input type="hidden" name="new" value="1" />
       </div>
-    </div>
-      
-  <footer class="footer">
-    <div class="footerContent">
-      <hr>
-      Copyright &copy; ORMMS TEAM 1<br>
-      <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
-    </div>
-  </footer>
+      <div class="control-group form-group">
+        <label for="meeting"> Meeting Title : <span id="message-title"></span></label><br>
+        <input type="text" name="MeetingTitle" placeholder="Enter Meeting Title" required />
+
+        <datalist id="appointment">
+          <?php
+          $commandtext = "select AppointmentSubject from appointment";
+          $cmd = $sqlconnection->prepare($commandtext);
+          $cmd->execute();
+          $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
+          foreach($result as $row) {
+            echo '<option value="'. $row['AppointmentSubject'] . "</option>";
+          }
+          ?>
+        </datalist>
+      </div>
+      <div class="control-group form-group">
+        <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
+        <input type="text" name="NoteTitle" placeholder="Enter Notes Title" required />
+      </div>
+      <div class="control-group form-group">
+        <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
+        <textarea class="form-field" id="message" name="message" rows="15" cols="43"></textarea>
+      </div>
+      <p><input name="submit" type="submit" value="Save Notes" /></p>
+    </form>
+    <p style="color:#FF0000;"><?php echo $status; ?></p><br />
+  </div>
+</div>
+</div>
+
+<footer class="footer">
+  <div class="footerContent">
+    <hr>
+    Copyright &copy; ORMMS TEAM 1<br>
+    <a href="mailto:umseclub@um.edu.my">ormmsteam1@um.edu.my</a>
+  </div>
+</footer>
+
+<script src="assets/js/argon.js"></script>
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

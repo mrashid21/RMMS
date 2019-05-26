@@ -62,7 +62,7 @@ $img = UserAction::getImageDir();
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Research-Progress.php"><i class="ni ni-ui-04 text-orange"></i>Research
-                            Progress</a>
+                        Progress</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="upload.php"><i class="ni ni-cloud-upload-96 text-pink"></i>Upload Report</a>
@@ -88,7 +88,7 @@ $img = UserAction::getImageDir();
                     <div class="dropdown user user-menu" style="width:300px;">
                         <a href="#" class="small-img" data-toggle="dropdown">
                             <img src= <?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
-                            <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
+                            <span class="hidden-xs"><?= $data['firstName'] . " " . $data['lastName'] ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Menu Body -->
@@ -98,7 +98,7 @@ $img = UserAction::getImageDir();
                                 </div>
                                 <div class="row d-flex justify-content-around">
                                     <p class="text-center pt-2">
-                                        <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></b></small><br>
+                                        <small><b> <?= $data['firstName'] . " " . $data['lastName'] ?></b></small><br>
                                         <small>Member since <?= $data['timeCreated'] ?></small>
                                     </p>
                                 </div>
@@ -207,12 +207,12 @@ $img = UserAction::getImageDir();
                                                             <th>Date</th>
                                                         </tr>
                                                         <?php foreach($activities as $key=> $value):?>
-                                                        <tr>
-                                                            <td> <?= $i++; $i;  ?> </td>
-                                                            <td> <?= $activities[$key]['name']; ?> </td>
-                                                            <td> <?= $activities[$key]['time']; ?> </td>
-                                                            
-                                                        </tr>
+                                                            <tr>
+                                                                <td> <?= $i++; $i;  ?> </td>
+                                                                <td> <?= $activities[$key]['name']; ?> </td>
+                                                                <td> <?= $activities[$key]['time']; ?> </td>
+                                                                
+                                                            </tr>
                                                         <?php endforeach;?>
                                                     </tbody>
                                                 </table>
@@ -307,15 +307,8 @@ $img = UserAction::getImageDir();
 
     <script src="assets/js/argon.js"></script>
     <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/flipclock/timer.js"></script>
-    <script src="assets/counter-up/jquery.counterup.js"></script>
-    <script src="assets/counter-up/jquery.waypoints.min.js"></script>
     <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/chart.js/dist/Chart.min.js"></script>
-    <script src="assets/vendor/chart.js/dist/Chart.extension.js"></script>
-    <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="assets/js/reminder-pop.js"></script>
-    <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
 
     <script>
         document.getElementById('button').addEventListener("click", function() {
