@@ -197,10 +197,12 @@
     </div>
   </div>
     <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/assets/database/Connection.php";
-		require_once "Activity.php";
-		$config = require $_SERVER['DOCUMENT_ROOT'] . "/assets/database/config.php";
-		return Connection::make($config['database']);
+    $con = mysqli_connect("localhost","root","","rmms");
+    // Check connection
+    if (mysqli_connect_errno())
+      {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      }
     $status = "";
     if(isset($_POST['new']) && $_POST['new']==1)
     {
