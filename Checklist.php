@@ -107,8 +107,6 @@ $tasks = ChecklistAction::getCheckkistTasks();
      text-decoration: none;
    }
 
-   >>>>>>> 931117d121d31e6b46c1ca293ba01b4212caebbe
-
    #myform {
      width: 100%; 
      margin: 30px auto; 
@@ -237,16 +235,9 @@ h1 {
       <div class="container-fluid">
         <!-- Profile Dropdown -->
         <form>
-          <<<<<<< HEAD
           <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
-          <div class="dropdown user user-menu" style="width:300px;">
-            ||||||| merged common ancestors
-            <!-- <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
-            <div class="dropdown user user-menu" style="width:300px;">
-              =======
-              <input type="submit" class="btn" value="Logout" style="width: 100%"> -->
               <div class="dropdown user user-menu" style="width:300px;">
-                >>>>>>> 931117d121d31e6b46c1ca293ba01b4212caebbe
+
                 <a href="#" class="small-img" data-toggle="dropdown">
                   <img src=<?= $img ?> class= "img-fluid img-circle header-user-image small-img" alt="User Image">
                   <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
