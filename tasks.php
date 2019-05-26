@@ -327,6 +327,7 @@ $data = UserAction::retrieveData();
                 var app = new Vue({
                     el: '#app',
                     data: {
+                        id : null,
                         name: null,
                         completion: null,
                         start_date: null,
@@ -371,7 +372,7 @@ $data = UserAction::retrieveData();
                             this.$modal.hide('taskForm');
                         },
 
-                        update(name, start_date, due_date, done, completion) {
+                        update(id, name, start_date, due_date, done, completion) {
 
                             const self = this;
                             var bodyFormData = new FormData();
@@ -383,7 +384,7 @@ $data = UserAction::retrieveData();
 
                             axios({
                                 method: 'post',
-                                url: '/assets/api/task/edit_task.php?id=<?php echo htmlentities($task_id); ?>',
+                                url: '/assets/api/task/edit_task.php?id='+this.id,
                                 data: bodyFormData,
                                 config: null
                             }).then(function(response) {
@@ -404,8 +405,9 @@ $data = UserAction::retrieveData();
                         },
 
                         edit(x) {
-                            this.mode = 'edit'
-                            this.model = x
+                            this.id = x.id;
+                            this.mode = 'edit';
+                            this.model = x;
                             this.name = x.name;
                             this.start_date = x.start_date;
                             this.due_date = x.due_date;
@@ -416,7 +418,7 @@ $data = UserAction::retrieveData();
                         },
                         remove(x) {
 
-                            var r = confirm("Are you sure you want to remove the phase?");
+                            var r = confirm("Are you sure you want to remove the task?");
                             
                             if(r == true){
 
@@ -430,7 +432,7 @@ $data = UserAction::retrieveData();
 
                                 axios({
                                     method: 'post',
-                                    url: '/assets/api/task/remove_task.php?id=<?php echo htmlentities($task_id); ?>',
+                                    url: '/assets/api/task/remove_task.php?id='+x.id,
                                     data: bodyFormData,
                                     config: null
                                 }).then(function(response) {

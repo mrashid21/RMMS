@@ -68,7 +68,7 @@ class TaskAction{
 
 		$Db = null;
 
-		Activity::addActivity("Created a new task");
+		Activity::addActivity("Created a new task to research phase");
 
 		return json_encode($data);
 	}
