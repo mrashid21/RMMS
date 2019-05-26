@@ -4,7 +4,7 @@ Author: Javed Ur Rehman
 Website: https://www.allphptricks.com/
 */
 
-$con = mysqli_connect("localhost","root","","register");
+$con = mysqli_connect("localhost","root","","rmms");
 // Check connection
 if (mysqli_connect_errno())
   {
