@@ -10,7 +10,6 @@
 <html>
 <?php
 require('db.php');
-
 ?>
 <head>
   <meta charset="utf-8">
