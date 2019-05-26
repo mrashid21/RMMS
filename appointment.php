@@ -214,9 +214,9 @@
         //$studentname = $_SESSION["'logged_firstName'"];
         $supervisor = $_REQUEST['supervisor'];
       
-      $ins_query="INSERT INTO appointment (`AppointmentID`,`AppointmentSubject`,`AppointmentDate`,`StartTime`,`EndTime`,`SupervisorName`) 
-      VALUES ('$id','$subject','$date','$startTime','$endTime','$supervisor')";
-      mysqli_query($con,$ins_query) or die(mysqli_error());
+      $ins_query="insert into appointment (`AppointmentID`,`AppointmentSubject`,`AppointmentDate`,`StartTime`,`EndTime`,`SupervisorName`) 
+      values ('$id','$subject','$date','$startTime','$endTime','$supervisor')";
+      mysqli_query($con,$ins_query) or die(mysql_error());
       $status = "Appointment Created Successfully.</br></br><a href='schedule.php'>View Appointment Schedule</a>";
     }
     
@@ -269,7 +269,7 @@
                     {
                         echo "Failed to connect to MySQL: " . mysqli_connect_error();
                     }
-                    $sql = mysqli_query($con, "SELECT SupervisorID, SupervisorName FROM supervisor");
+                    $sql = mysqli_query($con, "select SupervisorID, SupervisorName from supervisor");
                     while ($row = $sql->fetch_assoc()){
                         echo "<option value=''>" . $row['SupervisorID'] .' '. $row['SupervisorName'] . "</option>";
                     }
