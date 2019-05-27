@@ -216,7 +216,7 @@ $data = UserAction::retrieveData();
 
     $ins_query="insert into appointment (`AppointmentID`,`SupervisorName`,`AppointmentSubject`,`AppointmentDate`,`StartTime`,`EndTime`) 
     values ('$id','$supervisor','$subject','$date','$startTime','$endTime')";
-    mysqli_query($con,$ins_query) or die(mysql_error());
+    mysqli_connect_error($con,$ins_query) or die(mysqli_connect_error());
     $status = "Appointment Created Successfully.</br></br><a href='schedule.php'>View Appointment Schedule</a>";
   }?>
 <?php
@@ -260,7 +260,7 @@ $data = UserAction::retrieveData();
         </div>
         <div class="control-group form-group">
           <label for="supervisor"> Name of Supervisor : </label><br>
-          <input  name="suppervisor" list ="supervisor" placeholder="Choose Supervisor" required />
+          <input  name="supervisor" list ="supervisor" placeholder="Choose Supervisor" required />
    
              <datalist id="appointment">
             <?php
