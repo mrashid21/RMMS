@@ -45,7 +45,17 @@ foreach ($tasks as $key => $value) {
 <!DOCTYPE html>
 
 <html>
-
+<style>
+.task_input {
+     width: 100%;
+     height: 60px; 
+     padding: 10px;
+     border: 2px solid red;
+}
+h1 {
+    text-align : center;
+}
+</style>
 <head>
   <meta charset="utf-8">
   <meta name="viewport">

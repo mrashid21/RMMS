@@ -7,15 +7,15 @@ if(!isset($_SESSION)){
 
 class TaskAction{
 
-    public static function connect(){
-			require_once $_SERVER['DOCUMENT_ROOT'] . "/assets/database/Connection.php";
-			
-			require_once "Activity.php";
+	public static function connect(){
+		require_once $_SERVER['DOCUMENT_ROOT'] . "/assets/database/Connection.php";
 
-			$config = require $_SERVER['DOCUMENT_ROOT'] . "/assets/database/config.php";
-	
-			return Connection::make($config['database']);
-    }
+		require_once "Activity.php";
+
+		$config = require $_SERVER['DOCUMENT_ROOT'] . "/assets/database/config.php";
+
+		return Connection::make($config['database']);
+	}
 
     // This function will add a task to database
 	public static function addTask($task){
@@ -56,9 +56,9 @@ class TaskAction{
 
 		// ORDER BY id DESC LIMIT 1 
 		
-		$query = $Db->prepare("SELECT * FROM tasks WHERE researchId = :researchId");
+		$query = $Db->prepare("SELECT * FROM tasks WHERE name = :name");
 
-		$query->bindParam(':researchId', $researchId);
+		$query->bindParam(':name', $name);
 		
 		$stat = $query->execute();
 
@@ -73,32 +73,30 @@ class TaskAction{
 		return json_encode($data);
 	}
 
-	// public static function updateTask(){
-	// 	$Db = self::connect();
-	// 	// ORDER BY id DESC LIMIT 1
-	// 	$query = $Db->prepare("SELECT * FROM tasks WHERE researchId = :researchId");
-		
-	// 	session_start();
-
-	// 	$query->bindParam(':researchId', $_GET['id']);
-
-	// 	$stat = $query->execute();
-
-	// 	$data = $query->fetchAll(PDO::FETCH_ASSOC);
-
-	// 	$query = null;
-
-	// 	$Db = null;
-
-	// 	return json_encode($data);
-	// }
-
-	public static function deleteTask(){
+	public static function updateTask($id, $task){
 		$Db = self::connect();
-		
-		$query = $Db->prepare("DELETE FROM tasks WHERE id = :taskId");
+		// ORDER BY id DESC LIMIT 1
+		$name = $task->getName();
+		$start_date = $task->getStartDate(); 
+		$due_date = $task->getDueDate();
+		$completion = $task->getCompletion();
+		$done = $task->getDone();
+		$researchId = $task->getResearchId();
 
-		$query->bindParam(':id', $taskId);
+
+		$query = $Db->prepare("UPDATE tasks SET name = :name,  completion = :completion, start_date=:start_date, due_date=:due_date, done=:done WHERE id = :id");
+
+		$query->bindParam(':id', $_GET['id']);
+
+		$query->bindParam(':name', $name);
+
+		$query->bindParam(':start_date', $start_date);
+
+		$query->bindParam(':due_date', $due_date);
+
+		$query->bindParam(':completion', $completion);
+
+		$query->bindParam(':done', $done);
 
 		$stat = $query->execute();
 
@@ -106,7 +104,23 @@ class TaskAction{
 
 		$Db = null;
 
-		return $stat;
+		Activity::addActivity("Updated a new task to research phase");
+	}
+
+	public static function deleteTask($id){
+		$Db = self::connect();
+		
+		$query = $Db->prepare("DELETE FROM tasks WHERE id = :id");
+
+		$query->bindParam(':id', $id);
+
+		$query->execute();
+
+		$query = null;
+
+		$Db = null; 
+
+		echo $id;
 	}
 
 	public static function getTasks(){

@@ -37,6 +37,7 @@ var app = new Vue({
                 // handle error
                 console.log(error);
             })
+            location.reload(true);
         },
         add(name, contributers, status, completion) {
             this.mode = 'save';
@@ -71,7 +72,7 @@ var app = new Vue({
                 // handle error
                 console.log(error);
             })
-
+            location.reload(true);
 
 
         },
@@ -112,7 +113,7 @@ var app = new Vue({
                     console.log(error);
                 })
             }
-
+            location.reload(true);
 
         },
         statusColor(x) {

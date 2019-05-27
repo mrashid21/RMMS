@@ -97,7 +97,7 @@ if (isset($_POST['studentId'])) {
                     <div class="dropdown user user-menu" style="width:300px;">
                         <a href="#" class="small-img" data-toggle="dropdown">
                             <img src= <?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
-                            <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
+                            <span class="hidden-xs"><?= $data['firstName'] . " " . $data['lastName'] ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Menu Body -->
@@ -107,7 +107,7 @@ if (isset($_POST['studentId'])) {
                                 </div>
                                 <div class="row d-flex justify-content-around">
                                     <p class="text-center pt-2">
-                                        <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></b></small><br>
+                                        <small><b> <?= $data['firstName'] . " " . $data['lastName'] ?></b></small><br>
                                         <small>Member since <?= $data['timeCreated'] ?></small>
                                     </p>
                                 </div>
@@ -250,19 +250,21 @@ if (isset($_POST['studentId'])) {
                 </div>
             </form>
         </modal>
-        <modal name="researchForm" :height="500">
+        <modal name="researchForm" :height="600">
             <div class="text-center text-muted mb-4" style="padding:0 20px">
                 <h3 style="padding-top: 20px;">Add Research</h3>
             </div>
             <form role="form" style="height: 400px; padding:0 20px" method="POST" action="#" v-on:submit.prevent="onSubmit">
+                <label>Phase Name</label>	
                 <div class="form-group mb-3">
                     <div class="input-group input-group-alternative">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-map-big"></i></span>
-                        </div>
+                        </div>             
                         <input class="form-control" placeholder="Research Name" type="text" v-model='name' name="research-name" required>
                     </div>
                 </div>
+                <label>Phase Status</label>
                 <div class="form-group">
                     <div class="input-group input-group-alternative">
                         <div class="input-group-prepend">
@@ -276,6 +278,7 @@ if (isset($_POST['studentId'])) {
                         </select>
                     </div>
                 </div>
+                <label>Phase Contributers</label>
                 <div class="form-group">
                     <div class="input-group input-group-alternative">
                         <div class="input-group-prepend">
@@ -284,6 +287,7 @@ if (isset($_POST['studentId'])) {
                         <input class="form-control" placeholder="Contributers" type="text" v-model='contributers' name="research-contributers" required>
                     </div>
                 </div>
+                <label>Phase completion percentage</label>
                 <div class="form-group">
                     <div class="input-group input-group-alternative">
                         <div class="input-group-prepend">
@@ -322,7 +326,7 @@ if (isset($_POST['studentId'])) {
     <script src="/assets/counter-up/jquery.counterup.js"></script>
     <script src="/assets/counter-up/jquery.waypoints.min.js"></script>
     <script src="/assets/js/researchProgress.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="/assets/js/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-js-modal@1.3.28/dist/index.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-axios@2.1.4/dist/vue-axios.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

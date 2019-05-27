@@ -85,7 +85,7 @@ $data = UserAction::retrieveData();
                     <div class="dropdown user user-menu" style="width:300px;">
                         <a href="#" class="small-img" data-toggle="dropdown">
                             <img src= <?= $img ?> class="img-fluid img-circle header-user-image small-img" alt="User Image">
-                            <span class="hidden-xs"><?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></span>
+                            <span class="hidden-xs"><?= $data['firstName'] . " " . $data['lastName'] ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Menu Body -->
@@ -95,7 +95,7 @@ $data = UserAction::retrieveData();
                                 </div>
                                 <div class="row d-flex justify-content-around">
                                     <p class="text-center pt-2">
-                                        <small><b> <?= $_SESSION['logged_firstName'] . " " . $_SESSION['logged_lastName'] ?></b></small><br>
+                                        <small><b> <?= $data['firstName'] . " " . $data['lastName'] ?></b></small><br>
                                         <small>Member since <?= $data['timeCreated'] ?></small>
                                     </p>
                                 </div>
