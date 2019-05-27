@@ -266,31 +266,6 @@ catch(PDOException $pe){
           <p style="color:#FF0000;"><?php echo $status; ?></p><br />
         </div>
       </div>
-      <div class="control-group form-group">
-        <label for="meeting"> Meeting Title : <span id="message-title"></span></label><br>
-        <input type="text" name="MeetingTitle" placeholder="Enter Meeting Title" required />
-
-        <datalist id="appointment">
-          <?php
-          $commandtext = "select AppointmentSubject from appointment";
-          $cmd = $sqlconnection->prepare($commandtext);
-          $cmd->execute();
-          $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
-          foreach($result as $row) {
-            echo '<option value="'. $row['AppointmentSubject'] . "</option>";
-          }
-          ?>
-        </datalist>
-      </div>
-      <div class="control-group form-group">
-        <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
-        <input type="text" name="NoteTitle" placeholder="Enter Notes Title" required />
-      </div>
-      <div class="control-group form-group">
-        <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
-        <textarea class="form-field" id="message" name="message" rows="15" cols="43"></textarea>
-      </div>
-      <p><input name="submit" type="submit" value="Save Notes" /></p>
     </form>
     <p style="color:#FF0000;"><?php echo $status; ?></p><br />
   </div>
