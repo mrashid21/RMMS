@@ -41,6 +41,16 @@ CREATE TABLE IF NOT EXISTS `new_notes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+CREATE TABLE `appointment` (
+  `AppointmentID` varchar(50) NOT NULL,
+  `SupervisorID` varchar(12) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `SupervisorName` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `AppointmentSubject` char(255) NOT NULL,
+  `AppointmentDate` date DEFAULT NULL,
+  `StartTime` time DEFAULT NULL,
+  `EndTime` time DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- Data exporting was unselected.
 -- Dumping structure for table rmms.progress
 CREATE TABLE IF NOT EXISTS `progress` (
