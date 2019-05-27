@@ -1,9 +1,9 @@
 <?php 
-require "./assets/validation/validateUser.php";
-require "./assets/helper/UserAction.php";
+// require "./assets/validation/validateUser.php";
+// require "./assets/helper/UserAction.php";
 
-$img = UserAction::getImageDir();
-$data = UserAction::retrieveData();
+// $img = UserAction::getImageDir();
+// $data = UserAction::retrieveData();
 ?>
 
 <!DOCTYPE html>
@@ -217,7 +217,7 @@ $data = UserAction::retrieveData();
  ?>
  <?php
  try{
-  $sqlconnection = new pdo('mysql:host=localhost;dbname=rmms;charset=utf8','root','');
+  $sqlconnection = new pdo('mysql:host=localhost;dbname=rmms;charset=utf8','user1','user1abc');
 }   
 catch(PDOException $pe){
   echo 'Cannot connect to database';
@@ -234,38 +234,32 @@ catch(PDOException $pe){
             <div class="control-group form-group">
               <input type="hidden" name="new" value="1" />
             </div>
-            <div class="control-group form-group">
-              <label for="meeting"> Meeting Title : <span id="message-title"></span></label><br>
-              <input  name="MeetingTitle" list ="appointment" placeholder="Select Meeting Title" required />
-   
-             <datalist id="appointment">
-            <?php
-                $commandtext = "select AppointmentSubject from appointment";
-                $cmd = $sqlconnection->prepare($commandtext);
-                $cmd->execute();
-                $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
-                foreach($result as $row) ?>
-                    <!-- echo "<option value=''>" . $row['AppointmentSubject'] . "</option>"; -->
-                    <!-- echo '<option value="'. $row['AppointmentSubject']. "</option>"; -->
-                    <option value="<?=$row['AppointmentSubject'];?>"></option>
-                
-               <? endforeach;
-                ?>
-                </datalist>
-            </div>
-            <div class="control-group form-group">
-              <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
-              <input type="text" name="NoteTitle" placeholder="Enter Notes Title" required />
-            </div>
-            <div class="control-group form-group">
-              <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
-              <textarea class="form-field" id="message" name="message" rows="15" cols="43"></textarea>
-            </div>
-            <p><input name="submit" type="submit" value="Save Notes" /></p>
-          </form>
-          <p style="color:#FF0000;"><?php echo $status; ?></p><br />
-        </div>
+ 
+      <div class="control-group form-group">
+        <label for="meeting"> Meeting Title : <span id="message-title"></span></label><br>
+        <input type="text" name="MeetingTitle" placeholder="Enter Meeting Title" required />
+
+        <datalist id="appointment">
+          <?php
+          $commandtext = "select AppointmentSubject from appointment";
+          $cmd = $sqlconnection->prepare($commandtext);
+          $cmd->execute();
+          $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
+          foreach($result as $row) {
+            echo '<option value="'. $row['AppointmentSubject'] . "</option>";
+          }
+          ?>
+        </datalist>
       </div>
+      <div class="control-group form-group">
+        <label for="title">  Notes Title   :   <span id="message-title"></span></label><br>
+        <input type="text" name="NoteTitle" placeholder="Enter Notes Title" required />
+      </div>
+      <div class="control-group form-group">
+        <label for="mesg"> Notes Content : <span id="message-info"></span></label><br>
+        <textarea class="form-field" id="message" name="message" rows="15" cols="43"></textarea>
+      </div>
+      <p><input name="submit" type="submit" value="Save Notes" /></p>
     </form>
     <p style="color:#FF0000;"><?php echo $status; ?></p><br />
   </div>
