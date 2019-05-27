@@ -214,8 +214,8 @@ $data = UserAction::retrieveData();
         //$studentname = $_SESSION["'logged_firstName'"];
     $supervisor = $_REQUEST['supervisor'];
 
-    $ins_query="insert into appointment (`AppointmentID`,`AppointmentSubject`,`AppointmentDate`,`StartTime`,`EndTime`,`SupervisorName`) 
-    values ('$id','$subject','$date','$startTime','$endTime','$supervisor')";
+    $ins_query="insert into appointment (`AppointmentID`,`SupervisorName`,`AppointmentSubject`,`AppointmentDate`,`StartTime`,`EndTime`) 
+    values ('$id','$supervisor','$subject','$date','$startTime','$endTime')";
     mysqli_query($con,$ins_query) or die(mysql_error());
     $status = "Appointment Created Successfully.</br></br><a href='schedule.php'>View Appointment Schedule</a>";
   }
@@ -271,7 +271,7 @@ $data = UserAction::retrieveData();
             }
             $sql = mysqli_query($con, "select SupervisorID, SupervisorName from supervisor");
             while ($row = $sql->fetch_assoc()){
-              echo "<option value=''>" . $row['SupervisorID'] .' '. $row['SupervisorName'] . "</option>";
+              echo "<option value=''>" .  $row['SupervisorName'] . "</option>";
             }
             ?>
           </select>
