@@ -17,7 +17,7 @@ if (mysqli_connect_errno())
   }
 
 $id=$_REQUEST['id'];
-$query = "SELECT * FROM appointment WHERE AppintmentID='".$id."'"; 
+$query = "SELECT * FROM appointment WHERE AppointmentID='".$id."'"; 
 $result = mysqli_query($con, $query) or die ( mysqli_error());
 $row = mysqli_fetch_assoc($result);
 ?>
@@ -231,27 +231,27 @@ $row = mysqli_fetch_assoc($result);
         <form name="form" method="post" action=""> 
             <div class="row">
               <input type="hidden" name="new" value="1" />
-            </div><br><br>
-            <div class="row">
+            </div><br>
+            <div class="control-group form-group">
             <input name="id" type="hidden" value="<?php echo $row['AppointmentID'];?>" />
-            </div><br><br>
-            <div class="row">
-                <label for="subject">  Appointment Subject   :   </label><br>
-              <input type="text" name="subject" required value="<?php echo $row['AppointmentSubject'];?>" /><br><br>
-            </div><br><br>
-            <div class="row">
-                <label for="subject">  Date   :   </label><br>
-              <input type="date" name="date" required value="<?php echo $row['AppointmentDate'];?>" /><br><br>
-            </div><br><br>
-            <div class="row">
-                <label for="subject">  Start Time   :   </label><br>
-              <input type="time" name="startTime" required value="<?php echo $row['StartDate'];?>" /><br><br>
-            </div><br><br>
-            <div class="row">
-                <label for="subject">  End Time   :   </label><br>
-              <input type="time" name="endTime" required value="<?php echo $row['EndDate'];?>" /><br><br>
-            </div><br><br>
-            <div class="row">
+            </div><br>
+            <div class="control-group form-group">
+                <label for="subject">  Appointment Subject   :   </label>
+              <input type="text" name="subject" required value="<?php echo $row['AppointmentSubject'];?>" />
+            </div><br>
+            <div class="control-group form-group">
+                <label for="subject">  Date   :   </label>
+              <input type="date" name="date" required value="<?php echo $row['AppointmentDate'];?>" />
+            </div><br>
+            <div class="control-group form-group">
+                <label for="subject">  Start Time   :   </label>
+              <input type="time" name="startTime" required value="<?php echo $row['StartDate'];?>" />
+            </div><br>
+            <div class="control-group form-group">
+                <label for="subject">  End Time   :   </label>
+              <input type="time" name="endTime" required value="<?php echo $row['EndDate'];?>" />
+            </div><br>
+            <div class="control-group form-group">
                 <label for="supervisor">  Name of Supervisor   :   </label><br>
                 <select name="supervisor">
               <option value ='<?php echo $row['SupervisorName'];?>'>Choose Supervisor</option>
@@ -264,11 +264,11 @@ $row = mysqli_fetch_assoc($result);
                     }
                     $sql = mysqli_query($con, "SELECT SupervisorID, SupervisorName FROM supervisor");
                     while ($row = $sql->fetch_assoc()){
-                        echo "<option value=''>" . $row['SupervisorID'] .' '. $row['SupervisorName'] . "</option>";
+                        echo "<option value=''>" . $row['SupervisorName'] . "</option>";
                     }
                 ?>
-                </select><br><br>
-            </div><br><br>
+                </select><br>
+            </div>
 
             <p><input name="submit" type="submit" value="Update"/></p>
           </form>
