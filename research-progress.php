@@ -326,7 +326,7 @@ if (isset($_POST['studentId'])) {
     <script src="/assets/counter-up/jquery.counterup.js"></script>
     <script src="/assets/counter-up/jquery.waypoints.min.js"></script>
     <script src="/assets/js/researchProgress.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="/assets/js/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-js-modal@1.3.28/dist/index.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-axios@2.1.4/dist/vue-axios.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

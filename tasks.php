@@ -317,7 +317,7 @@ $data = UserAction::retrieveData();
             <script src="/assets/counter-up/jquery.counterup.js"></script>
             <script src="/assets/counter-up/jquery.waypoints.min.js"></script>
             <script src="/assets/js/taskProgress.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+            <script src="/assets/js/vue.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/vue-js-modal@1.3.28/dist/index.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/vue-axios@2.1.4/dist/vue-axios.min.js"></script>
             <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -363,6 +363,7 @@ $data = UserAction::retrieveData();
                                 // handle error
                                 console.log(error);
                             })
+                            location.reload(true);
                         },
 
                         add(name, start_date, due_date, done, completion) {
@@ -401,7 +402,7 @@ $data = UserAction::retrieveData();
                                 // handle error
                                 console.log(error);
                             })
-
+                            location.reload(true);
                         },
 
                         edit(x) {
@@ -443,7 +444,10 @@ $data = UserAction::retrieveData();
                                     // handle error
                                     console.log(error);
                                 })
+
+                                location.reload(true);
                             }
+
 
                         }
                     },
