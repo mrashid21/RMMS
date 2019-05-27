@@ -237,7 +237,7 @@
             </div>
             <div class="control-group form-group">
               <label for="meeting"> Meeting Title : <span id="message-title"></span></label><br>
-              <input type="text" name="MeetingTitle" placeholder="Enter Meeting Title" required />
+              <input  name="MeetingTitle" list ="appointment" placeholder="Select Meeting Title" required />
    
              <datalist id="appointment">
             <?php
@@ -245,9 +245,12 @@
                 $cmd = $sqlconnection->prepare($commandtext);
                 $cmd->execute();
                 $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
-                foreach($result as $row) {
-                    echo '<option value="'. $row['AppointmentSubject'] . "</option>";
-                }
+                foreach($result as $row) ?>
+                    <!-- echo "<option value=''>" . $row['AppointmentSubject'] . "</option>"; -->
+                    <!-- echo '<option value="'. $row['AppointmentSubject']. "</option>"; -->
+                    <option value="<?=$row['AppointmentSubject'];?>"></option>
+                
+               <? endforeach;
                 ?>
                 </datalist>
             </div>
