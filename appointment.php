@@ -218,8 +218,8 @@ $data = UserAction::retrieveData();
     values ('$id','$supervisor','$subject','$date','$startTime','$endTime')";
     mysqli_query($con,$ins_query) or die(mysql_error());
     $status = "Appointment Created Successfully.</br></br><a href='schedule.php'>View Appointment Schedule</a>";
-  }
-
+  }?>
+<?php
   try{
     $sqlconnection = new pdo('mysql:host=localhost;dbname=rmms;charset=utf8','root','');
   }   
@@ -260,21 +260,22 @@ $data = UserAction::retrieveData();
         </div>
         <div class="control-group form-group">
           <label for="supervisor"> Name of Supervisor : </label><br>
-          <select name="supervisor">
-            <option value =''>Choose Supervisor</option>
+          <input  name="suppervisor" list ="supervisor" placeholder="Choose Supervisor" required />
+   
+             <datalist id="appointment">
             <?php
-            $con = mysqli_connect("localhost","root","","rmms");
-                    // Check connection
-            if (mysqli_connect_errno())
-            {
-              echo "Failed to connect to MySQL: " . mysqli_connect_error();
-            }
-            $sql = mysqli_query($con, "select SupervisorID, SupervisorName from supervisor");
-            while ($row = $sql->fetch_assoc()){
-              echo "<option value=''>" .  $row['SupervisorName'] . "</option>";
-            }
-            ?>
-          </select>
+                $commandtext = "select SupervisorName from supervisor";
+                $cmd = $sqlconnection->prepare($commandtext);
+                $cmd->execute();
+                $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
+                foreach($result as $row) ?>
+                    <!-- echo "<option value=''>" . $row['AppointmentSubject'] . "</option>"; -->
+                    <!-- echo '<option value="'. $row['AppointmentSubject']. "</option>"; -->
+                    <option value="<?=$row['SupervisorName'];?>"></option>
+                
+               <? endforeach;
+                ?>
+              </datalist>
         </div>
         <p><input name="submit" type="submit" value="Create" /></p>
       </form>
