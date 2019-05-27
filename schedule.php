@@ -234,8 +234,8 @@ if (mysqli_connect_errno())
                 <td><?php echo $row["StartTime"]; ?></td>
                 <td><?php echo $row["EndTime"]; ?></td>
                 <td><?php echo $row["SupervisorName"]; ?></td>
-                <td><a href="updateapp.php?id=<?php echo $row["id"]; ?>">Edit</a></td>
-                <td><a href="deleteapp.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
+                <td><a href="updateapp.php?id=<?php echo $row["AppointmentID"]; ?>">Edit</a></td>
+                <td><a href="deleteapp.php?id=<?php echo $row["AppointmentID"]; ?>">Delete</a></td>
               </tr>
               <?php $count++; } ?>
             </tbody>
