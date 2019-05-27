@@ -236,12 +236,12 @@ $data = UserAction::retrieveData();
 
                     </div>
                 </div>
-                <modal name="taskForm" :height="500">
+                <modal name="taskForm" :height="600">
                     <div class="text-center text-muted mb-4" style="padding:0 20px">
                         <h3 style="padding-top: 20px;">Add Task</h3>
                     </div>
                     <form role="form" style="height: 400px; padding:0 20px" method="POST" action="#" v-on:submit.prevent="onSubmit">
-
+                        <label>Task Name</label>
                         <div class="form-group mb-3">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
@@ -250,7 +250,7 @@ $data = UserAction::retrieveData();
                                 <input class="form-control" placeholder="Task Name" type="text" v-model='name' name="task-name" required>
                             </div>
                         </div>
-
+                        <label>Start Date</label>
                         <div class="form-group">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
@@ -259,7 +259,7 @@ $data = UserAction::retrieveData();
                                 <input class="form-control" placeholder="Start date" type="date" v-model='start_date' name="task_start_date" required>
                             </div>
                         </div>
-
+                        <label>Due date</label>
                         <div class="form-group">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
@@ -268,23 +268,13 @@ $data = UserAction::retrieveData();
                                 <input class="form-control" placeholder="Due date" type="date" v-model='due_date' name="task-due_date" required>
                             </div>
                         </div>
-
+                        <label>Completion</label>
                         <div class="form-group">
                             <div class="input-group input-group-alternative">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                 </div>
                                 <input class="form-control" placeholder="Completion" type="number" min="0" max="100" v-model="completion" name="task-completion" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input-group input-group-alternative">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                </div>
-                                <input type="checkbox" v-model="done" name="task-done">
-                                <p>Done?</p>
                             </div>
                         </div>
 
