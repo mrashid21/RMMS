@@ -217,7 +217,7 @@ $data = UserAction::retrieveData();
  ?>
  <?php
  try{
-  $sqlconnection = new pdo('mysql:host=localhost;dbname=rmms;charset=utf8','user1','user1abc');
+  $sqlconnection = new pdo('mysql:host=localhost;dbname=rmms;charset=utf8','root','');
 }   
 catch(PDOException $pe){
   echo 'Cannot connect to database';
