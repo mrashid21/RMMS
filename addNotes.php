@@ -1,9 +1,9 @@
 <?php 
-// require "./assets/validation/validateUser.php";
-// require "./assets/helper/UserAction.php";
+require "./assets/validation/validateUser.php";
+require "./assets/helper/UserAction.php";
 
-// $img = UserAction::getImageDir();
-// $data = UserAction::retrieveData();
+$img = UserAction::getImageDir();
+$data = UserAction::retrieveData();
 ?>
 
 <!DOCTYPE html>
