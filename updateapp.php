@@ -213,7 +213,7 @@ $row = mysqli_fetch_assoc($result);
       $status = "";
       if(isset($_POST['new']) && $_POST['new']==1)
       {
-        $id =$_REQUEST['id'];
+        //$id =$_REQUEST['id'];
         $subject =$_REQUEST['subject'];
         $date = $_REQUEST['date'];
         $startTime = $_REQUEST['startTime'];
@@ -223,7 +223,7 @@ $row = mysqli_fetch_assoc($result);
         $update="UPDATE appointment set AppointmentSubject='".$subject."', AppointmentDate='".$date."', StartTime='".$startTime."', EndTime='".$endTime."', SupervisorName='".$supervisor."'   
         where AppointmentID='".$id."'";
         mysqli_query($con, $update) or die(mysqli_error());
-        $status = "Notes Updated Successfully. </br></br><a href='view.php'>View Updated Notes</a>";
+        $status = "Appointment Updated Successfully. </br></br><a href='view.php'>View Updated Appointment</a>";
         echo '<p style="color:#9529d8;">'.$status.'</p>';
       }else {
         ?>

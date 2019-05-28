@@ -206,7 +206,7 @@ $data = UserAction::retrieveData();
   $status = "";
   if(isset($_POST['new']) && $_POST['new']==1)
   {
-    $id =$_REQUEST['id'];
+    //$id =$_REQUEST['id'];
     $subject =$_REQUEST['subject'];
     $date = $_REQUEST['date'];
     $startTime = $_REQUEST['startTime'];
@@ -214,8 +214,8 @@ $data = UserAction::retrieveData();
         //$studentname = $_SESSION["'logged_firstName'"];
     $supervisor = $_REQUEST['supervisor'];
 
-    $ins_query="insert into appointment (`AppointmentID`,`SupervisorName`,`AppointmentSubject`,`AppointmentDate`,`StartTime`,`EndTime`) 
-    values ('$id','$supervisor','$subject','$date','$startTime','$endTime')";
+    $ins_query="insert into appointment (`SupervisorName`,`AppointmentSubject`,`AppointmentDate`,`StartTime`,`EndTime`) 
+    values ('$supervisor','$subject','$date','$startTime','$endTime')";
     mysqli_connect_error($con,$ins_query) or die(mysqli_connect_error());
     $status = "Appointment Created Successfully.</br></br><a href='schedule.php'>View Appointment Schedule</a>";
   }?>
@@ -238,10 +238,10 @@ $data = UserAction::retrieveData();
         <div class="control-group form-group">
           <input type="hidden" name="new" value="1" />
         </div>
-        <div class="control-group form-group">
+        <!-- <div class="control-group form-group">
           <label for="id">  Appointment ID   :   </label><br>
           <input type="text" name="id" placeholder="Enter Appointment ID (eg. 1001)" required />
-        </div>
+        </div> -->
         <div class="control-group form-group">
           <label for="subject">  Appointment Subject   :   </label><br>
           <input type="text" name="subject" placeholder="Enter Appointment Subject" required />
@@ -262,7 +262,7 @@ $data = UserAction::retrieveData();
           <label for="supervisor"> Name of Supervisor : </label><br>
           <input  name="supervisor" list ="supervisor" placeholder="Choose Supervisor" required />
    
-             <datalist id="appointment">
+             <datalist id="supervisor">
             <?php
                 $commandtext = "select SupervisorName from supervisor";
                 $cmd = $sqlconnection->prepare($commandtext);

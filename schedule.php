@@ -210,7 +210,7 @@ if (mysqli_connect_errno())
         <table class="table table-bordered table-info" id=AppointmentSaved width="100%" style="border-collapse:collapse;">
           <thead style="align:center;">
             <tr>
-              <th><strong>Appointment ID</strong></th>
+              <!-- <th><strong>Appointment ID</strong></th> -->
               <th><strong>Subject</strong></th>
               <th><strong>Date</strong></th>
               <th><strong>Start Time</strong></th>
@@ -228,7 +228,7 @@ if (mysqli_connect_errno())
             while($row = mysqli_fetch_assoc($result)) { 
               ?>
               <tr>
-                <td><?php echo $row["AppointmentID"]; ?></td>
+                <!-- <td><?php echo $row["AppointmentID"]; ?></td> -->
                 <td><?php echo $row["AppointmentSubject"]; ?></td>
                 <td><?php echo $row["AppointmentDate"]; ?></td>
                 <td><?php echo $row["StartTime"]; ?></td>
