@@ -156,8 +156,8 @@ $img = UserAction::getImageDir();
                                         <div class="d-flex justify-content-center pt-3">
                                             Select image to upload:
                                         </div>
-                                        <div class="d-flex col-12 justify-content-center">
-                                            <input type="file" name="fileToUpload" id="fileToUpload" style="font-size: 10px; border-width : 0" required>
+                                        <div class="d-flex col-14 justify-content-center">
+                                            <input type="file" name="fileToUpload" id="fileToUpload" style="font-size: 10px; border-width : 0; width : 200px" required>
                                         </div>
                                         <div class="d-flex col-12 justify-content-center">
                                             <input type="submit" value="Upload Image" name="submit" style="font-size: 10px; border-width : 0">
